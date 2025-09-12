@@ -1,0 +1,1396 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: #2d3748;
+    background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 50%, #81e6d9 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+/* Navigation */
+header {
+    background: linear-gradient(45deg, #38a169 0%, #2f855a 25%, #276749 50%, #22543d 75%, #1a202c 100%);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    border-bottom: 3px solid #68d391;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+
+.logo {
+    color: #e6fffa;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    background: linear-gradient(45deg, #e6fffa, #b2f5ea);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    flex-shrink: 0;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    background: rgba(255,255,255,0.1);
+    padding: 8px 15px;
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.nav-menu a {
+    color: #e6fffa;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    padding: 6px 10px;
+    border-radius: 20px;
+    position: relative;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.nav-menu a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, #68d391, #4fd1c0);
+    border-radius: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.nav-menu a:hover {
+    color: #1a202c;
+    transform: translateY(-2px);
+}
+
+.nav-menu a:hover::before {
+    opacity: 1;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #38a169 0%, #2f855a 50%, #276749 100%);
+    color: white;
+    padding: 120px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="2" fill="white" opacity="0.05"/><circle cx="75" cy="75" r="1.5" fill="white" opacity="0.03"/><circle cx="50" cy="10" r="1" fill="white" opacity="0.04"/><circle cx="90" cy="40" r="1.8" fill="white" opacity="0.02"/><circle cx="10" cy="80" r="1.2" fill="white" opacity="0.03"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-content h2 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    font-weight: 800;
+    background: linear-gradient(45deg, #e6fffa, #b2f5ea, #81e6d9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 30px rgba(255,255,255,0.3);
+}
+
+.hero-content p {
+    font-size: 1.3rem;
+    margin-bottom: 50px;
+    opacity: 0.95;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-top: 50px;
+}
+
+.stat {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    padding: 30px 20px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.2);
+    text-align: center;
+    min-width: 150px;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+    transform: rotate(45deg);
+    transition: all 0.5s;
+}
+
+.stat:hover::before {
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+.stat .number {
+    font-size: 2.8rem;
+    font-weight: 800;
+    display: block;
+    color: #81e6d9;
+    margin-bottom: 10px;
+}
+
+.stat .label {
+    font-size: 0.95rem;
+    opacity: 0.9;
+    margin-top: 5px;
+    font-weight: 500;
+}
+
+/* Info Sections */
+.info-section {
+    padding: 100px 20px;
+    background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+    position: relative;
+}
+
+.info-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="%23a0aec0" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+    pointer-events: none;
+}
+
+.alt-bg {
+    background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 50%, #81e6d9 100%);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.info-section h2 {
+    font-size: 3rem;
+    margin-bottom: 60px;
+    text-align: center;
+    color: #2d3748;
+    font-weight: 800;
+    background: linear-gradient(45deg, #38a169, #2f855a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Content Grid */
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.content-card {
+    background: linear-gradient(145deg, #ffffff 0%, #f7fafc 100%);
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1), 0 1px 8px rgba(0,0,0,0.1);
+    border: 1px solid rgba(255,255,255,0.8);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+.content-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #38a169, #68d391, #4fd1c0);
+}
+
+.content-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(56,161,105,0.05) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.content-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15), 0 5px 15px rgba(56,161,105,0.1);
+}
+
+.content-card:hover::after {
+    opacity: 1;
+}
+
+.alt-bg .content-card {
+    background: linear-gradient(145deg, #ffffff 0%, #e6fffa 100%);
+}
+
+.content-card h3 {
+    color: #38a169;
+    margin-bottom: 25px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    position: relative;
+}
+
+.content-card h3::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: linear-gradient(90deg, #68d391, #4fd1c0);
+    border-radius: 2px;
+}
+
+.content-card ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.content-card li {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(160,174,192,0.2);
+    position: relative;
+    padding-left: 30px;
+}
+
+.content-card li:last-child {
+    border-bottom: none;
+}
+
+.content-card li::before {
+    content: "🌱";
+    position: absolute;
+    left: 0;
+    top: 12px;
+    font-size: 1.2rem;
+    color: #68d391;
+}
+
+/* Tips Section */
+.tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+}
+
+.tip-card {
+    background: linear-gradient(145deg, #ffffff 0%, #f0fff4 100%);
+    padding: 40px;
+    border-radius: 30px;
+    box-shadow: 0 8px 25px rgba(56,161,105,0.1), 0 2px 10px rgba(0,0,0,0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    border: 2px solid rgba(104,211,145,0.1);
+}
+
+.tip-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg,
+        #38a169,
+        #68d391,
+        #4fd1c0,
+        #38b2ac,
+        #319795,
+        #2c7a7b
+    );
+    background-size: 400% 400%;
+    animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.tip-card::after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    right: -30px;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, rgba(104,211,145,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.tip-card:hover {
+    transform: translateY(-12px) rotate(1deg);
+    box-shadow: 0 20px 40px rgba(56,161,105,0.15), 0 8px 20px rgba(0,0,0,0.1);
+    border-color: rgba(104,211,145,0.3);
+}
+
+.tip-card:hover::after {
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+.tip-card h3 {
+    color: #22543d;
+    margin-bottom: 25px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.tip-card h3::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 50px;
+    height: 4px;
+    background: linear-gradient(90deg, #68d391, #4fd1c0);
+    border-radius: 2px;
+}
+
+.tip-card ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 20px;
+}
+
+.tip-card li {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(160,174,192,0.15);
+    position: relative;
+    padding-left: 35px;
+    transition: all 0.3s ease;
+}
+
+.tip-card li:hover {
+    padding-left: 40px;
+    color: #38a169;
+}
+
+.tip-card li:last-child {
+    border-bottom: none;
+}
+
+.tip-card li::before {
+    content: "💚";
+    position: absolute;
+    left: 0;
+    top: 12px;
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+}
+
+.tip-card li:hover::before {
+    transform: scale(1.2) rotate(10deg);
+}
+
+/* Holistic Remedies Section */
+.holistic-section {
+    padding: 100px 20px;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #bae6fd 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.holistic-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="leaves" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M20,10 Q25,5 30,10 Q35,15 30,20 Q25,25 20,20 Q15,15 20,10" fill="%2338a169" opacity="0.05"/><path d="M60,25 Q65,20 70,25 Q75,30 70,35 Q65,40 60,35 Q55,30 60,25" fill="%2368d391" opacity="0.03"/><circle cx="15" cy="30" r="2" fill="%234fd1c0" opacity="0.04"/><circle cx="80" cy="15" r="1.5" fill="%2338b2ac" opacity="0.03"/></pattern></defs><rect width="100" height="100" fill="url(%23leaves)"/></svg>');
+    pointer-events: none;
+}
+
+.holistic-section h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #2d3748;
+    font-weight: 800;
+    background: linear-gradient(45deg, #38a169, #2f855a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.holistic-section .section-intro {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #4a5568;
+    max-width: 800px;
+    margin: 0 auto 60px;
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+.remedies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.remedy-card {
+    background: linear-gradient(145deg, #ffffff 0%, #f0f9ff 100%);
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(56,161,105,0.12), 0 5px 15px rgba(0,0,0,0.05);
+    border: 2px solid rgba(104,211,145,0.1);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.remedy-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg,
+        #38a169,
+        #68d391,
+        #4fd1c0,
+        #81e6d9,
+        #b2f5ea
+    );
+}
+
+.remedy-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(56,161,105,0.18), 0 10px 25px rgba(0,0,0,0.1);
+    border-color: rgba(104,211,145,0.25);
+}
+
+.remedy-card h3 {
+    color: #22543d;
+    margin-bottom: 30px;
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-align: center;
+    position: relative;
+}
+
+.remedy-card h3::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #68d391, #4fd1c0);
+    border-radius: 2px;
+}
+
+.remedy-options {
+    display: grid;
+    gap: 20px;
+}
+
+.remedy-item {
+    background: rgba(255,255,255,0.8);
+    padding: 20px;
+    border-radius: 15px;
+    border-left: 4px solid #68d391;
+    transition: all 0.3s ease;
+}
+
+.remedy-item:hover {
+    background: rgba(255,255,255,0.95);
+    transform: translateX(5px);
+}
+
+.remedy-item h4 {
+    color: #38a169;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.remedy-item p {
+    color: #4a5568;
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Gut Health Section */
+.gut-health-section {
+    margin-bottom: 50px;
+}
+
+.gut-health-section h3 {
+    font-size: 2rem;
+    text-align: center;
+    color: #2d3748;
+    margin-bottom: 40px;
+    font-weight: 700;
+}
+
+.microbiome-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.microbiome-card {
+    background: linear-gradient(145deg, #ffffff 0%, #e6fffa 100%);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(56,161,105,0.1);
+    border: 1px solid rgba(104,211,145,0.15);
+}
+
+.microbiome-card h4 {
+    color: #38a169;
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.microbiome-card h4::before {
+    content: "🦠";
+    font-size: 1.2rem;
+}
+
+.microbiome-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.microbiome-card li {
+    padding: 8px 0;
+    position: relative;
+    padding-left: 20px;
+    color: #4a5568;
+    line-height: 1.5;
+}
+
+.microbiome-card li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #68d391;
+    font-weight: bold;
+}
+
+.holistic-note {
+    background: linear-gradient(145deg, #fffaf0 0%, #fef5e7 100%);
+    border: 2px solid #f6e05e;
+    border-radius: 20px;
+    padding: 30px;
+    position: relative;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 25px rgba(246,224,94,0.15);
+}
+
+.holistic-note::before {
+    content: "🌱";
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 1.5rem;
+}
+
+.holistic-note .note-content {
+    padding-left: 50px;
+}
+
+.holistic-note .note-content h3 {
+    color: #744210;
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.holistic-note .note-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.holistic-note .note-content li {
+    padding: 12px 0;
+    position: relative;
+    padding-left: 25px;
+    color: #744210;
+    line-height: 1.6;
+}
+
+.holistic-note .note-content li::before {
+    content: "🌿";
+    position: absolute;
+    left: 0;
+    top: 12px;
+}
+
+.holistic-note .note-content strong {
+    color: #2d3748;
+}
+
+/* Medical Treatments Section */
+.medical-section {
+    padding: 100px 20px;
+    background: linear-gradient(135deg, #f0fff4 0%, #c6f6d5 50%, #9ae6b4 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.medical-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="medical" width="50" height="50" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1.5" fill="%2338a169" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="%2368d391" opacity="0.08"/><path d="M50,15 L55,25 L65,25 L57.5,32.5 L60,42.5 L50,37.5 L40,42.5 L42.5,32.5 L35,25 L45,25 Z" fill="%234fd1c0" opacity="0.06"/></pattern></defs><rect width="100" height="100" fill="url(%23medical)"/></svg>');
+    pointer-events: none;
+}
+
+.medical-section h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #2d3748;
+    font-weight: 800;
+    background: linear-gradient(45deg, #38a169, #2f855a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.section-intro {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #4a5568;
+    max-width: 800px;
+    margin: 0 auto 60px;
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+.treatment-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.treatment-card {
+    background: linear-gradient(145deg, #ffffff 0%, #f0fff4 100%);
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(56,161,105,0.15), 0 5px 15px rgba(0,0,0,0.05);
+    border: 2px solid rgba(104,211,145,0.1);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.treatment-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg,
+        #38a169,
+        #68d391,
+        #4fd1c0,
+        #81e6d9,
+        #b2f5ea
+    );
+}
+
+.treatment-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(56,161,105,0.2), 0 10px 25px rgba(0,0,0,0.1);
+    border-color: rgba(104,211,145,0.3);
+}
+
+.treatment-card h3 {
+    color: #22543d;
+    margin-bottom: 30px;
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-align: center;
+    position: relative;
+}
+
+.treatment-card h3::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #68d391, #4fd1c0);
+    border-radius: 2px;
+}
+
+.treatment-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.option {
+    background: rgba(255,255,255,0.7);
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid rgba(104,211,145,0.2);
+}
+
+.option h4 {
+    color: #38a169;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.option h4::before {
+    content: "⚕️";
+    font-size: 1rem;
+}
+
+.option ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.option li {
+    padding: 6px 0;
+    position: relative;
+    padding-left: 20px;
+    color: #4a5568;
+    font-size: 0.95rem;
+}
+
+.option li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #68d391;
+    font-weight: bold;
+}
+
+.treatment-note {
+    background: linear-gradient(145deg, #fefcbf 0%, #faf089 100%);
+    border: 2px solid #f6e05e;
+    border-radius: 20px;
+    padding: 30px;
+    margin-top: 40px;
+    position: relative;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 25px rgba(246,224,94,0.2);
+}
+
+.treatment-note::before {
+    content: "🩺";
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 1.5rem;
+}
+
+.note-content {
+    padding-left: 50px;
+}
+
+.note-content h3 {
+    color: #744210;
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.note-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.note-content li {
+    padding: 12px 0;
+    position: relative;
+    padding-left: 25px;
+    color: #744210;
+    line-height: 1.6;
+}
+
+.note-content li::before {
+    content: "💡";
+    position: absolute;
+    left: 0;
+    top: 12px;
+}
+
+.note-content strong {
+    color: #2d3748;
+}
+
+/* Resources Section */
+.resources-section {
+    padding: 100px 20px;
+    background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.resources-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="stars" width="30" height="30" patternUnits="userSpaceOnUse"><circle cx="15" cy="15" r="0.5" fill="white" opacity="0.1"/><circle cx="5" cy="25" r="0.3" fill="white" opacity="0.08"/><circle cx="25" cy="5" r="0.4" fill="white" opacity="0.06"/></pattern></defs><rect width="100" height="100" fill="url(%23stars)"/></svg>');
+    pointer-events: none;
+}
+
+.resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 40px;
+    margin-bottom: 60px;
+    position: relative;
+    z-index: 1;
+}
+
+.resource-card {
+    background: linear-gradient(145deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1), 0 5px 15px rgba(0,0,0,0.05);
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.resource-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg,
+        #38a169,
+        #68d391,
+        #4fd1c0,
+        #81e6d9,
+        #b2f5ea
+    );
+}
+
+.resource-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.15), 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.resource-card h3 {
+    color: #38a169;
+    margin-bottom: 25px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    position: relative;
+}
+
+.resource-card h3::before {
+    content: "ℹ️";
+    margin-right: 10px;
+}
+
+.resource-card ul {
+    margin-top: 20px;
+    list-style: none;
+    padding-left: 0;
+}
+
+.resource-card li {
+    padding: 8px 0;
+    position: relative;
+    padding-left: 25px;
+    color: #4a5568;
+}
+
+.resource-card li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: #68d391;
+    font-weight: bold;
+}
+
+.disclaimer {
+    background: linear-gradient(145deg, #fef5e7 0%, #fdeaa7 100%);
+    border: 2px solid #f6e05e;
+    border-radius: 20px;
+    padding: 30px;
+    margin-top: 50px;
+    position: relative;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 25px rgba(246,224,94,0.2);
+}
+
+.disclaimer::before {
+    content: "⚠️";
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 1.5rem;
+}
+
+.disclaimer p {
+    color: #744210;
+    font-weight: 600;
+    margin: 0;
+    padding-left: 40px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* Footer */
+footer {
+    background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+    color: #e6fffa;
+    padding: 50px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="waves" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M0,20 Q10,10 20,20 T40,20 V40 H0 Z" fill="rgba(56,161,105,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23waves)"/></svg>');
+    pointer-events: none;
+}
+
+footer .container {
+    position: relative;
+    z-index: 1;
+}
+
+footer p {
+    margin: 0;
+    opacity: 0.9;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* Medium Screen Navigation */
+@media (max-width: 1024px) {
+    .nav-menu {
+        gap: 15px;
+        padding: 8px 12px;
+    }
+
+    .nav-menu a {
+        font-size: 0.85rem;
+        padding: 5px 8px;
+    }
+
+    .logo {
+        font-size: 1.3rem;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        height: auto;
+        padding: 20px;
+        min-height: 120px;
+    }
+
+    .nav-menu {
+        margin-top: 15px;
+        gap: 10px;
+        padding: 12px 15px;
+        border-radius: 30px;
+        justify-content: center;
+        max-width: 100%;
+    }
+
+    .nav-menu a {
+        font-size: 0.8rem;
+        padding: 5px 8px;
+    }
+
+    .hero {
+        padding: 80px 20px;
+    }
+
+    .hero-content h2 {
+        font-size: 2.5rem;
+    }
+
+    .hero-stats {
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .stat {
+        padding: 25px 15px;
+        min-width: auto;
+    }
+
+    .info-section {
+        padding: 70px 20px;
+    }
+
+    .info-section h2 {
+        font-size: 2.2rem;
+    }
+
+    .content-grid {
+        gap: 30px;
+    }
+
+    .content-card {
+        padding: 30px;
+        border-radius: 20px;
+    }
+
+    .tip-card {
+        padding: 30px;
+        border-radius: 25px;
+    }
+
+    .resources-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .resource-card {
+        padding: 30px;
+    }
+
+    .disclaimer {
+        padding: 25px;
+        margin-top: 40px;
+    }
+
+    .disclaimer p {
+        padding-left: 35px;
+        font-size: 1rem;
+    }
+
+    .disclaimer::before {
+        font-size: 1.3rem;
+        top: 18px;
+        left: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 60px 20px;
+    }
+
+    .hero-content h2 {
+        font-size: 2rem;
+    }
+
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+
+    .stat .number {
+        font-size: 2.2rem;
+    }
+
+    .stat .label {
+        font-size: 0.9rem;
+    }
+
+    .info-section h2 {
+        font-size: 1.8rem;
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .content-card {
+        padding: 25px;
+    }
+
+    .tip-card {
+        padding: 25px;
+    }
+
+    .tips-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+    }
+
+    .nav-menu {
+        gap: 8px;
+        padding: 10px 12px;
+    }
+
+    .nav-menu a {
+        font-size: 0.75rem;
+        padding: 4px 6px;
+    }
+
+    .resource-card {
+        padding: 25px;
+    }
+
+    .medical-section {
+        padding: 70px 20px;
+    }
+
+    .medical-section h2 {
+        font-size: 2.2rem;
+    }
+
+    .section-intro {
+        font-size: 1rem;
+        margin-bottom: 40px;
+    }
+
+    .treatment-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .treatment-card {
+        padding: 30px;
+    }
+
+    .treatment-card h3 {
+        font-size: 1.4rem;
+        margin-bottom: 25px;
+    }
+
+    .treatment-options {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .option {
+        padding: 15px;
+    }
+
+    .treatment-note {
+        padding: 25px;
+        margin-top: 30px;
+    }
+
+    .treatment-note::before {
+        font-size: 1.3rem;
+        top: 18px;
+        left: 18px;
+    }
+
+    .note-content {
+        padding-left: 40px;
+    }
+
+    .note-content h3 {
+        font-size: 1.2rem;
+    }
+
+    .holistic-section {
+        padding: 70px 20px;
+    }
+
+    .holistic-section h2 {
+        font-size: 2.2rem;
+    }
+
+    .holistic-section .section-intro {
+        font-size: 1rem;
+        margin-bottom: 40px;
+    }
+
+    .remedies-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .remedy-card {
+        padding: 30px;
+    }
+
+    .remedy-card h3 {
+        font-size: 1.4rem;
+        margin-bottom: 25px;
+    }
+
+    .remedy-options {
+        gap: 15px;
+    }
+
+    .remedy-item {
+        padding: 15px;
+    }
+
+    .gut-health-section h3 {
+        font-size: 1.6rem;
+        margin-bottom: 30px;
+    }
+
+    .microbiome-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .microbiome-card {
+        padding: 25px;
+    }
+
+    .holistic-note {
+        padding: 25px;
+        margin-top: 30px;
+    }
+
+    .holistic-note::before {
+        font-size: 1.3rem;
+        top: 18px;
+        left: 18px;
+    }
+
+    .holistic-note .note-content {
+        padding-left: 40px;
+    }
+
+    .holistic-note .note-content h3 {
+        font-size: 1.2rem;
+    }
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Focus States for Accessibility */
+.nav-menu a:focus,
+button:focus {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+}
+
+/* Loading Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.content-card,
+.tip-card,
+.remedy-card,
+.treatment-card,
+.resource-card {
+    animation: fadeInUp 0.6s ease-out;
+}
