@@ -1,0 +1,54 @@
+# System files
+.DS_Store
+.CFUserTextEncoding
+*.log
+*.tmp
+*.swp
+*.bak
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Node modules and package files
+node_modules/
+package-lock.json
+yarn.lock
+npm-debug.log*
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# OS specific
+Thumbs.db
+Icon?
+Desktop.ini
+
+# Temporary files
+*.tar.gz
+*.zip
+*.rar
+
+# Application specific
+.cache/
+.local/
+.config/
+.zsh_history
+.zsh_sessions/
+.viminfo
+
+# Backup files
+*backup*
+*Backup*
+*.backup

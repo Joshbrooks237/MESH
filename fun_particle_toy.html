@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Particle Playground - Fuck With It!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0a;
+            overflow: hidden;
+            cursor: none;
+            font-family: 'Arial', sans-serif;
+        }
+
+        #canvas {
+            display: block;
+            background: radial-gradient(circle at center, #1a1a2e 0%, #000000 100%);
+        }
+
+        #instructions {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #00ffff;
+            font-size: 13px;
+            font-family: monospace;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #00ffff;
+            z-index: 1000;
+            max-width: 320px;
+        }
+
+        #stats {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #ff6b6b;
+            font-size: 12px;
+            font-family: monospace;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #ff6b6b;
+            z-index: 1000;
+        }
+
+        #cursor {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, #ff6b6b, transparent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 999;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: screen;
+        }
+
+        .particle-trail {
+            position: absolute;
+            pointer-events: none;
+            z-index: 998;
+        }
+    </style>
+</head>
+<body>
+    <div id="instructions">
+        <strong>PARTICLE PLAYGROUND</strong><br>
+        🖱️ Move mouse to attract particles<br>
+        👆 CLICK & HOLD to create cursor trail<br>
+        🎨 Drag colorful trails around!<br>
+        🎹 SPACE: gravity flip<br>
+        🔄 R: reset | 🎨 C: color burst<br>
+        ⚡ SHIFT: turbo mode
+    </div>
+
+    <div id="stats">
+        Particles: <span id="particleCount">0</span><br>
+        FPS: <span id="fps">60</span>
+    </div>
+
+    <canvas id="canvas"></canvas>
+    <div id="cursor"></div>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const cursor = document.getElementById('cursor');
+        const particleCountEl = document.getElementById('particleCount');
+        const fpsEl = document.getElementById('fps');
+
+        // Set canvas size
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        // Particle system
+        class Particle {
+            constructor(x, y, vx = 0, vy = 0, color = null) {
+                this.x = x;
+                this.y = y;
+                this.vx = vx + (Math.random() - 0.5) * 4;
+                this.vy = vy + (Math.random() - 0.5) * 4;
+                this.life = 1.0;
+                this.maxLife = 1.0;
+                this.size = Math.random() * 3 + 1;
+                this.color = color || this.getRandomColor();
+                this.trail = [];
+                this.trailLength = 8;
+                this.gravity = 0.1;
+                this.friction = 0.99;
+                this.trailMode = false;
+            }
+
+            getRandomColor() {
+                const colors = [
+                    '#ff6b6b', '#4ecdc4', '#45b7d1', '#f9ca24',
+                    '#f0932b', '#eb4d4b', '#6c5ce7', '#a29bfe',
+                    '#fd79a8', '#e17055', '#00b894', '#00cec9'
+                ];
+                return colors[Math.floor(Math.random() * colors.length)];
+            }
+
+            update(mouseX, mouseY, attractMode = true) {
+                if (this.trailMode) {
+                    // Trail particles follow cursor strongly
+                    const dx = mouseX - this.x;
+                    const dy = mouseY - this.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance > 5) {
+                        const force = Math.min(distance / 20, 2);
+                        const angle = Math.atan2(dy, dx);
+                        this.vx += Math.cos(angle) * force;
+                        this.vy += Math.sin(angle) * force;
+                    }
+
+                    // Less friction for smoother following
+                    this.vx *= 0.9;
+                    this.vy *= 0.9;
+
+                    // No gravity for trail particles
+                    this.vy += this.gravity * 0.1;
+
+                    // Update life faster for trail particles
+                    this.life -= 0.008;
+                } else {
+                    // Normal particle behavior
+                    const dx = mouseX - this.x;
+                    const dy = mouseY - this.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 150) {
+                        const force = (150 - distance) / 150;
+                        const angle = Math.atan2(dy, dx);
+
+                        if (attractMode) {
+                            this.vx += Math.cos(angle) * force * 0.5;
+                            this.vy += Math.sin(angle) * force * 0.5;
+                        } else {
+                            this.vx -= Math.cos(angle) * force * 0.8;
+                            this.vy -= Math.sin(angle) * force * 0.8;
+                        }
+                    }
+
+                    // Gravity
+                    this.vy += this.gravity;
+
+                    // Friction
+                    this.vx *= this.friction;
+                    this.vy *= this.friction;
+
+                    // Update life
+                    this.life -= 0.005;
+                }
+
+                // Update position
+                this.x += this.vx;
+                this.y += this.vy;
+
+                // Update trail
+                this.trail.push({x: this.x, y: this.y, life: this.life});
+                if (this.trail.length > this.trailLength) {
+                    this.trail.shift();
+                }
+
+                // Boundary check with bounce
+                if (this.x < 0 || this.x > canvas.width) {
+                    this.vx *= -0.8;
+                    this.x = Math.max(0, Math.min(canvas.width, this.x));
+                }
+                if (this.y < 0 || this.y > canvas.height) {
+                    this.vy *= -0.8;
+                    this.y = Math.max(0, Math.min(canvas.height, this.y));
+                }
+
+                return this.life > 0;
+            }
+
+            draw() {
+                ctx.save();
+
+                // Draw trail
+                for (let i = 0; i < this.trail.length; i++) {
+                    const trailPoint = this.trail[i];
+                    const alpha = (trailPoint.life * i) / this.trail.length;
+                    ctx.globalAlpha = alpha * 0.3;
+                    ctx.fillStyle = this.color;
+                    ctx.beginPath();
+                    ctx.arc(trailPoint.x, trailPoint.y, this.size * 0.5, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                // Draw particle
+                ctx.globalAlpha = this.life;
+                ctx.fillStyle = this.color;
+                ctx.shadowColor = this.color;
+                ctx.shadowBlur = this.trailMode ? 15 : 10;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.restore();
+            }
+        }
+
+        // Particle system manager
+        class ParticleSystem {
+            constructor() {
+                this.particles = [];
+                this.maxParticles = 800;
+                this.mouseX = canvas.width / 2;
+                this.mouseY = canvas.height / 2;
+                this.attractMode = true;
+                this.gravityFlipped = false;
+                this.turboMode = false;
+                this.isMouseDown = false;
+                this.trailParticles = [];
+            }
+
+            addParticle(x, y, vx = 0, vy = 0, count = 1, color = null) {
+                for (let i = 0; i < count; i++) {
+                    if (this.particles.length < this.maxParticles) {
+                        this.particles.push(new Particle(x, y, vx, vy, color));
+                    }
+                }
+            }
+
+            createExplosion(x, y, particleCount = 20) {
+                for (let i = 0; i < particleCount; i++) {
+                    const angle = (Math.PI * 2 * i) / particleCount;
+                    const speed = Math.random() * 8 + 4;
+                    const vx = Math.cos(angle) * speed;
+                    const vy = Math.sin(angle) * speed;
+                    this.addParticle(x, y, vx, vy, 1);
+                }
+            }
+
+            createTrailParticle(x, y) {
+                if (this.particles.length < this.maxParticles) {
+                    const particle = new Particle(x, y, 0, 0);
+                    particle.trailMode = true; // Special mode for cursor-following particles
+                    this.trailParticles.push(particle);
+                    this.particles.push(particle);
+                }
+            }
+
+            update() {
+                // Update particles
+                this.particles = this.particles.filter(particle => {
+                    if (this.gravityFlipped) {
+                        particle.gravity = -0.1;
+                    } else {
+                        particle.gravity = 0.1;
+                    }
+
+                    return particle.update(this.mouseX, this.mouseY, this.attractMode);
+                });
+
+                // Update trail particles
+                this.updateTrail();
+
+                // Add ambient particles
+                if (this.particles.length < 30 && Math.random() < 0.05) {
+                    this.addParticle(
+                        Math.random() * canvas.width,
+                        Math.random() * canvas.height
+                    );
+                }
+
+                // Turbo mode effects
+                if (this.turboMode && Math.random() < 0.3) {
+                    this.addParticle(
+                        Math.random() * canvas.width,
+                        Math.random() * canvas.height,
+                        (Math.random() - 0.5) * 10,
+                        (Math.random() - 0.5) * 10
+                    );
+                }
+            }
+
+            draw() {
+                // Clear canvas with fade effect
+                ctx.fillStyle = 'rgba(10, 10, 26, 0.1)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                // Draw particles
+                this.particles.forEach(particle => particle.draw());
+
+                // Update stats
+                particleCountEl.textContent = this.particles.length;
+            }
+
+            reset() {
+                this.particles = [];
+                this.trailParticles = [];
+                this.isMouseDown = false;
+            }
+
+            colorBurst() {
+                const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f9ca24', '#f0932b'];
+                for (let i = 0; i < 100; i++) {
+                    const x = Math.random() * canvas.width;
+                    const y = Math.random() * canvas.height;
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    this.addParticle(x, y, (Math.random() - 0.5) * 6, (Math.random() - 0.5) * 6, 1, color);
+                }
+            }
+
+            updateTrail() {
+                if (this.isMouseDown) {
+                    // Create particles that follow the cursor
+                    this.createTrailParticle(this.mouseX, this.mouseY);
+                }
+            }
+        }
+
+        // Initialize particle system
+        const particleSystem = new ParticleSystem();
+
+        // Mouse tracking and interaction
+        let mouseX = canvas.width / 2;
+        let mouseY = canvas.height / 2;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursor.style.left = mouseX + 'px';
+            cursor.style.top = mouseY + 'px';
+            particleSystem.mouseX = mouseX;
+            particleSystem.mouseY = mouseY;
+        });
+
+        document.addEventListener('mousedown', (e) => {
+            particleSystem.isMouseDown = true;
+            // Create initial trail particle
+            particleSystem.createTrailParticle(mouseX, mouseY);
+        });
+
+        document.addEventListener('mouseup', (e) => {
+            particleSystem.isMouseDown = false;
+        });
+
+        // Prevent context menu on right click
+        document.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+        });
+
+        // Keyboard controls
+        document.addEventListener('keydown', (e) => {
+            switch(e.code) {
+                case 'Space':
+                    e.preventDefault();
+                    particleSystem.gravityFlipped = !particleSystem.gravityFlipped;
+                    break;
+                case 'KeyR':
+                    particleSystem.reset();
+                    break;
+                case 'KeyC':
+                    particleSystem.colorBurst();
+                    break;
+                case 'ShiftLeft':
+                case 'ShiftRight':
+                    particleSystem.turboMode = true;
+                    break;
+            }
+        });
+
+        document.addEventListener('keyup', (e) => {
+            if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') {
+                particleSystem.turboMode = false;
+            }
+        });
+
+        // FPS counter
+        let lastTime = 0;
+        let frameCount = 0;
+
+        function updateFPS(currentTime) {
+            frameCount++;
+            if (currentTime - lastTime >= 1000) {
+                fpsEl.textContent = frameCount;
+                frameCount = 0;
+                lastTime = currentTime;
+            }
+        }
+
+        // Animation loop
+        function animate(currentTime) {
+            updateFPS(currentTime);
+            particleSystem.update();
+            particleSystem.draw();
+            requestAnimationFrame(animate);
+        }
+
+        // Start animation
+        animate(0);
+
+        // Add some initial particles
+        for (let i = 0; i < 30; i++) {
+            particleSystem.addParticle(
+                Math.random() * canvas.width,
+                Math.random() * canvas.height
+            );
+        }
+    </script>
+</body>
+</html>
