@@ -344,6 +344,175 @@ class TaskDistributionServer:
         # Could implement retry logic here
         # For now, just mark as failed
 
+    async def _process_genetic_analysis(self, payload: Dict[str, Any]) -> Dict[str, Any]:
+        """Process genetic variant analysis task using AI/ML models."""
+        logger.info("Processing genetic analysis with AI/ML...")
+
+        variants = payload.get('variants', [])
+        reference_genome = payload.get('reference_genome', 'hg38')
+
+        if not variants:
+            return {'error': 'No variants provided'}
+
+        try:
+            # Import AI model for variant analysis
+            sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'ai-models'))
+            from genomics.variant_classifier import GenomicVariantAnalyzer
+
+            # Initialize analyzer (in production, would load from model registry)
+            analyzer = GenomicVariantAnalyzer()
+
+            # Analyze variants using AI
+            results = analyzer.analyze_variants_batch(variants)
+
+            # Summarize results
+            pathogenic_count = sum(1 for r in results if r.get('prediction') == 'pathogenic')
+            likely_benign_count = sum(1 for r in results if r.get('prediction') == 'likely_benign')
+            benign_count = sum(1 for r in results if r.get('prediction') == 'benign')
+
+            result = {
+                'variants_analyzed': len(variants),
+                'results': results,
+                'summary': {
+                    'pathogenic': pathogenic_count,
+                    'likely_benign': likely_benign_count,
+                    'benign': benign_count,
+                    'total_processed': len(results)
+                },
+                'model_version': '1.0.0',
+                'processing_method': 'ai_ml_analysis'
+            }
+
+        except ImportError:
+            # Fallback to mock analysis if AI models not available
+            logger.warning("AI models not available, using mock analysis")
+            result = {
+                'variants_analyzed': len(variants),
+                'pathogenic_variants': len([v for v in variants if 'pathogenic' in str(v).lower()]),
+                'novel_mutations': len(variants) // 10,
+                'conservation_scores': [0.95, 0.87, 0.92, 0.78],
+                'functional_predictions': ['damaging', 'tolerated', 'damaging', 'tolerated'],
+                'processing_method': 'mock_analysis'
+            }
+
+        self.stats['data_processed'] += len(variants)
+        return result
+
+    async def _process_image_analysis(self, payload: Dict[str, Any]) -> Dict[str, Any]:
+        """Process medical image analysis task using AI/ML models."""
+        logger.info("Processing medical image analysis with AI/ML...")
+
+        images = payload.get('images', [])
+        analysis_type = payload.get('analysis_type', 'tumor_detection')
+
+        if not images:
+            return {'error': 'No images provided'}
+
+        try:
+            # Import AI model for image analysis
+            sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'ai-models'))
+            from medical_imaging.tumor_detector import TumorDetector
+
+            results = []
+
+            # Initialize detector (in production, would load from model registry)
+            detector = TumorDetector()
+
+            # Analyze each image
+            for image_path in images:
+                try:
+                    result = detector.analyze_image(image_path)
+                    results.append(result)
+                except Exception as e:
+                    logger.error(f"Failed to analyze image {image_path}: {e}")
+                    results.append({
+                        'file_path': image_path,
+                        'error': str(e)
+                    })
+
+            # Summarize results
+            successful_analyses = [r for r in results if 'error' not in r]
+            tumors_detected = sum(1 for r in successful_analyses if r.get('tumor_detected', False))
+
+            result = {
+                'images_processed': len(images),
+                'successful_analyses': len(successful_analyses),
+                'tumors_detected': tumors_detected,
+                'results': results,
+                'model_version': '1.0.0',
+                'analysis_type': analysis_type,
+                'processing_method': 'ai_ml_analysis'
+            }
+
+        except ImportError:
+            # Fallback to mock analysis if AI models not available
+            logger.warning("AI models not available, using mock analysis")
+            result = {
+                'images_processed': len(images),
+                'tumors_detected': len(images) // 3,
+                'confidence_scores': [0.92, 0.87, 0.95, 0.78],
+                'regions_of_interest': [
+                    {'x': 100, 'y': 150, 'width': 50, 'height': 50},
+                    {'x': 200, 'y': 100, 'width': 40, 'height': 60}
+                ],
+                'processing_method': 'mock_analysis'
+            }
+
+        self.stats['data_processed'] += len(images)
+        return result
+
+    async def _process_drug_screening(self, payload: Dict[str, Any]) -> Dict[str, Any]:
+        """Process drug screening task using AI/ML models."""
+        logger.info("Processing drug screening with AI/ML...")
+
+        compounds = payload.get('compounds', [])
+        target = payload.get('target', 'EGFR')
+
+        if not compounds:
+            return {'error': 'No compounds provided'}
+
+        try:
+            # Import AI model for drug screening
+            sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'ai-models'))
+            from drug_discovery.drug_screening import VirtualScreeningPipeline
+
+            # Initialize screening pipeline
+            pipeline = VirtualScreeningPipeline()
+
+            # Perform virtual screening
+            results = pipeline.screen_compounds(compounds, target)
+
+            # Summarize top hits
+            top_hits = results[:10]  # Top 10 compounds
+
+            result = {
+                'compounds_screened': len(compounds),
+                'top_hits': top_hits,
+                'summary': {
+                    'high_affinity_compounds': len([r for r in results if r['binding_probability'] > 0.8]),
+                    'drug_like_compounds': len([r for r in results if r['drug_score'] > 0.7]),
+                    'best_score': results[0]['drug_score'] if results else 0
+                },
+                'target': target,
+                'model_version': '1.0.0',
+                'processing_method': 'ai_ml_analysis'
+            }
+
+        except ImportError:
+            # Fallback to mock analysis if AI models not available
+            logger.warning("AI models not available, using mock analysis")
+            result = {
+                'compounds_screened': len(compounds),
+                'hits_found': len(compounds) // 50,  # 2% hit rate
+                'binding_affinities': [-8.5, -7.2, -9.1, -6.8],
+                'top_compounds': compounds[:5] if compounds else [],
+                'target': target,
+                'processing_method': 'mock_analysis'
+            }
+
+        self.stats['data_processed'] += len(compounds)
+        return result
+
     def _update_client_status(self, client_id: str, status_data: Dict[str, Any]):
         """Update client status information."""
         if client_id in self.connected_clients:
