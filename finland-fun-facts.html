@@ -498,6 +498,58 @@
             color: #2c3e50;
         }
 
+        .defense-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .defense-item {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e8f4fd 100%);
+            border: 2px solid #003580;
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .defense-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #003580 0%, #0052a5 50%, #d32f2f 100%);
+        }
+
+        .defense-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,80,128,0.2);
+            background: linear-gradient(135deg, #e8f4fd 0%, #d4edda 100%);
+        }
+
+        .defense-item h4 {
+            color: #003580;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            border-bottom: 2px solid #0052a5;
+            padding-bottom: 0.5rem;
+        }
+
+        .defense-item p {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .defense-item p:last-child {
+            margin-bottom: 0;
+        }
+
         .fun-fact {
             background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
             color: white;
@@ -1493,6 +1545,117 @@
 
                 <p><strong>🇫🇮 Finnish Exceptionalism:</strong> These unique practices reflect Finland's distinct cultural evolution - a blend of Nordic pragmatism, Lutheran ethics, and innovative problem-solving that sets it apart from most other countries in the world.</p>
             </div>
+
+            <div class="highlight">
+                <h3>🛡️ Finland's Defense Strategy & NATO Membership</h3>
+                <p>Finland joined NATO in April 2023, strengthening its security posture with the world's most powerful military alliance.</p>
+
+                <div class="fact-box">
+                    <h4>🇫🇮 NATO Integration:</h4>
+                    <ul>
+                        <li><strong>Article 5 Guarantee</strong>: "An attack on one is an attack on all" - collective defense</li>
+                        <li><strong>Enhanced Military Capabilities</strong>: Access to NATO intelligence, planning, and resources</li>
+                        <li><strong>Deterrence Effect</strong>: Finland now part of world's strongest defensive alliance</li>
+                        <li><strong>Defense Spending</strong>: Increased to 2% GDP requirement, modernizing armed forces</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <h3>🚨 Invasion Scenario: Finland's Response</h3>
+                <p>If Russia attempted to invade Finland, the response would be immediate, coordinated, and overwhelming:</p>
+
+                <div class="defense-grid">
+                    <div class="defense-item">
+                        <h4>⚡ Immediate Military Response</h4>
+                        <p><strong>Finnish Defense Forces</strong> (280,000 active/reserve) would mobilize instantly. Finland maintains one of Europe's largest reserve armies with 900,000 trained reservists ready for rapid deployment.</p>
+                        <p><strong>Border Defense</strong>: 1,300km Russian border heavily fortified with modern anti-tank weapons, artillery, and missile systems. Extensive minefields and fortifications from Cold War era, continuously modernized.</p>
+                        <p><strong>Air Force</strong>: 64 F/A-18 Hornets plus F-35 fleet, integrated with NATO air defenses. Advanced surface-to-air missiles (NASAMS) and Patriot systems.</p>
+                    </div>
+
+                    <div class="defense-item">
+                        <h4>🛡️ NATO Collective Defense</h4>
+                        <p><strong>Article 5 Activation</strong>: NATO would immediately declare Russia as aggressor, triggering collective defense obligations from all 31 member states.</p>
+                        <p><strong>Rapid Deployment</strong>: Enhanced Forward Presence forces in Baltic states would reinforce Finland. US, UK, German, and other NATO forces would deploy immediately.</p>
+                        <p><strong>Air Superiority</strong>: NATO air forces would establish no-fly zones and provide air cover. Finland's airspace integrated into NATO's air defense system.</p>
+                        <p><strong>Naval Support</strong>: NATO naval forces would secure Baltic Sea approaches, cutting Russian supply lines.</p>
+                    </div>
+
+                    <div class="defense-item">
+                        <h4>🇪🇺 European Union Response</h4>
+                        <p><strong>Political Solidarity</strong>: All 27 EU nations would condemn invasion and support Finland diplomatically.</p>
+                        <p><strong>Economic Measures</strong>: EU would impose comprehensive sanctions on Russia, freezing assets and cutting trade relations.</p>
+                        <p><strong>Humanitarian Aid</strong>: EU would coordinate refugee assistance and provide emergency funding.</p>
+                        <p><strong>Military Coordination</strong>: EU Battlegroups and Nordic Battle Group would support Finnish operations.</p>
+                    </div>
+
+                    <div class="defense-item">
+                        <h4>🌍 Global Diplomatic Response</h4>
+                        <p><strong>United Nations</strong>: UN Security Council would condemn invasion (though Russia would veto). General Assembly would pass resolutions supporting Finland.</p>
+                        <p><strong>United States</strong>: Immediate military aid, intelligence sharing, and potential direct intervention. US has treaty obligations and strategic interest in Baltic security.</p>
+                        <p><strong>Nordic Neighbors</strong>: Sweden, Norway, Denmark would provide immediate military support. Shared intelligence and joint operations.</p>
+                        <p><strong>Japan & Australia</strong>: Strong diplomatic support with economic measures against Russia.</p>
+                    </div>
+
+                    <div class="defense-item">
+                        <h4>💰 Economic Warfare</h4>
+                        <p><strong>Financial Sanctions</strong>: SWIFT banking system exclusion for Russian banks. Asset freezes of Russian oligarchs and government officials.</p>
+                        <p><strong>Energy Embargo</strong>: EU would halt Russian oil/gas imports, crippling Russian economy (40% of Russian exports are energy).</p>
+                        <p><strong>Trade Blockade</strong>: Complete halt of Russian exports to Western markets, devastating their economy.</p>
+                        <p><strong>Cyber Warfare</strong>: NATO and allied cyber operations would target Russian infrastructure, banking, and military communications.</p>
+                    </div>
+
+                    <div class="defense-item">
+                        <h4>⚔️ Military Escalation Scenarios</h4>
+                        <p><strong>Conventional Warfare</strong>: Finland's terrain favors defense - dense forests, lakes, and harsh winter conditions would slow Russian advances.</p>
+                        <p><strong>Guerrilla Warfare</strong>: Finnish reservists trained in asymmetric warfare. Home Guard units (16,000 strong) would conduct sabotage and hit-and-run operations.</p>
+                        <p><strong>Winter Warfare</strong>: Finland's advantage in sub-zero temperatures. Russian forces historically struggle in Finnish winter conditions (similar to 1939-1940 Winter War).</p>
+                        <p><strong>Technological Warfare</strong>: Finland leads in cyber defense and electronic warfare. Advanced anti-tank missiles and drone technology would neutralize Russian armor.</p>
+                    </div>
+
+                    <div class="defense-item">
+                        <h4>🏛️ Political & Legal Consequences</h4>
+                        <p><strong>War Crimes Tribunal</strong>: Russian leaders could face ICC prosecution for aggression and war crimes.</p>
+                        <p><strong>Diplomatic Isolation</strong>: Russia would face near-total international isolation, similar to 2022 Ukraine invasion.</p>
+                        <p><strong>Alliance Strengthening</strong>: NATO would expand membership applications. Sweden and Ukraine likely accelerated entry.</p>
+                        <p><strong>Global Realignment</strong>: Countries would choose sides, potentially reshaping global alliances and trade relationships.</p>
+                    </div>
+
+                    <div class="defense-item">
+                        <h4>🇫🇮 Finnish Societal Response</h4>
+                        <p><strong>National Unity</strong>: Finland would unite as never before. Political parties would form government of national unity.</p>
+                        <p><strong>Civil Defense</strong>: 900,000 reservists would mobilize. Civilian volunteers would support military operations.</p>
+                        <p><strong>Total Defense</strong>: Finland's comprehensive defense strategy includes economic, civil, and military components working together.</p>
+                        <p><strong>International Aid</strong>: Finland would coordinate refugee assistance and maintain diplomatic relations with neutral countries.</p>
+                    </div>
+                </div>
+
+                <div class="fact-box">
+                    <h4>🎯 Strategic Advantages for Finland</h4>
+                    <ul>
+                        <li><strong>Geographic Defense</strong>: Difficult terrain, long borders, harsh climate</li>
+                        <li><strong>Military Preparedness</strong>: Universal conscription, large reserve force</li>
+                        <li><strong>NATO Integration</strong>: Access to world's most powerful military alliance</li>
+                        <li><strong>Technological Edge</strong>: Advanced defense systems and cyber capabilities</li>
+                        <li><strong>Historical Experience</strong>: Successful defense against Russian invasion in 1939-1940</li>
+                        <li><strong>International Support</strong>: Strong alliances with US, EU, Nordic countries</li>
+                    </ul>
+                </div>
+
+                <div class="fact-box">
+                    <h4>⚠️ Risks and Challenges</h4>
+                    <ul>
+                        <li><strong>Nuclear Threat</strong>: Russia could escalate to tactical nuclear weapons</li>
+                        <li><strong>Economic Impact</strong>: War would devastate Finnish and European economies</li>
+                        <li><strong>Civilian Casualties</strong>: Urban areas and infrastructure would be targeted</li>
+                        <li><strong>Refugee Crisis</strong>: Millions could be displaced across Europe</li>
+                        <li><strong>Global Recession</strong>: Energy crisis and disrupted supply chains</li>
+                        <li><strong>Escalation to World War</strong>: Risk of broader conflict involving major powers</li>
+                    </ul>
+                </div>
+
+                <p><strong>🇫🇮 Conclusion:</strong> A Russian invasion of Finland would face unprecedented resistance from a highly prepared nation backed by NATO's collective might. While challenging, Finland's defense strategy, combined with international support, creates a strong deterrent against aggression. The economic and diplomatic costs to Russia would be catastrophic, making such an invasion highly unlikely.</p>
+            </div>
         </section>
 
         <section id="achievements">
@@ -2458,7 +2621,113 @@
             'Pragmatic Innovation': 'Pragmaattinen innovaatio',
             'Finding practical solutions to challenges': 'Käytännöllisten ratkaisujen löytäminen haasteisiin',
             'Finnish Exceptionalism': 'Suomalainen poikkeuksellisuus',
-            'These unique practices reflect Finland\'s distinct cultural evolution - a blend of Nordic pragmatism, Lutheran ethics, and innovative problem-solving that sets it apart from most other countries in the world.': 'Nämä ainutlaatuiset käytännöt heijastavat Suomen erillistä kulttuurista evoluutiota - pohjoismaisen pragmaattisuuden, luterilaisen etiikan ja innovatiivisen ongelmanratkaisun yhdistelmä, joka erottaa sen useimmista maailman maista.'
+            'These unique practices reflect Finland\'s distinct cultural evolution - a blend of Nordic pragmatism, Lutheran ethics, and innovative problem-solving that sets it apart from most other countries in the world.': 'Nämä ainutlaatuiset käytännöt heijastavat Suomen erillistä kulttuurista evoluutiota - pohjoismaisen pragmaattisuuden, luterilaisen etiikan ja innovatiivisen ongelmanratkaisun yhdistelmä, joka erottaa sen useimmista maailman maista.',
+            'Finland\'s Defense Strategy & NATO Membership': 'Suomen puolustusstrategia ja NATO-jäsenyys',
+            'Finland joined NATO in April 2023, strengthening its security posture with the world\'s most powerful military alliance.': 'Suomi liittyi Natoon huhtikuussa 2023, vahvistaen turvallisuustilannettaan maailman voimakkaimman sotilasliiton kanssa.',
+            'NATO Integration:': 'NATO-integraatio:',
+            'Article 5 Guarantee': '5. artiklan takuu',
+            '"An attack on one is an attack on all" - collective defense': '"Hyökkäys yhtä vastaan on hyökkäys kaikkia vastaan" - kollektiivinen puolustus',
+            'Enhanced Military Capabilities': 'Parannetut sotilaalliset kyvyt',
+            'Access to NATO intelligence, planning, and resources': 'Pääsy NATO:n tiedusteluun, suunnitteluun ja resursseihin',
+            'Deterrence Effect': 'Pelotevaikutus',
+            'Finland now part of world\'s strongest defensive alliance': 'Suomi nyt maailman vahvimman puolustusliiton osa',
+            'Defense Spending': 'Puolustusmenot',
+            'Increased to 2% GDP requirement, modernizing armed forces': 'Lisääntynyt 2% BKT-vaatimukseen, modernisoidaan asevoimat',
+            'Invasion Scenario: Finland\'s Response': 'Hyökkäysskenaario: Suomen vastaus',
+            'If Russia attempted to invade Finland, the response would be immediate, coordinated, and overwhelming:': 'Jos Venäjä yrittäisi hyökätä Suomeen, vastaus olisi välitön, koordinoidtu ja ylivoimainen:',
+            'Immediate Military Response': 'Välitön sotilaallinen vastaus',
+            'Finnish Defense Forces (280,000 active/reserve) would mobilize instantly. Finland maintains one of Europe\'s largest reserve armies with 900,000 trained reservists ready for rapid deployment.': 'Suomen puolustusvoimat (280 000 aktiivista/varalla) mobilisoituisivat välittömästi. Suomi ylläpitää yhtä Euroopan suurimmista reserviarmeijoista 900 000 koulutetulla reservillä valmiina nopeaan käyttöönottoon.',
+            'Border Defense': 'Rajapuolustus',
+            '1,300km Russian border heavily fortified with modern anti-tank weapons, artillery, and missile systems. Extensive minefields and fortifications from Cold War era, continuously modernized.': '1 300 km pitkä Venäjän raja vahvasti linnoitettu moderneilla panssarintorjunta-aseilla, tykistöllä ja ohjusjärjestelmillä. Laajat miinakentät ja kylmän sodan aikaiset linnoitukset, jatkuvasti modernisoitu.',
+            'Air Force': 'Ilmavoimat',
+            '64 F/A-18 Hornets plus F-35 fleet, integrated with NATO air defenses. Advanced surface-to-air missiles (NASAMS) and Patriot systems.': '64 F/A-18 Hornetia sekä F-35-laivasto, integroituna NATO:n ilmapuolustukseen. Edistyneet maa-ilma-ohjukset (NASAMS) ja Patriot-järjestelmät.',
+            'NATO Collective Defense': 'NATO:n kollektiivinen puolustus',
+            'Article 5 Activation': '5. artiklan aktivointi',
+            'NATO would immediately declare Russia as aggressor, triggering collective defense obligations from all 31 member states.': 'NATO julistaisi Venäjän välittömästi hyökkääjäksi, käynnistäen kollektiivisen puolustusvelvoitteen kaikista 31 jäsenvaltiosta.',
+            'Rapid Deployment': 'Nopea käyttöönotto',
+            'Enhanced Forward Presence forces in Baltic states would reinforce Finland. US, UK, German, and other NATO forces would deploy immediately.': 'Parannetut etujoukot Baltian valtioissa vahvistaisivat Suomea. USA:n, Iso-Britannian, Saksan ja muiden NATO-maiden joukot käyttöönottuisivat välittömästi.',
+            'Air Superiority': 'Ilmaherruus',
+            'NATO air forces would establish no-fly zones and provide air cover. Finland\'s airspace integrated into NATO\'s air defense system.': 'NATO:n ilmavoimat perustaisivat lentokielltoalueita ja tarjoaisivat ilmasuojaa. Suomen ilmatila integroituna NATO:n ilmapuolustusjärjestelmään.',
+            'Naval Support': 'Merituki',
+            'NATO naval forces would secure Baltic Sea approaches, cutting Russian supply lines.': 'NATO:n merivoimat turvaisivat Itämeren lähestymistiet, katkaisemalla Venäjän toimituslinjat.',
+            'European Union Response': 'Euroopan unionin vastaus',
+            'Political Solidarity': 'Politiittinen solidaarisuus',
+            'All 27 EU nations would condemn invasion and support Finland diplomatically.': 'Kaikki 27 EU-maata tuomitsisivat hyökkäyksen ja tukisivat Suomea diplomaattisesti.',
+            'Economic Measures': 'Taloudelliset toimenpiteet',
+            'EU would impose comprehensive sanctions on Russia, freezing assets and cutting trade relations.': 'EU asettaisi kattavat pakotteet Venäjälle, jäädyttäen varat ja katkaisemalla kauppasuhteet.',
+            'Humanitarian Aid': 'Humanitaarinen apu',
+            'EU would coordinate refugee assistance and provide emergency funding.': 'EU koordinoisi pakolaisten apua ja tarjoaisi hätärahoitusta.',
+            'Military Coordination': 'Sotilaallinen koordinointi',
+            'EU Battlegroups and Nordic Battle Group would support Finnish operations.': 'EU:n taisteluosastot ja Pohjoismainen taisteluosasto tukisivat Suomen toimintoja.',
+            'Global Diplomatic Response': 'Globaali diplomaattinen vastaus',
+            'United Nations': 'Yhdistyneet kansakunnat',
+            'UN Security Council would condemn invasion (though Russia would veto). General Assembly would pass resolutions supporting Finland.': 'YK:n turvallisuusneuvosto tuomitsisi hyökkäyksen (vaikka Venäjä käyttäisi veto-oikeutta). Yleiskokous hyväksyisi Suomen tukemista koskevia päätöslauselmia.',
+            'United States': 'Yhdysvallat',
+            'Immediate military aid, intelligence sharing, and potential direct intervention. US has treaty obligations and strategic interest in Baltic security.': 'Välitön sotilaallinen apu, tiedustelun jakaminen ja mahdollinen suora interventio. USA:lla on sopimusvelvoitteita ja strateginen etu Baltian turvallisuudessa.',
+            'Nordic Neighbors': 'Pohjoismaiset naapurit',
+            'Sweden, Norway, Denmark would provide immediate military support. Shared intelligence and joint operations.': 'Ruotsi, Norja, Tanska tarjoaisivat välitöntä sotilaallista tukea. Jaettu tiedustelu ja yhteiset operaatiot.',
+            'Japan & Australia': 'Japani ja Australia',
+            'Strong diplomatic support with economic measures against Russia.': 'Vahva diplomaattinen tuki taloudellisilla toimenpiteillä Venäjää vastaan.',
+            'Economic Warfare': 'Taloudellinen sodankäynti',
+            'Financial Sanctions': 'Talouspakotteet',
+            'SWIFT banking system exclusion for Russian banks. Asset freezes of Russian oligarchs and government officials.': 'SWIFT-pankkijärjestelmän sulkeminen Venäjän pankeilta. Oligarkkien ja hallitusvirkamiesten varojen jäädyttäminen.',
+            'Energy Embargo': 'Energiaembargo',
+            'EU would halt Russian oil/gas imports, crippling Russian economy (40% of Russian exports are energy).': 'EU pysäyttäisi Venäjän öljy/kaasutuonnin, lamauttaen Venäjän talouden (40% Venäjän viennistä on energiaa).',
+            'Trade Blockade': 'Kauppasaarto',
+            'Complete halt of Russian exports to Western markets, devastating their economy.': 'Täydellinen Venäjän vientien pysäyttäminen läntisiin markkinoihin, tuhoisa Venäjän taloudelle.',
+            'Cyber Warfare': 'Kybersodankäynti',
+            'NATO and allied cyber operations would target Russian infrastructure, banking, and military communications.': 'NATO:n ja liittolaisten kyberoperaatiot kohdistuisivat Venäjän infrastruktuuriin, pankkeihin ja sotilasviestintään.',
+            'Military Escalation Scenarios': 'Sotilaalliset eskalaatioskenaariot',
+            'Conventional Warfare': 'Konventionaalinen sodankäynti',
+            'Finland\'s terrain favors defense - dense forests, lakes, and harsh winter conditions would slow Russian advances.': 'Suomen maasto suosii puolustusta - tiheät metsät, järvet ja ankarat talviolosuhteet hidastaisivat Venäjän etenemistä.',
+            'Guerrilla Warfare': 'Sissisodankäynti',
+            'Finnish reservists trained in asymmetric warfare. Home Guard units (16,000 strong) would conduct sabotage and hit-and-run operations.': 'Suomen reserviläiset koulutettu epäsymmetriseen sodankäyntiin. Kotivartioston yksiköt (16 000 vahva) suorittaisivat sabotaažeja ja iskulyöntejä.',
+            'Winter Warfare': 'Talvisodankäynti',
+            'Finland\'s advantage in sub-zero temperatures. Russian forces historically struggle in Finnish winter conditions (similar to 1939-1940 Winter War).': 'Suomen etu nollan alapuolella olevissa lämpötiloissa. Venäjän joukot kamppailevat historiallisesti Suomen talviolosuhteissa (samankaltainen kuin 1939-1940 Talvisota).',
+            'Technological Warfare': 'Teknologinen sodankäynti',
+            'Finland leads in cyber defense and electronic warfare. Advanced anti-tank missiles and drone technology would neutralize Russian armor.': 'Suomi johtaa kyberpuolustuksessa ja elektronisessa sodankäynnissä. Edistyneet panssarintorjuntaohjukset ja drone-teknologia neutraloisivat Venäjän panssarit.',
+            'Political & Legal Consequences': 'Politiittiset ja oikeudelliset seuraukset',
+            'War Crimes Tribunal': 'Sotarikostuomioistuin',
+            'Russian leaders could face ICC prosecution for aggression and war crimes.': 'Venäjän johtajat voisivat joutua Kansainvälisen rikostuomioistuimen syytteeseen aggressiosta ja sotarikoksista.',
+            'Diplomatic Isolation': 'Diplomaattinen eristäminen',
+            'Russia would face near-total international isolation, similar to 2022 Ukraine invasion.': 'Venäjä kohtaisi lähes täydellisen kansainvälisen eristäytymisen, samankaltaisesti kuin 2022 Ukrainan hyökkäyksen yhteydessä.',
+            'Alliance Strengthening': 'Liittoutumien vahvistaminen',
+            'NATO would expand membership applications. Sweden and Ukraine likely accelerated entry.': 'NATO laajentaisi jäsenhakemuksia. Ruotsin ja Ukrainan todennäköisesti kiihdytetty liittyminen.',
+            'Global Realignment': 'Globaali uudelleenjärjestäytyminen',
+            'Countries would choose sides, potentially reshaping global alliances and trade relationships.': 'Maat valitsisivat puolet, mahdollisesti muuttaen globaaleja liittoutumia ja kauppasuhteita.',
+            'Finnish Societal Response': 'Suomen yhteiskunnallinen vastaus',
+            'National Unity': 'Kansallinen yhtenäisyys',
+            'Finland would unite as never before. Political parties would form government of national unity.': 'Suomi yhdistyisi enemmän kuin koskaan ennen. Puolueet muodostaisivat kansallisen yhtenäisyyden hallituksen.',
+            'Civil Defense': 'Siviilipuolustus',
+            '900,000 reservists would mobilize. Civilian volunteers would support military operations.': '900 000 reserviläistä mobilisoituisi. Siviilivapaaehtoiset tukisivat sotilasoperaatioita.',
+            'Total Defense': 'Kokonaisturva',
+            'Finland\'s comprehensive defense strategy includes economic, civil, and military components working together.': 'Suomen kattava puolustusstrategia sisältää taloudelliset, siviili- ja sotilaalliset komponentit toimien yhdessä.',
+            'International Aid': 'Kansainvälinen apu',
+            'Finland would coordinate refugee assistance and maintain diplomatic relations with neutral countries.': 'Suomi koordinoisi pakolaisten apua ja ylläpitäisi diplomaattisia suhteita neutraaleihin maihin.',
+            'Strategic Advantages for Finland': 'Suomen strategiset edut',
+            'Geographic Defense': 'Maantieteellinen puolustus',
+            'Difficult terrain, long borders, harsh climate': 'Vaikea maasto, pitkät rajat, ankara ilmasto',
+            'Military Preparedness': 'Sotilaallinen valmius',
+            'Universal conscription, large reserve force': 'Universaali asevelvollisuus, suuri reservivoima',
+            'Technological Edge': 'Teknologinen etu',
+            'Advanced defense systems and cyber capabilities': 'Edistyneet puolustusjärjestelmät ja kyberkyvyt',
+            'Historical Experience': 'Historiallinen kokemus',
+            'Successful defense against Russian invasion in 1939-1940': 'Onnistunut puolustus Venäjän hyökkäystä vastaan 1939-1940',
+            'Risks and Challenges': 'Riskit ja haasteet',
+            'Nuclear Threat': 'Ydinuhka',
+            'Russia could escalate to tactical nuclear weapons': 'Venäjä voisi eskaloitua taktisiin ydinaseisiin',
+            'Economic Impact': 'Taloudellinen vaikutus',
+            'War would devastate Finnish and European economies': 'Sota tuhoaisi Suomen ja Euroopan taloudet',
+            'Civilian Casualties': 'Siviiliuhrit',
+            'Urban areas and infrastructure would be targeted': 'Kaupunkialueet ja infrastruktuuri kohdistuisivat',
+            'Refugee Crisis': 'Pakolaiskriisi',
+            'Millions could be displaced across Europe': 'Miljoonat voisivat siirtyä Euroopassa',
+            'Global Recession': 'Globaali taantuma',
+            'Energy crisis and disrupted supply chains': 'Energia kriisi ja keskeytyneet toimitusketjut',
+            'Escalation to World War': 'Eskalaatio maailmansotaan',
+            'Risk of broader conflict involving major powers': 'Riski laajempaan konfliktiin suurvaltojen kanssa',
+            'Conclusion:': 'Johtopäätös:',
+            'A Russian invasion of Finland would face unprecedented resistance from a highly prepared nation backed by NATO\'s collective might. While challenging, Finland\'s defense strategy, combined with international support, creates a strong deterrent against aggression. The economic and diplomatic costs to Russia would be catastrophic, making such an invasion highly unlikely.': 'Venäjän hyökkäys Suomeen kohtaisi ennenäkemättömän vastarinnan korkeasti valmistautuneelta kansalta, jota tukee NATO:n kollektiivinen voima. Vaikka haastavaa, Suomen puolustusstrategia yhdistettynä kansainväliseen tukeen luo vahvan pelotteen aggressiota vastaan. Taloudelliset ja diplomaattiset kustannukset Venäjälle olisivat katastrofaaliset, tekemällä tällaisen hyökkäyksen erittäin epätodennäköiseksi.'
         };
 
         // Function to translate text
