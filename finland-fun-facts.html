@@ -457,6 +457,47 @@
             display: inline-block;
         }
 
+        .unique-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e8f4fd 100%);
+            border: 2px solid #0052a5;
+            border-radius: 12px;
+            padding: 1.2rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .unique-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #003580 0%, #0052a5 50%, #003580 100%);
+        }
+
+        .unique-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,80,128,0.15);
+            background: linear-gradient(135deg, #e8f4fd 0%, #d4edda 100%);
+        }
+
+        .unique-card h4 {
+            color: #003580;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+            border-bottom: 2px solid #0052a5;
+            padding-bottom: 0.4rem;
+        }
+
+        .unique-card p {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: #2c3e50;
+        }
+
         .fun-fact {
             background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
             color: white;
@@ -1335,11 +1376,122 @@
                         <p>Finland was the first country to tax carbon emissions (1990). Now leads in wind, solar, and nuclear energy technologies.</p>
                     </div>
 
-                    <div class="culture-item fun-fact-card">
-                        <h4>🗣️ Language Wonders</h4>
-                        <p>Finnish has no future tense! Time is expressed through context. The word "kalsarikännit" (drunk at home in underwear) is uniquely Finnish.</p>
+                <div class="culture-item fun-fact-card">
+                    <h4>🗣️ Language Wonders</h4>
+                    <p>Finnish has no future tense! Time is expressed through context. The word "kalsarikännit" (drunk at home in underwear) is uniquely Finnish.</p>
+                </div>
+
+                <div class="culture-item">
+                    <h4>🇫🇮 Uniquely Finnish</h4>
+                    <p>Finland does many things differently from other countries!</p>
+                    <ul>
+                        <li><strong>No Homework Policy</strong>: Until age 16, focus on creativity</li>
+                        <li><strong>Universal Trust</strong>: Unlocked front doors, baby strollers left outside</li>
+                        <li><strong>Sauna Sessions</strong>: Weekly ritual, often naked with strangers</li>
+                        <li><strong>Silence Appreciation</strong>: Comfortable with quiet conversations</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <h3>🌍 Finland's Unique Ways</h3>
+                <p>Finland approaches many aspects of life differently from most countries:</p>
+
+                <div class="culture-grid">
+                    <div class="culture-item unique-card">
+                        <h4>📚 Radical Education</h4>
+                        <p>Unlike most countries, Finland has no standardized testing until age 16. Teachers are highly educated (Master's degree required), and students get more recess time than anywhere else. No homework policy until upper grades.</p>
+                    </div>
+
+                    <div class="culture-item unique-card">
+                        <h4>🤝 Trust Society</h4>
+                        <p>Finns leave baby strollers outside cafes unlocked, bikes unchained, and front doors open. This "universal trust" extends to business - contracts are often handshake agreements.</p>
+                    </div>
+
+                    <div class="culture-item unique-card">
+                        <h4>🛀 Sauna Culture</h4>
+                        <p>Finland has 3.3 million saunas for 5.6 million people. Unlike other countries, Finns often sauna naked with colleagues, friends, or even strangers. It's a social ritual, not just bathing.</p>
+                    </div>
+
+                    <div class="culture-item unique-card">
+                        <h4>🔇 Silent Communication</h4>
+                        <p>Finns are comfortable with silence in conversations - unlike many cultures that fill every pause. "Quiet" doesn't mean unfriendly; it means respectful listening.</p>
+                    </div>
+
+                    <div class="culture-item unique-card">
+                        <h4>🌲 Nature Rights</h4>
+                        <p>Everyman's Right allows anyone to camp, pick berries, or ski on private land (with respect). This unique law gives all citizens equal access to nature, unlike private property-focused countries.</p>
+                    </div>
+
+                    <div class="culture-item unique-card">
+                        <h4>⏰ Punctuality Extreme</h4>
+                        <p>Finns are pathologically punctual. Being late is considered rude, even by 5 minutes. This differs from more relaxed attitudes in many Mediterranean or Latin American cultures.</p>
+                    </div>
+
+                    <div class="culture-item unique-card">
+                        <h4>🎭 Direct Communication</h4>
+                        <p>Finns are brutally honest and direct - unlike cultures that use more polite indirect language. They say what they mean, which can seem rude to foreigners but is actually respectful.</p>
+                    </div>
+
+                    <div class="culture-item unique-card">
+                        <h4>⚖️ Gender Equality Law</h4>
+                        <p>Finland was first country to give women right to vote (1906) and elect female MPs (1907). Today, it's consistently ranked most gender-equal country globally.</p>
+                    </div>
+
+                    <div class="culture-item unique-card">
+                        <h4>📱 Digital Government</h4>
+                        <p>Finland has world's most advanced digital government. Citizens can vote online, file taxes in 5 minutes, and access all government services digitally - unlike many countries still using paper.</p>
+                    </div>
+
+                    <div class="culture-item unique-card">
+                        <h4>🏖️ Summer Cottage Culture</h4>
+                        <p>40% of Finns own summer cottages (mökki). Unlike weekend homes elsewhere, these are simple cabins where families spend entire summers, often without electricity or running water.</p>
+                    </div>
+
+                    <div class="culture-item unique-card">
+                        <h4>🍽️ Food Preservation</h4>
+                        <p>Finns preserve enormous amounts of food for winter. Unlike countries with year-round fresh produce, Finns traditionally pickled, salted, and fermented food for the long winter months.</p>
+                    </div>
+
+                    <div class="culture-item unique-card">
+                        <h4>❄️ Winter Swimming</h4>
+                        <p>Finns maintain "avanto" (ice holes) year-round for swimming in sub-zero temperatures. Unlike most countries where winter swimming is extreme, in Finland it's a normal health practice.</p>
+                    </div>
+
+                    <div class="culture-item unique-card">
+                        <h4>🎓 Student Benefits</h4>
+                        <p>University students get government stipend (~500€/month) plus free meals and healthcare. Unlike many countries where students work multiple jobs, Finnish students can focus entirely on studies.</p>
+                    </div>
+
+                    <div class="culture-item unique-card">
+                        <h4>🏥 Universal Healthcare</h4>
+                        <p>All citizens get comprehensive healthcare regardless of income. Unlike countries with private insurance systems, Finns pay minimal taxes for complete medical coverage.</p>
+                    </div>
+
+                    <div class="culture-item unique-card">
+                        <h4>🏘️ Flat Management</h4>
+                        <p>Unlike hierarchical business cultures, Finnish companies have flat structures. CEOs might eat lunch with entry-level employees, and titles don't create social barriers.</p>
+                    </div>
+
+                    <div class="culture-item unique-card">
+                        <h4>🎄 Christmas Peace</h4>
+                        <p>Finland declares "Christmas Peace" annually in Turku - the world's oldest unbroken Christmas tradition. Unlike other countries, this tradition dates back to 1353.</p>
                     </div>
                 </div>
+
+                <div class="fact-box">
+                    <h4>🤔 Why Finland Does Things Differently</h4>
+                    <p>Finland's unique approaches stem from:</p>
+                    <ul>
+                        <li><strong>Historical Context</strong>: Long periods of autonomy and self-reliance</li>
+                        <li><strong>Geographic Isolation</strong>: Northern location requiring self-sufficiency</li>
+                        <li><strong>Lutheran Heritage</strong>: Emphasis on education and equality</li>
+                        <li><strong>Social Democratic Values</strong>: Strong emphasis on welfare and equality</li>
+                        <li><strong>Pragmatic Innovation</strong>: Finding practical solutions to challenges</li>
+                    </ul>
+                </div>
+
+                <p><strong>🇫🇮 Finnish Exceptionalism:</strong> These unique practices reflect Finland's distinct cultural evolution - a blend of Nordic pragmatism, Lutheran ethics, and innovative problem-solving that sets it apart from most other countries in the world.</p>
             </div>
         </section>
 
@@ -2248,7 +2400,65 @@
             'Resilience': 'Sitkeys',
             'Overcoming obstacles through perseverance': 'Esteiden voittaminen sinnikkyyden avulla',
             'Heroic Legacy:': 'Sankarillinen perintö:',
-            'These national heroes have not only achieved personal greatness but have also elevated Finland\'s standing in the world. From military commanders to artists, scientists to athletes, they represent the Finnish spirit of determination, creativity, and excellence that continues to inspire new generations.': 'Nämä kansallissankarit eivät ole saavuttaneet vain henkilökohtaista suurisuutta, vaan ovat myös nostaneet Suomen asemaa maailmassa. Sotapäälliköistä taiteilijoihin, tiedemiehistä urheilijoihin, he edustavat suomalaista henkeä määrätietoisuudesta, luovuudesta ja huippuosaamisesta, joka jatkaa uusien sukupolvien inspirointia.'
+            'These national heroes have not only achieved personal greatness but have also elevated Finland\'s standing in the world. From military commanders to artists, scientists to athletes, they represent the Finnish spirit of determination, creativity, and excellence that continues to inspire new generations.': 'Nämä kansallissankarit eivät ole saavuttaneet vain henkilökohtaista suurisuutta, vaan ovat myös nostaneet Suomen asemaa maailmassa. Sotapäälliköistä taiteilijoihin, tiedemiehistä urheilijoihin, he edustavat suomalaista henkeä määrätietoisuudesta, luovuudesta ja huippuosaamisesta, joka jatkaa uusien sukupolvien inspirointia.',
+            'Uniquely Finnish': 'Ainutlaatuisesti suomalainen',
+            'Finland does many things differently from other countries!': 'Suomi tekee monet asiat eri tavalla kuin muut maat!',
+            'No Homework Policy': 'Ei läksy politiikkaa',
+            'Until age 16, focus on creativity': '16 vuoden ikään asti, keskittyminen luovuuteen',
+            'Universal Trust': 'Universaali luottamus',
+            'Unlocked front doors, baby strollers left outside': 'Lukitsemattomat ovet, vaunut jätetään ulos',
+            'Sauna Sessions': 'Sauna istunnot',
+            'Weekly ritual, often naked with strangers': 'Viikoittainen rituaali, usein alasti vieraiden kanssa',
+            'Silence Appreciation': 'Hiljaisuuden arvostus',
+            'Comfortable with quiet conversations': 'Mukava hiljaisissa keskusteluissa',
+            'Finland\'s Unique Ways': 'Suomen ainutlaatuiset tavat',
+            'Finland approaches many aspects of life differently from most countries:': 'Suomi lähestyy monia elämän osa-alueita eri tavalla kuin useimmat maat:',
+            'Radical Education': 'Radicallinen koulutus',
+            'Unlike most countries, Finland has no standardized testing until age 16. Teachers are highly educated (Master\'s degree required), and students get more recess time than anywhere else. No homework policy until upper grades.': 'Toisin kuin useimmat maat, Suomessa ei ole standardoituja testejä ennen 16 vuoden ikää. Opettajat ovat korkeasti koulutettuja (maistern tutkinto vaaditaan), ja oppilaat saavat enemmän välituntia kuin missään muualla. Ei läksy politiikkaa ylempiin luokkiin asti.',
+            'Trust Society': 'Luottamus yhteiskunta',
+            'Finns leave baby strollers outside cafes unlocked, bikes unchained, and front doors open. This "universal trust" extends to business - contracts are often handshake agreements.': 'Suomalaiset jättävät lastenvaunut kahviloiden ulkopuolelle lukitsematta, polkupyörät ketjuttamatta ja ovet auki. Tämä "universaali luottamus" ulottuu liiketoimintaan - sopimukset ovat usein kättelyn muodossa.',
+            'Sauna Culture': 'Sauna kulttuuri',
+            'Finland has 3.3 million saunas for 5.6 million people. Unlike other countries, Finns often sauna naked with colleagues, friends, or even strangers. It\'s a social ritual, not just bathing.': 'Suomessa on 3,3 miljoonaa saunaa 5,6 miljoonalle ihmiselle. Toisin kuin muissa maissa, suomalaiset usein kylpevät saunassa alasti kollegoiden, ystävien tai jopa vieraiden kanssa. Se on sosiaalinen rituaali, ei vain kylpeminen.',
+            'Silent Communication': 'Hiljainen kommunikointi',
+            'Finns are comfortable with silence in conversations - unlike many cultures that fill every pause. "Quiet" doesn\'t mean unfriendly; it means respectful listening.': 'Suomalaiset ovat mukava hiljaisuudessa keskusteluissa - toisin kuin monet kulttuurit, jotka täyttävät jokaisen tauon. "Hiljaisuus" ei tarkoita epäystävällistä; se tarkoittaa kunnioittavaa kuuntelua.',
+            'Nature Rights': 'Luonnon oikeudet',
+            'Everyman\'s Right allows anyone to camp, pick berries, or ski on private land (with respect). This unique law gives all citizens equal access to nature, unlike private property-focused countries.': 'Jokamiehen oikeus sallii kenen tahansa telttailla, poimia marjoja tai hiihtää yksityisellä maalla (kunnioittaen). Tämä ainutlaatuinen laki antaa kaikille kansalaisille yhtäläisen pääsyn luontoon, toisin kuin yksityisomaisuuteen keskittyvät maat.',
+            'Punctuality Extreme': 'Pehmeä pisteellisyys',
+            'Finns are pathologically punctual. Being late is considered rude, even by 5 minutes. This differs from more relaxed attitudes in many Mediterranean or Latin American cultures.': 'Suomalaiset ovat patologisesti täsmällisiä. Myöhästyminen pidetään loukkaavana, jopa 5 minuutilla. Tämä eroaa monien Välimeren tai latinalaisamerikkalaisten kulttuurien rennomasta asenteesta.',
+            'Direct Communication': 'Suora kommunikointi',
+            'Finns are brutally honest and direct - unlike cultures that use more polite indirect language. They say what they mean, which can seem rude to foreigners but is actually respectful.': 'Suomalaiset ovat brutaalisti rehellisiä ja suoraviivaisia - toisin kuin kulttuurit, jotka käyttävät kohteliaampaa epäsuoraa kieltä. He sanovat mitä tarkoittavat, mikä voi vaikuttaa loukkaavalta ulkomaalaisille mutta on itse asiassa kunnioittavaa.',
+            'Gender Equality Law': 'Sukupuolten tasa-arvo laki',
+            'Finland was first country to give women right to vote (1906) and elect female MPs (1907). Today, it\'s consistently ranked most gender-equal country globally.': 'Suomi oli ensimmäinen maa, joka antoi naisille äänioikeuden (1906) ja valita naispuolisia kansanedustajia (1907). Nykyään se on jatkuvasti maailman sukupuolten tasa-arvoisimpana maana.',
+            'Digital Government': 'Digitaalinen hallitus',
+            'Finland has world\'s most advanced digital government. Citizens can vote online, file taxes in 5 minutes, and access all government services digitally - unlike many countries still using paper.': 'Suomessa on maailman kehittynein digitaalinen hallitus. Kansalaiset voivat äänestää verkossa, tehdä veroilmoituksen 5 minuutissa ja käyttää kaikkia hallituksen palveluja digitaalisesti - toisin kuin monet maat, jotka käyttävät vielä paperia.',
+            'Summer Cottage Culture': 'Kesämökki kulttuuri',
+            '40% of Finns own summer cottages (mökki). Unlike weekend homes elsewhere, these are simple cabins where families spend entire summers, often without electricity or running water.': '40% suomalaisista omistaa kesämökkejä (mökki). Toisin kuin viikonloppukodit muualla, nämä ovat yksinkertaisia mökkejä, joissa perheet viettävät kokonaisia kesän, usein ilman sähköä tai juoksevaa vettä.',
+            'Food Preservation': 'Ruuan säilöntä',
+            'Finns preserve enormous amounts of food for winter. Unlike countries with year-round fresh produce, Finns traditionally pickled, salted, and fermented food for the long winter months.': 'Suomalaiset säilyttävät valtavia määriä ruokaa talvea varten. Toisin kuin maat, joissa on vuoden ympäri tuoreita tuotteita, suomalaiset perinteisesti hapattivat, suolivat ja fermentoivat ruokaa pitkien talvikuukausien varalta.',
+            'Winter Swimming': 'Talviuinti',
+            'Finns maintain "avanto" (ice holes) year-round for swimming in sub-zero temperatures. Unlike most countries where winter swimming is extreme, in Finland it\'s a normal health practice.': 'Suomalaiset ylläpitävät "avantoja" (jääaukkoja) vuoden ympäri uimista varten pakkaslämpötiloissa. Toisin kuin useimmat maat, joissa talviuinti on äärimmäistä, Suomessa se on normaali terveys käytäntö.',
+            'Student Benefits': 'Opiskelija edut',
+            'University students get government stipend (~500€/month) plus free meals and healthcare. Unlike many countries where students work multiple jobs, Finnish students can focus entirely on studies.': 'Yliopisto-opiskelijat saavat hallituksen stipendiä (~500€/kuukausi) sekä ilmaisia aterioita ja terveydenhoitoa. Toisin kuin monissa maissa, joissa opiskelijat työskentelevät useissa töissä, suomalaiset opiskelijat voivat keskittyä täysin opintoihin.',
+            'Universal Healthcare': 'Universaali terveydenhoito',
+            'All citizens get comprehensive healthcare regardless of income. Unlike countries with private insurance systems, Finns pay minimal taxes for complete medical coverage.': 'Kaikki kansalaiset saavat kattavan terveydenhuollon riippumatta tulosta. Toisin kuin maat yksityisillä vakuutusjärjestelmillä, suomalaiset maksavat vähäisiä veroja täydellisestä lääketieteellisestä kattavuudesta.',
+            'Flat Management': 'Tasainen johtaminen',
+            'Unlike hierarchical business cultures, Finnish companies have flat structures. CEOs might eat lunch with entry-level employees, and titles don\'t create social barriers.': 'Toisin kuin hierarkkiset yrityskulttuurit, suomalaisilla yrityksillä on tasaiset rakenteet. Toimitusjohtajat saattavat syödä lounasta perustason työntekijöiden kanssa, ja tittelit eivät luo sosiaalisia esteitä.',
+            'Christmas Peace': 'Joulurauha',
+            'Finland declares "Christmas Peace" annually in Turku - the world\'s oldest unbroken Christmas tradition. Unlike other countries, this tradition dates back to 1353.': 'Suomi julistaa "Joulurauhan" vuosittain Turussa - maailman vanhin katkeamaton jouluperinne. Toisin kuin muissa maissa, tämä perinne juontaa juurensa vuoteen 1353.',
+            'Why Finland Does Things Differently': 'Miksi Suomi tekee asiat eri tavalla',
+            'Finland\'s unique approaches stem from:': 'Suomen ainutlaatuiset lähestymistavat johtuvat:',
+            'Historical Context': 'Historiallinen konteksti',
+            'Long periods of autonomy and self-reliance': 'Pitkät autonomian ja itsevarmuuden jaksot',
+            'Geographic Isolation': 'Maantieteellinen eristyneisyys',
+            'Northern location requiring self-sufficiency': 'Pohjoinen sijainti vaatii itsevarmuutta',
+            'Lutheran Heritage': 'Luterilainen perintö',
+            'Emphasis on education and equality': 'Painotus koulutukseen ja tasa-arvoon',
+            'Social Democratic Values': 'Sosiaalidemokraattiset arvot',
+            'Strong emphasis on welfare and equality': 'Vahva painotus hyvinvointiin ja tasa-arvoon',
+            'Pragmatic Innovation': 'Pragmaattinen innovaatio',
+            'Finding practical solutions to challenges': 'Käytännöllisten ratkaisujen löytäminen haasteisiin',
+            'Finnish Exceptionalism': 'Suomalainen poikkeuksellisuus',
+            'These unique practices reflect Finland\'s distinct cultural evolution - a blend of Nordic pragmatism, Lutheran ethics, and innovative problem-solving that sets it apart from most other countries in the world.': 'Nämä ainutlaatuiset käytännöt heijastavat Suomen erillistä kulttuurista evoluutiota - pohjoismaisen pragmaattisuuden, luterilaisen etiikan ja innovatiivisen ongelmanratkaisun yhdistelmä, joka erottaa sen useimmista maailman maista.'
         };
 
         // Function to translate text
