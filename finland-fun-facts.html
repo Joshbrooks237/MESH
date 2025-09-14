@@ -15,15 +15,63 @@
             font-family: 'Arial', sans-serif;
             line-height: 1.6;
             color: #2c3e50;
-            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            background:
+                radial-gradient(circle at 20% 50%, rgba(0, 80, 128, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 80, 128, 0.1) 0%, transparent 50%),
+                linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #e8f4fd 100%);
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                radial-gradient(circle at 25% 25%, rgba(0, 80, 128, 0.05) 2px, transparent 2px),
+                radial-gradient(circle at 75% 75%, rgba(0, 80, 128, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px, 30px 30px;
+            background-position: 0 0, 25px 25px;
+            pointer-events: none;
+            z-index: -1;
         }
 
         header {
-            background: linear-gradient(135deg, #003580 0%, #0052a5 100%);
+            background:
+                linear-gradient(135deg, #003580 0%, #0052a5 50%, #003580 100%),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 40px,
+                    rgba(255,255,255,0.1) 40px,
+                    rgba(255,255,255,0.1) 42px
+                );
             color: white;
-            padding: 2rem 0;
+            padding: 3rem 0 2rem 0;
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '🇫🇮🇫🇮🇫🇮🇫🇮🇫🇮🇫🇮🇫🇮🇫🇮🇫🇮🇫🇮🇫🇮🇫🇮🇫🇮🇫🇮🇫🇮🇫🇮🇫🇮🇫🇫🇮';
+            position: absolute;
+            top: 10px;
+            left: 0;
+            right: 0;
+            font-size: 1.5rem;
+            opacity: 0.3;
+            white-space: nowrap;
+            animation: scrollFlags 20s linear infinite;
+        }
+
+        @keyframes scrollFlags {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
         }
 
         .flag {
@@ -51,13 +99,71 @@
             text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
 
+        .pride-counter {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .counter-item {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            min-width: 120px;
+        }
+
+        .counter-number {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            margin-bottom: 0.5rem;
+        }
+
+        .counter-label {
+            font-size: 0.9rem;
+            color: #ffffff;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .pride-counter {
+                gap: 1rem;
+            }
+
+            .counter-item {
+                min-width: 100px;
+                padding: 0.8rem;
+            }
+
+            .counter-number {
+                font-size: 1.5rem;
+            }
+        }
+
         nav {
-            background: #2c3e50;
+            background:
+                linear-gradient(135deg, #003580 0%, #0052a5 100%),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 50px,
+                    rgba(255,255,255,0.1) 50px,
+                    rgba(255,255,255,0.1) 52px
+                );
             padding: 1rem 0;
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border-bottom: 2px solid #ffffff;
         }
 
         nav ul {
@@ -98,10 +204,23 @@
             padding: 2rem;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #003580 0%, #0052a5 50%, #003580 100%);
         }
 
         section:hover {
             transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,80,128,0.2);
         }
 
         h2 {
@@ -119,19 +238,42 @@
         }
 
         .fact-box {
-            background: #ecf0f1;
-            border-left: 5px solid #3498db;
+            background: linear-gradient(135deg, #ecf0f1 0%, #f8f9fa 100%);
+            border-left: 5px solid #003580;
             padding: 1.5rem;
             margin: 1rem 0;
             border-radius: 0 10px 10px 0;
+            position: relative;
+        }
+
+        .fact-box::after {
+            content: '🇫🇮';
+            position: absolute;
+            top: -5px;
+            right: 10px;
+            font-size: 1.2rem;
+            opacity: 0.6;
         }
 
         .highlight {
-            background: #fff3cd;
-            border: 2px solid #ffc107;
+            background: linear-gradient(135deg, #fff3cd 0%, #fff8e1 100%);
+            border: 2px solid #003580;
             border-radius: 10px;
             padding: 1rem;
             margin: 1rem 0;
+            position: relative;
+        }
+
+        .highlight::before {
+            content: '🏆';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: white;
+            padding: 5px;
+            border-radius: 50%;
+            border: 2px solid #003580;
+            font-size: 1.2rem;
         }
 
         .language-example {
@@ -209,6 +351,29 @@
             margin-bottom: 1rem;
         }
 
+        .proverb-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .proverb-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0,80,128,0.2);
+            background: linear-gradient(135deg, #f8f9fa 0%, #e8f4fd 100%);
+        }
+
+        .proverb-card h4 {
+            font-style: italic;
+            color: #003580;
+            border-bottom: 2px solid #0052a5;
+            padding-bottom: 0.5rem;
+        }
+
+        .proverb-card em {
+            color: #2c3e50;
+            font-weight: normal;
+        }
+
         .fun-fact {
             background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
             color: white;
@@ -218,14 +383,70 @@
             text-align: center;
             font-size: 1.2rem;
             font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .fun-fact::before {
+            content: '✨';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        .fun-fact::after {
+            content: '🇫🇮';
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            animation: waveFlag 1.5s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.7; }
+            50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
+        }
+
+        @keyframes waveFlag {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(-10deg) scale(1.1); }
+            75% { transform: rotate(10deg) scale(1.1); }
         }
 
         footer {
-            background: #2c3e50;
+            background:
+                linear-gradient(135deg, #003580 0%, #0052a5 50%, #003580 100%),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 30px,
+                    rgba(255,255,255,0.1) 30px,
+                    rgba(255,255,255,0.1) 32px
+                );
             color: white;
             text-align: center;
-            padding: 2rem 0;
+            padding: 3rem 0 2rem 0;
             margin-top: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '🇫🇮 Suomi Finland Perkele! 🇫🇮';
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.2rem;
+            opacity: 0.8;
+            white-space: nowrap;
+            animation: footerGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes footerGlow {
+            0% { text-shadow: 0 0 5px rgba(255,255,255,0.5); }
+            100% { text-shadow: 0 0 20px rgba(255,255,255,0.8), 0 0 30px rgba(0,80,128,0.5); }
         }
 
         @media (max-width: 768px) {
@@ -298,8 +519,10 @@
         }
 
         .translate-btn::before {
-            content: '🇫🇮';
-            font-size: 1.8rem;
+            content: '🇫🇮 Suomi';
+            font-size: 1.4rem;
+            font-weight: bold;
+            letter-spacing: 1px;
         }
 
         .translate-tooltip {
@@ -339,6 +562,20 @@
         <h1>Discover Finland</h1>
         <p class="subtitle">The Land of a Thousand Lakes, Northern Lights, and Incredible Resilience!</p>
         <p class="dedication">For Maarit 🇫🇮❤️</p>
+        <div class="pride-counter">
+            <div class="counter-item">
+                <div class="counter-number" id="independenceDays">0</div>
+                <div class="counter-label">Days of Independence</div>
+            </div>
+            <div class="counter-item">
+                <div class="counter-number">5.6M</div>
+                <div class="counter-label">Proud Finns</div>
+            </div>
+            <div class="counter-item">
+                <div class="counter-number">188K</div>
+                <div class="counter-label">Beautiful Lakes</div>
+            </div>
+        </div>
     </header>
 
     <nav>
@@ -923,6 +1160,43 @@
 
                     <p><strong>🎭 Musical Legacy:</strong> Finnish folk music influenced classical composers like Sibelius and continues to inspire modern artists. The annual Kaustinen Folk Music Festival celebrates this rich heritage.</p>
                 </div>
+
+                <div class="highlight">
+                    <h3>🇫🇮 Finnish Wisdom & Proverbs</h3>
+                    <p>Finland's cultural wisdom expressed through traditional sayings and proverbs:</p>
+
+                    <div class="culture-grid">
+                        <div class="culture-item proverb-card">
+                            <h4>"Hitaasti mutta varmasti"</h4>
+                            <p><em>Slowly but surely</em> - Finnish approach to life and work</p>
+                        </div>
+
+                        <div class="culture-item proverb-card">
+                            <h4>"Ei se ole kylmä, jos pipo on"</h4>
+                            <p><em>It's not cold if you have a hat</em> - Finnish pragmatism</p>
+                        </div>
+
+                        <div class="culture-item proverb-card">
+                            <h4>"Parempi myöhään kuin ei milloinkaan"</h4>
+                            <p><em>Better late than never</em> - Finnish reliability</p>
+                        </div>
+
+                        <div class="culture-item proverb-card">
+                            <h4>"Älä viitsi, mutta tee"</h4>
+                            <p><em>Don't bother, but do it</em> - Finnish work ethic</p>
+                        </div>
+
+                        <div class="culture-item proverb-card">
+                            <h4>"Hyvä kiitos kuuluu kaikille"</h4>
+                            <p><em>Good thanks belongs to everyone</em> - Finnish gratitude</p>
+                        </div>
+
+                        <div class="culture-item proverb-card">
+                            <h4>"Sisu tekee ihmeitä"</h4>
+                            <p><em>Sisu works miracles</em> - The essence of Finnish resilience</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </div>
@@ -1259,7 +1533,24 @@
             'Humppa': 'Humppa',
             'Traditional Finnish dance music with 2/4 rhythm. Played at weddings and celebrations, similar to polka.': 'Perinteinen suomalainen tanssimusiikki 2/4-rytmillä. Soitetaan häissä ja juhlissa, samanlainen kuin polkka.',
             'Musical Legacy:': 'Musiikillinen perintö:',
-            'Finnish folk music influenced classical composers like Sibelius and continues to inspire modern artists. The annual Kaustinen Folk Music Festival celebrates this rich heritage.': 'Suomalainen kansanmusiikki vaikutti klassisiin säveltäjiin kuten Sibeliukseen ja jatkaa nykytaiteilijoiden inspirointia. Vuotuinen Kaustisen kansanmusiikkijuhla juhlistaa tätä rikasta perintöä.'
+            'Finnish folk music influenced classical composers like Sibelius and continues to inspire modern artists. The annual Kaustinen Folk Music Festival celebrates this rich heritage.': 'Suomalainen kansanmusiikki vaikutti klassisiin säveltäjiin kuten Sibeliukseen ja jatkaa nykytaiteilijoiden inspirointia. Vuotuinen Kaustisen kansanmusiikkijuhla juhlistaa tätä rikasta perintöä.',
+            'Days of Independence': 'Itsenäisyyden päivät',
+            'Proud Finns': 'Ylpeitä suomalaisia',
+            'Beautiful Lakes': 'Kauniita järviä',
+            'Finnish Wisdom & Proverbs': 'Suomalainen viisaus ja sananlaskut',
+            'Finland\'s cultural wisdom expressed through traditional sayings and proverbs:': 'Suomen kulttuurinen viisaus ilmaistuna perinteisten sanontojen ja sananlaskujen kautta:',
+            'Slowly but surely': 'Finnish approach to life and work',
+            'Hitaasti mutta varmasti': 'Hitaasti mutta varmasti',
+            'It\'s not cold if you have a hat': 'Finnish pragmatism',
+            'Ei se ole kylmä, jos pipo on': 'Ei se ole kylmä, jos pipo on',
+            'Better late than never': 'Finnish reliability',
+            'Parempi myöhään kuin ei milloinkaan': 'Parempi myöhään kuin ei milloinkaan',
+            'Don\'t bother, but do it': 'Finnish work ethic',
+            'Älä viitsi, mutta tee': 'Älä viitsi, mutta tee',
+            'Good thanks belongs to everyone': 'Finnish gratitude',
+            'Hyvä kiitos kuuluu kaikille': 'Hyvä kiitos kuuluu kaikille',
+            'Suomi ylpeyttää!': 'Suomi ylpeyttää!',
+            'Finland makes us proud!': 'Finland makes us proud!'
         };
 
         // Function to translate text
@@ -1321,6 +1612,23 @@
 
         // Add some interactive fun
         document.addEventListener('DOMContentLoaded', function() {
+            // Calculate days of independence
+            function updateIndependenceCounter() {
+                const independenceDate = new Date('1917-12-06');
+                const today = new Date();
+                const diffTime = Math.abs(today - independenceDate);
+                const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+                const counter = document.getElementById('independenceDays');
+                if (counter) {
+                    counter.textContent = diffDays.toLocaleString();
+                }
+            }
+
+            // Update counter immediately and every day
+            updateIndependenceCounter();
+            setInterval(updateIndependenceCounter, 24 * 60 * 60 * 1000); // Update daily
+
             // Random flag emoji animation
             setInterval(function() {
                 const flags = document.querySelectorAll('.flag');
@@ -1331,7 +1639,65 @@
                     }, 200);
                 });
             }, 3000);
+
+            // Add click effects to proverb cards
+            const proverbCards = document.querySelectorAll('.proverb-card');
+            proverbCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    this.style.transform = 'scale(1.1) rotate(2deg)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1) rotate(0deg)';
+                    }, 300);
+                });
+            });
+
+            // Add Finland pride message on scroll
+            let prideShown = false;
+            window.addEventListener('scroll', function() {
+                if (!prideShown && window.scrollY > 500) {
+                    showPrideMessage();
+                    prideShown = true;
+                }
+            });
+
+            function showPrideMessage() {
+                const message = document.createElement('div');
+                message.innerHTML = '🇫🇮 <strong>Suomi ylpeyttää!</strong> 🇫🇮<br><em>Finland makes us proud!</em>';
+                message.style.cssText = `
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: linear-gradient(135deg, #003580 0%, #0052a5 100%);
+                    color: white;
+                    padding: 2rem;
+                    border-radius: 15px;
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                    text-align: center;
+                    font-size: 1.5rem;
+                    z-index: 10000;
+                    opacity: 0;
+                    animation: fadeInOut 3s ease-in-out;
+                `;
+                document.body.appendChild(message);
+
+                setTimeout(() => {
+                    document.body.removeChild(message);
+                }, 3000);
+            }
         });
+
+        // Add fadeInOut animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInOut {
+                0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+                20% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+                80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+                100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
