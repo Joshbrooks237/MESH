@@ -1204,6 +1204,25 @@
             letter-spacing: 1px;
         }
 
+        #translateStatus {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            background: rgba(255,255,255,0.9);
+            color: #003580;
+            font-size: 0.7rem;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 3px;
+            border: 1px solid #003580;
+        }
+
+        .translate-btn.active #translateStatus {
+            background: rgba(40, 167, 69, 0.9);
+            color: white;
+            border-color: #28a745;
+        }
+
         .translate-tooltip {
             position: absolute;
             bottom: 70px;
@@ -2639,6 +2658,7 @@
 
     <button class="translate-btn" id="translateBtn" title="Translate to Finnish">
         <span class="translate-tooltip">Käännä suomeksi / Translate to Finnish</span>
+        <span id="translateStatus">EN</span>
     </button>
 
     <script>
@@ -3537,9 +3557,14 @@
 
         // Function to translate all text elements on the page
         function translatePage() {
-            const elements = document.querySelectorAll('h1, h2, h3, h4, p, li, span:not(.translate-tooltip), div:not(.translate-tooltip)');
+            console.log('translatePage called, isFinnish:', isFinnish);
 
-            elements.forEach(element => {
+            const elements = document.querySelectorAll('h1, h2, h3, h4, p, li, span:not(.translate-tooltip), div:not(.translate-tooltip)');
+            console.log('Found elements to translate:', elements.length);
+
+            let translatedCount = 0;
+
+            elements.forEach((element, index) => {
                 if (element.children.length === 0 || element.querySelector('.translate-tooltip')) {
                     // Only translate text nodes, not elements with children
                     const textNodes = [];
@@ -3553,18 +3578,41 @@
 
                     textNodes.forEach(textNode => {
                         if (textNode.textContent.trim()) {
-                            textNode.textContent = translateText(textNode.textContent, !isFinnish);
+                            const originalText = textNode.textContent;
+                            const translatedText = translateText(originalText, !isFinnish);
+
+                            if (originalText !== translatedText) {
+                                textNode.textContent = translatedText;
+                                translatedCount++;
+                                console.log('Translated:', originalText.substring(0, 50) + '...', '->', translatedText.substring(0, 50) + '...');
+                            }
                         }
                     });
                 }
             });
 
+            console.log('Translation completed. Translated', translatedCount, 'text nodes.');
             isFinnish = !isFinnish;
             translateBtn.classList.toggle('active');
+
+            // Update status indicator
+            const statusIndicator = document.getElementById('translateStatus');
+            if (statusIndicator) {
+                statusIndicator.textContent = isFinnish ? 'FI' : 'EN';
+            }
         }
 
         // Add click event to translation button
-        translateBtn.addEventListener('click', translatePage);
+        translateBtn.addEventListener('click', function() {
+            console.log('Translation button clicked!');
+            console.log('Current isFinnish state:', isFinnish);
+            console.log('Translations object length:', Object.keys(translations).length);
+
+            // Call the translation function
+            translatePage();
+
+            console.log('Translation completed. New isFinnish state:', isFinnish);
+        });
 
         // Add some interactive fun
         document.addEventListener('DOMContentLoaded', function() {
