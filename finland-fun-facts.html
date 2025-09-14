@@ -403,6 +403,60 @@
             color: #2c3e50;
         }
 
+        .hero-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            border: 2px solid #003580;
+            border-radius: 15px;
+            padding: 1.2rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #003580 0%, #0052a5 50%, #003580 100%);
+        }
+
+        .hero-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(0,80,128,0.2);
+            background: linear-gradient(135deg, #f0f8ff 0%, #e8f4fd 100%);
+        }
+
+        .hero-card h4 {
+            color: #003580;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+            border-bottom: 2px solid #0052a5;
+            padding-bottom: 0.4rem;
+        }
+
+        .hero-card p {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: #2c3e50;
+            margin-bottom: 0.8rem;
+        }
+
+        .hero-fact {
+            background: #003580;
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-block;
+        }
+
         .fun-fact {
             background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
             color: white;
@@ -1063,6 +1117,117 @@
                 </ul>
 
                 <p><strong>🕊️ Religious Harmony:</strong> Despite being officially secular, Finland maintains strong religious traditions while embracing complete religious freedom. This unique balance creates a society that respects both spiritual and secular values.</p>
+            </div>
+
+            <div class="highlight">
+                <h3>🏅 Finland's National Heroes</h3>
+                <p>Throughout history, certain individuals have risen above to become symbols of Finnish spirit, resilience, and achievement. These national heroes represent the best of Finland:</p>
+
+                <div class="culture-grid">
+                    <div class="culture-item hero-card">
+                        <h4>🎖️ Carl Gustaf Emil Mannerheim</h4>
+                        <p><strong>Marshal of Finland</strong> - Military commander who led Finland through its darkest hours, becoming the father of modern Finland and serving as its president.</p>
+                        <div class="hero-fact">Led Winter War defense against Soviet invasion</div>
+                    </div>
+
+                    <div class="culture-item hero-card">
+                        <h4>🎯 Simo Häyhä</h4>
+                        <p><strong>The White Death</strong> - Legendary sniper with 505 confirmed kills in 98 days, symbolizing Finnish marksmanship and winter warfare expertise.</p>
+                        <div class="hero-fact">Most prolific sniper in military history</div>
+                    </div>
+
+                    <div class="culture-item hero-card">
+                        <h4>🏃 Paavo Nurmi</h4>
+                        <p><strong>The Flying Finn</strong> - Olympic champion who won 9 gold medals and set 22 world records, bringing international glory to Finland.</p>
+                        <div class="hero-fact">9 Olympic golds, 22 world records</div>
+                    </div>
+
+                    <div class="culture-item hero-card">
+                        <h4>🎼 Jean Sibelius</h4>
+                        <p><strong>Finland's Composer</strong> - Created the Finnish national anthem melody and works like "Finlandia" that captured the nation's spirit of independence.</p>
+                        <div class="hero-fact">National symbol of Finnish cultural awakening</div>
+                    </div>
+
+                    <div class="culture-item hero-card">
+                        <h4>📚 Elias Lönnrot</h4>
+                        <p><strong>Kalevala Compiler</strong> - Physician and philologist who collected and compiled the Kalevala, Finland's national epic and cornerstone of Finnish identity.</p>
+                        <div class="hero-fact">Preserved Finland's oral tradition and language</div>
+                    </div>
+
+                    <div class="culture-item hero-card">
+                        <h4>💻 Linus Torvalds</h4>
+                        <p><strong>Linux Creator</strong> - Computer scientist who created the Linux kernel, the foundation of most servers worldwide and the Android operating system.</p>
+                        <div class="hero-fact">Open-source pioneer who revolutionized computing</div>
+                    </div>
+
+                    <div class="culture-item hero-card">
+                        <h4>🕊️ Martti Ahtisaari</h4>
+                        <p><strong>Peace Nobelist</strong> - President and diplomat who won the Nobel Peace Prize for conflict resolution work in Namibia, Indonesia, and Kosovo.</p>
+                        <div class="hero-fact">Finland's first Nobel Peace Prize winner</div>
+                    </div>
+
+                    <div class="culture-item hero-card">
+                        <h4>🎨 Alvar Aalto</h4>
+                        <p><strong>Architect of Light</strong> - Modernist architect whose buildings and furniture designs influenced architecture worldwide, bringing Finland to global design forefront.</p>
+                        <div class="hero-fact">Pioneer of Finnish modernist design</div>
+                    </div>
+
+                    <div class="culture-item hero-card">
+                        <h4>🏎️ Kimi Räikkönen</h4>
+                        <p><strong>Ice Man</strong> - Formula 1 world champion (2007) and multiple-time race winner, representing Finnish motorsport excellence and cool-headed racing style.</p>
+                        <div class="hero-fact">Finland's most successful F1 driver</div>
+                    </div>
+
+                    <div class="culture-item hero-card">
+                        <h4>⚽ Jari Litmanen</h4>
+                        <p><strong>The King</strong> - Legendary footballer who captained Finland and played for top European clubs, becoming a national sporting icon and role model.</p>
+                        <div class="hero-fact">Most capped Finnish player, national treasure</div>
+                    </div>
+
+                    <div class="culture-item hero-card">
+                        <h4>📖 Tove Jansson</h4>
+                        <p><strong>Moomin Creator</strong> - Author and artist who created the beloved Moomin characters, enchanting generations worldwide and becoming Finland's literary ambassador.</p>
+                        <div class="hero-fact">Finland's most translated author</div>
+                    </div>
+
+                    <div class="culture-item hero-card">
+                        <h4>🧬 Artturi Virtanen</h4>
+                        <p><strong>Nobel Chemist</strong> - Agricultural chemist who won the Nobel Prize for developing AIV silage, revolutionizing livestock feed preservation.</p>
+                        <div class="hero-fact">Finland's first Nobel laureate in sciences</div>
+                    </div>
+
+                    <div class="culture-item hero-card">
+                        <h4>🎵 Kari Tikka</h4>
+                        <p><strong>Tangomaster</strong> - Musician who popularized Finnish tango worldwide, bringing Finnish music culture to international audiences.</p>
+                        <div class="hero-fact">Made Finnish tango globally famous</div>
+                    </div>
+
+                    <div class="culture-item hero-card">
+                        <h4>🏔️ Adolf Erik Nordenskiöld</h4>
+                        <p><strong>Arctic Explorer</strong> - Explorer who led the first successful navigation of the Northeast Passage, opening new trade routes and advancing geographical knowledge.</p>
+                        <div class="hero-fact">First to navigate Northeast Passage</div>
+                    </div>
+
+                    <div class="culture-item hero-card">
+                        <h4>🎭 Lasse Pöysti</h4>
+                        <p><strong>Uuno Turhapuro</strong> - Actor who portrayed Finland's most beloved comedic character Uuno Turhapuro, bringing joy to millions and becoming a national institution.</p>
+                        <div class="hero-fact">Icon of Finnish comedy and culture</div>
+                    </div>
+                </div>
+
+                <div class="fact-box">
+                    <h4>🌟 What Makes a Finnish National Hero?</h4>
+                    <p>Finnish national heroes typically embody:</p>
+                    <ul>
+                        <li><strong>Sisu (Grit)</strong>: Unbreakable determination in the face of adversity</li>
+                        <li><strong>Innovation</strong>: Finding creative solutions to challenges</li>
+                        <li><strong>National Pride</strong>: Working for Finland's benefit and recognition</li>
+                        <li><strong>Humility</strong>: Remaining grounded despite achievements</li>
+                        <li><strong>Resilience</strong>: Overcoming obstacles through perseverance</li>
+                    </ul>
+                </div>
+
+                <p><strong>🇫🇮 Heroic Legacy:</strong> These national heroes have not only achieved personal greatness but have also elevated Finland's standing in the world. From military commanders to artists, scientists to athletes, they represent the Finnish spirit of determination, creativity, and excellence that continues to inspire new generations.</p>
             </div>
 
             <div class="highlight">
@@ -2007,7 +2172,83 @@
             'Baptism Traditions': 'Kastetraditiot',
             'Often celebrated with extended family gatherings': 'Usein juhlistetaan laajojen perhekokousten kanssa',
             'Religious Harmony': 'Uskonnollinen harmonia',
-            'Despite being officially secular, Finland maintains strong religious traditions while embracing complete religious freedom. This unique balance creates a society that respects both spiritual and secular values.': 'Vaikka virallisesti maallinen, Suomi ylläpitää vahvoja uskonnollisia perinteitä samalla kun omaksuu täydellisen uskonnonvapauden. Tämä ainutlaatuinen tasapaino luo yhteiskunnan, joka kunnioittaa sekä hengellisiä että maallisia arvoja.'
+            'Despite being officially secular, Finland maintains strong religious traditions while embracing complete religious freedom. This unique balance creates a society that respects both spiritual and secular values.': 'Vaikka virallisesti maallinen, Suomi ylläpitää vahvoja uskonnollisia perinteitä samalla kun omaksuu täydellisen uskonnonvapauden. Tämä ainutlaatuinen tasapaino luo yhteiskunnan, joka kunnioittaa sekä hengellisiä että maallisia arvoja.',
+            'Finland\'s National Heroes': 'Suomen kansallissankarit',
+            'Throughout history, certain individuals have risen above to become symbols of Finnish spirit, resilience, and achievement. These national heroes represent the best of Finland:': 'Historian aikana tietyt henkilöt ovat nousseet symboloimaan suomalaista henkeä, sitkeyttä ja saavutuksia. Nämä kansallissankarit edustavat Suomen parasta:',
+            'Carl Gustaf Emil Mannerheim': 'Carl Gustaf Emil Mannerheim',
+            'Marshal of Finland': 'Suomen marsalkka',
+            'Military commander who led Finland through its darkest hours, becoming the father of modern Finland and serving as its president.': 'Sotapäällikkö, joka johti Suomen pimeimpinä tunteina, tullakseen modernin Suomen isäksi ja toimi presidenttinä.',
+            'Led Winter War defense against Soviet invasion': 'Johti talvisodan puolustuksen neuvostohyökkäystä vastaan',
+            'Simo Häyhä': 'Simo Häyhä',
+            'The White Death': 'Valkoinen kuolema',
+            'Legendary sniper with 505 confirmed kills in 98 days, symbolizing Finnish marksmanship and winter warfare expertise.': 'Legendaarinen tarkka-ampuja 505 vahvistetulla tappolla 98 päivässä, symboloimassa suomalaista tarkkuutta ja talvisotataitoa.',
+            'Most prolific sniper in military history': 'Sotahistorian tuotteliain tarkka-ampuja',
+            'Paavo Nurmi': 'Paavo Nurmi',
+            'The Flying Finn': 'Lentävä suomalainen',
+            'Olympic champion who won 9 gold medals and set 22 world records, bringing international glory to Finland.': 'Olympiavoittaja, joka voitti 9 kultamitalia ja asetti 22 maailmanennätystä, tuoden kansainvälisen kunnian Suomelle.',
+            '9 Olympic golds, 22 world records': '9 olympiakultaa, 22 maailmanennätystä',
+            'Jean Sibelius': 'Jean Sibelius',
+            'Finland\'s Composer': 'Suomen säveltäjä',
+            'Created the Finnish national anthem melody and works like "Finlandia" that captured the nation\'s spirit of independence.': 'Loi Suomen kansallislaulun melodian ja teokset kuten "Finlandia", jotka vangitsivat kansakunnan itsenäisyyden hengen.',
+            'National symbol of Finnish cultural awakening': 'Suomalaisen kulttuurisen herätyksen kansallinen symboli',
+            'Elias Lönnrot': 'Elias Lönnrot',
+            'Kalevala Compiler': 'Kalevalan kokoaja',
+            'Physician and philologist who collected and compiled the Kalevala, Finland\'s national epic and cornerstone of Finnish identity.': 'Lääkäri ja kielitieteilijä, joka keräsi ja kokosi Kalevalan, Suomen kansalliseepoksen ja suomalaista identiteettiä perustavan kulmakiven.',
+            'Preserved Finland\'s oral tradition and language': 'Säilytti Suomen suullisen perinteen ja kielen',
+            'Linus Torvalds': 'Linus Torvalds',
+            'Linux Creator': 'Linuxin luoja',
+            'Computer scientist who created the Linux kernel, the foundation of most servers worldwide and the Android operating system.': 'Tietojenkäsittelytieteilijä, joka loi Linux-ytimen, useimpien maailmanlaajuisten palvelimien perustan ja Android-käyttöjärjestelmän.',
+            'Open-source pioneer who revolutionized computing': 'Avoimen lähdekoodin pioneer, joka mullisti tietojenkäsittelyn',
+            'Martti Ahtisaari': 'Martti Ahtisaari',
+            'Peace Nobelist': 'Rauhan nobelisti',
+            'President and diplomat who won the Nobel Peace Prize for conflict resolution work in Namibia, Indonesia, and Kosovo.': 'Presidentti ja diplomaatti, joka voitti Nobelin rauhanpalkinnon konfliktien ratkaisemisesta Namibiassa, Indonesiassa ja Kosovossa.',
+            'Finland\'s first Nobel Peace Prize winner': 'Suomen ensimmäinen Nobelin rauhanpalkinnon voittaja',
+            'Alvar Aalto': 'Alvar Aalto',
+            'Architect of Light': 'Valon arkkitehti',
+            'Modernist architect whose buildings and furniture designs influenced architecture worldwide, bringing Finland to global design forefront.': 'Modernistinen arkkitehti, jonka rakennukset ja huonekalusuunnitelut vaikuttivat maailmanlaajuiseen arkkitehtuurin, tuoden Suomen maailmanlaajuiseen suunnittelun eturiviin.',
+            'Pioneer of Finnish modernist design': 'Suomalaisen modernistisen suunnittelun pioneer',
+            'Kimi Räikkönen': 'Kimi Räikkönen',
+            'Ice Man': 'Jäämies',
+            'Formula 1 world champion (2007) and multiple-time race winner, representing Finnish motorsport excellence and cool-headed racing style.': 'Formula 1 maailmanmestari (2007) ja moninkertainen kilpailuvoittaja, edustaen suomalaista moottoriurheilun huippuosaamista ja viileää kilpailutyyliä.',
+            'Finland\'s most successful F1 driver': 'Suomen menestyksekkäin F1-kuljettaja',
+            'Jari Litmanen': 'Jari Litmanen',
+            'The King': 'Kuningas',
+            'Legendary footballer who captained Finland and played for top European clubs, becoming a national sporting icon and role model.': 'Legendaarinen jalkapalloilija, joka kapteenoi Suomea ja pelasi huippu eurooppalaisissa seuroissa, tullakseen kansalliseksi urheilusymboliksi ja esikuvaksi.',
+            'Most capped Finnish player, national treasure': 'Eniten maaotteluita pelannut suomalainen pelaaja, kansallinen aarre',
+            'Tove Jansson': 'Tove Jansson',
+            'Moomin Creator': 'Muumien luoja',
+            'Author and artist who created the beloved Moomin characters, enchanting generations worldwide and becoming Finland\'s literary ambassador.': 'Kirjailija ja taiteilija, joka loi rakastetut Muumi-hahmot, lumoten sukupolvia maailmanlaajuisesti ja tullakseen Suomen kirjallisuuden lähettilääksi.',
+            'Finland\'s most translated author': 'Suomen eniten käännetty kirjailija',
+            'Artturi Virtanen': 'Artturi Virtanen',
+            'Nobel Chemist': 'Nobelin kemisti',
+            'Agricultural chemist who won the Nobel Prize for developing AIV silage, revolutionizing livestock feed preservation.': 'Maatalouskemisti, joka voitti Nobelin palkinnon AIV-rehun kehittämisestä, mullistaen karjan rehun säilömisen.',
+            'Finland\'s first Nobel laureate in sciences': 'Suomen ensimmäinen Nobel-palkinnon voittaja tieteissä',
+            'Kari Tikka': 'Kari Tikka',
+            'Tangomaster': 'Tangomestari',
+            'Musician who popularized Finnish tango worldwide, bringing Finnish music culture to international audiences.': 'Musiikki, joka popularisoi suomalaisen tangon maailmanlaajuisesti, tuoden suomalaisen musiikkikulttuurin kansainvälisille yleisöille.',
+            'Made Finnish tango globally famous': 'Tehtiin suomalainen tango maailmanlaajuisesti kuuluisaksi',
+            'Adolf Erik Nordenskiöld': 'Adolf Erik Nordenskiöld',
+            'Arctic Explorer': 'Arktinen tutkimusmatkailija',
+            'Explorer who led the first successful navigation of the Northeast Passage, opening new trade routes and advancing geographical knowledge.': 'Tutkimusmatkailija, joka johti ensimmäisen onnistuneen Koillisväylän navigoinnin, avaamalla uusia kauppaväyliä ja edistäen maantieteellistä tietoa.',
+            'First to navigate Northeast Passage': 'Ensimmäinen Koillisväylän navigoinut',
+            'Lasse Pöysti': 'Lasse Pöysti',
+            'Uuno Turhapuro': 'Uuno Turhapuro',
+            'Actor who portrayed Finland\'s most beloved comedic character Uuno Turhapuro, bringing joy to millions and becoming a national institution.': 'Näyttelijä, joka esitti Suomen rakastetuinta komediapersonaasia Uuno Turhapuroa, tuoden iloa miljoonille ja tullakseen kansalliseksi instituutiksi.',
+            'Icon of Finnish comedy and culture': 'Suomalaisen komedian ja kulttuurin ikoni',
+            'What Makes a Finnish National Hero?': 'Mitä tekee suomalaisesta kansallissankarista?',
+            'Finnish national heroes typically embody:': 'Suomalaiset kansallissankarit edustavat tyypillisesti:',
+            'Sisu (Grit)': 'Sisu (kova kurinalaisuus)',
+            'Unbreakable determination in the face of adversity': 'Murtumaton määrätietoisuus vastoinkäymisten edessä',
+            'Innovation': 'Innovaatio',
+            'Finding creative solutions to challenges': 'Luovien ratkaisujen löytäminen haasteisiin',
+            'National Pride': 'Kansallinen ylpeys',
+            'Working for Finland\'s benefit and recognition': 'Työskentely Suomen hyödyksi ja tunnustukseksi',
+            'Humility': 'Nöyryys',
+            'Remaining grounded despite achievements': 'Pysyminen maanläheisenä saavutuksista huolimatta',
+            'Resilience': 'Sitkeys',
+            'Overcoming obstacles through perseverance': 'Esteiden voittaminen sinnikkyyden avulla',
+            'Heroic Legacy:': 'Sankarillinen perintö:',
+            'These national heroes have not only achieved personal greatness but have also elevated Finland\'s standing in the world. From military commanders to artists, scientists to athletes, they represent the Finnish spirit of determination, creativity, and excellence that continues to inspire new generations.': 'Nämä kansallissankarit eivät ole saavuttaneet vain henkilökohtaista suurisuutta, vaan ovat myös nostaneet Suomen asemaa maailmassa. Sotapäälliköistä taiteilijoihin, tiedemiehistä urheilijoihin, he edustavat suomalaista henkeä määrätietoisuudesta, luovuudesta ja huippuosaamisesta, joka jatkaa uusien sukupolvien inspirointia.'
         };
 
         // Function to translate text
