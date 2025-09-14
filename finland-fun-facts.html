@@ -550,6 +550,182 @@
             margin-bottom: 0;
         }
 
+        .highlight-text {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e8f4fd 100%);
+            border-left: 4px solid #003580;
+            padding: 12px 16px;
+            margin: 12px 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: #2c3e50;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            white-space: pre-line;
+        }
+
+        /* Lina Sandell Hymn Player Styles */
+        .hymn-player {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hymn-btn {
+            background: linear-gradient(135deg, #003580 0%, #0052a5 100%);
+            border: 2px solid #fff;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,80,128,0.3);
+            position: relative;
+        }
+
+        .hymn-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0,80,128,0.4);
+            background: linear-gradient(135deg, #0052a5 0%, #003580 100%);
+        }
+
+        .hymn-btn.playing {
+            background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+            animation: pulse 2s infinite;
+        }
+
+        .hymn-tooltip {
+            position: absolute;
+            right: 70px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .hymn-btn:hover .hymn-tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .hymn-controls {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 2px solid #003580;
+            border-radius: 25px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            min-width: 280px;
+        }
+
+        .control-btn {
+            background: #003580;
+            border: none;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: white;
+            transition: all 0.2s ease;
+        }
+
+        .control-btn:hover {
+            transform: scale(1.1);
+            background: #0052a5;
+        }
+
+        .control-btn:active {
+            transform: scale(0.95);
+        }
+
+        #volumeSlider {
+            width: 80px;
+            height: 6px;
+            border-radius: 3px;
+            background: #ddd;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        #volumeSlider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #003580;
+            cursor: pointer;
+        }
+
+        #volumeSlider::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #003580;
+            cursor: pointer;
+            border: none;
+        }
+
+        .hymn-title {
+            font-size: 12px;
+            font-weight: bold;
+            color: #003580;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 120px;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 4px 15px rgba(211, 47, 47, 0.3); }
+            50% { box-shadow: 0 4px 15px rgba(211, 47, 47, 0.6); }
+            100% { box-shadow: 0 4px 15px rgba(211, 47, 47, 0.3); }
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .hymn-player {
+                right: 10px;
+                top: auto;
+                bottom: 20px;
+                transform: none;
+            }
+
+            .hymn-controls {
+                min-width: 250px;
+                padding: 10px 15px;
+            }
+
+            .hymn-title {
+                display: none;
+            }
+        }
+
         .fun-fact {
             background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
             color: white;
@@ -1529,6 +1705,13 @@
                         <h4>🎄 Christmas Peace</h4>
                         <p>Finland declares "Christmas Peace" annually in Turku - the world's oldest unbroken Christmas tradition. Unlike other countries, this tradition dates back to 1353.</p>
                     </div>
+
+                    <div class="culture-item unique-card">
+                        <h4>🎵 Lina Sandell's Hymn</h4>
+                        <p>Swedish hymn writer Lina Sandell (1832-1903) wrote "Children of the Heavenly Father" - Finland's unofficial national anthem sung during independence celebrations and national events.</p>
+                        <p class="highlight-text">🎵 "Children of the Heavenly Father<br>Safely in His bosom gather<br>Nestling bird nor star in Heaven<br>Such a refuge e'er was given"</p>
+                        <p><em>This hymn represents Finland's spiritual heritage and is traditionally performed at official ceremonies and celebrations.</em></p>
+                    </div>
                 </div>
 
                 <div class="fact-box">
@@ -1954,6 +2137,25 @@
     </footer>
 
     <!-- Translation Button -->
+    <!-- Lina Sandell Hymn Audio Player -->
+    <div class="hymn-player" id="hymnPlayer">
+        <audio id="sandellHymn" loop preload="none">
+            <source src="https://www.christianradio.com/mp3/Children_of_the_Heavenly_Father_Lina_Sandell.mp3" type="audio/mpeg">
+            <source src="https://www.christianradio.com/ogg/Children_of_the_Heavenly_Father_Lina_Sandell.ogg" type="audio/ogg">
+            Your browser does not support the audio element.
+        </audio>
+        <button class="hymn-btn" id="hymnBtn" title="Play Lina Sandell's Hymn">
+            <span class="hymn-tooltip">🎵 Lina Sandellin virsi / Lina Sandell's Hymn</span>
+            <span class="hymn-icon">🎵</span>
+        </button>
+        <div class="hymn-controls" id="hymnControls" style="display: none;">
+            <button class="control-btn" id="playPauseBtn">▶️</button>
+            <button class="control-btn" id="muteBtn">🔊</button>
+            <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="0.3">
+            <span class="hymn-title">Children of the Heavenly Father</span>
+        </div>
+    </div>
+
     <button class="translate-btn" id="translateBtn" title="Translate to Finnish">
         <span class="translate-tooltip">Käännä suomeksi / Translate to Finnish</span>
     </button>
@@ -2727,7 +2929,11 @@
             'Escalation to World War': 'Eskalaatio maailmansotaan',
             'Risk of broader conflict involving major powers': 'Riski laajempaan konfliktiin suurvaltojen kanssa',
             'Conclusion:': 'Johtopäätös:',
-            'A Russian invasion of Finland would face unprecedented resistance from a highly prepared nation backed by NATO\'s collective might. While challenging, Finland\'s defense strategy, combined with international support, creates a strong deterrent against aggression. The economic and diplomatic costs to Russia would be catastrophic, making such an invasion highly unlikely.': 'Venäjän hyökkäys Suomeen kohtaisi ennenäkemättömän vastarinnan korkeasti valmistautuneelta kansalta, jota tukee NATO:n kollektiivinen voima. Vaikka haastavaa, Suomen puolustusstrategia yhdistettynä kansainväliseen tukeen luo vahvan pelotteen aggressiota vastaan. Taloudelliset ja diplomaattiset kustannukset Venäjälle olisivat katastrofaaliset, tekemällä tällaisen hyökkäyksen erittäin epätodennäköiseksi.'
+            'A Russian invasion of Finland would face unprecedented resistance from a highly prepared nation backed by NATO\'s collective might. While challenging, Finland\'s defense strategy, combined with international support, creates a strong deterrent against aggression. The economic and diplomatic costs to Russia would be catastrophic, making such an invasion highly unlikely.': 'Venäjän hyökkäys Suomeen kohtaisi ennenäkemättömän vastarinnan korkeasti valmistautuneelta kansalta, jota tukee NATO:n kollektiivinen voima. Vaikka haastavaa, Suomen puolustusstrategia yhdistettynä kansainväliseen tukeen luo vahvan pelotteen aggressiota vastaan. Taloudelliset ja diplomaattiset kustannukset Venäjälle olisivat katastrofaaliset, tekemällä tällaisen hyökkäyksen erittäin epätodennäköiseksi.',
+            'Lina Sandell Hymn': 'Lina Sandellin virsi',
+            'Children of the Heavenly Father': 'Taivaan Isän lapsia',
+            'Unable to load hymn audio': 'Virren ääntä ei voitu ladata',
+            'You can find "Children of the Heavenly Father" on YouTube or other music platforms': 'Löydät "Taivaan Isän lapsia" YouTubesta tai muilta musiikki alustoilta'
         };
 
         // Function to translate text
@@ -2875,6 +3081,201 @@
             }
         `;
         document.head.appendChild(style);
+    </script>
+
+    <!-- Lina Sandell Hymn Player JavaScript -->
+    <script>
+        // Hymn Player Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const hymnAudio = document.getElementById('sandellHymn');
+            const hymnBtn = document.getElementById('hymnBtn');
+            const hymnControls = document.getElementById('hymnControls');
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            const muteBtn = document.getElementById('muteBtn');
+            const volumeSlider = document.getElementById('volumeSlider');
+            const hymnIcon = document.querySelector('.hymn-icon');
+
+            let isPlaying = false;
+            let isMuted = false;
+            let controlsVisible = false;
+
+            // Set initial volume to low
+            hymnAudio.volume = 0.3;
+
+            // Toggle hymn player
+            hymnBtn.addEventListener('click', function() {
+                if (!controlsVisible) {
+                    // First click - show controls
+                    hymnControls.style.display = 'flex';
+                    controlsVisible = true;
+                } else {
+                    // Second click - toggle play/pause
+                    togglePlayPause();
+                }
+            });
+
+            // Play/Pause button
+            playPauseBtn.addEventListener('click', togglePlayPause);
+
+            // Mute button
+            muteBtn.addEventListener('click', function() {
+                if (isMuted) {
+                    hymnAudio.volume = volumeSlider.value;
+                    muteBtn.textContent = '🔊';
+                    isMuted = false;
+                } else {
+                    hymnAudio.volume = 0;
+                    muteBtn.textContent = '🔇';
+                    isMuted = true;
+                }
+            });
+
+            // Volume slider
+            volumeSlider.addEventListener('input', function() {
+                if (!isMuted) {
+                    hymnAudio.volume = this.value;
+                }
+            });
+
+            function togglePlayPause() {
+                if (isPlaying) {
+                    hymnAudio.pause();
+                    playPauseBtn.textContent = '▶️';
+                    hymnBtn.classList.remove('playing');
+                    hymnIcon.textContent = '🎵';
+                    isPlaying = false;
+                } else {
+                    hymnAudio.play().catch(function(error) {
+                        console.log('Audio play failed:', error);
+                        // Fallback: try to load a different source
+                        loadAlternativeSource();
+                    });
+                    playPauseBtn.textContent = '⏸️';
+                    hymnBtn.classList.add('playing');
+                    hymnIcon.textContent = '🎶';
+                    isPlaying = true;
+                }
+            }
+
+            function loadAlternativeSource() {
+                // Try alternative sources if the primary one fails
+                const alternativeSources = [
+                    'https://www.christianradio.com/media/Children_of_the_Heavenly_Father.mp3',
+                    'https://archive.org/download/children-of-the-heavenly-father/ChildrenOfTheHeavenlyFather.mp3'
+                ];
+
+                for (let source of alternativeSources) {
+                    const audioSource = document.createElement('source');
+                    audioSource.src = source;
+                    audioSource.type = 'audio/mpeg';
+                    hymnAudio.appendChild(audioSource);
+                }
+
+                hymnAudio.load();
+                hymnAudio.play().catch(function(error) {
+                    console.log('Alternative audio sources also failed:', error);
+                    // Show user-friendly message
+                    showAudioError();
+                });
+            }
+
+            function showAudioError() {
+                const errorMsg = document.createElement('div');
+                errorMsg.innerHTML = `
+                    <div style="
+                        position: fixed;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        background: rgba(0,0,0,0.9);
+                        color: white;
+                        padding: 20px;
+                        border-radius: 10px;
+                        text-align: center;
+                        z-index: 10000;
+                        font-size: 14px;
+                    ">
+                        <p>🎵 Unable to load hymn audio</p>
+                        <p>You can find "Children of the Heavenly Father" on YouTube or other music platforms</p>
+                        <button onclick="this.parentElement.remove()" style="
+                            background: #003580;
+                            color: white;
+                            border: none;
+                            padding: 8px 16px;
+                            border-radius: 5px;
+                            cursor: pointer;
+                            margin-top: 10px;
+                        ">Close</button>
+                    </div>
+                `;
+                document.body.appendChild(errorMsg);
+
+                // Hide error after 5 seconds
+                setTimeout(() => {
+                    if (errorMsg.parentElement) {
+                        errorMsg.remove();
+                    }
+                }, 5000);
+            }
+
+            // Audio event listeners
+            hymnAudio.addEventListener('ended', function() {
+                playPauseBtn.textContent = '▶️';
+                hymnBtn.classList.remove('playing');
+                hymnIcon.textContent = '🎵';
+                isPlaying = false;
+            });
+
+            hymnAudio.addEventListener('error', function() {
+                console.log('Audio loading error');
+                showAudioError();
+            });
+
+            // Handle page visibility change (pause when tab is not visible)
+            document.addEventListener('visibilitychange', function() {
+                if (document.hidden && isPlaying) {
+                    hymnAudio.pause();
+                    playPauseBtn.textContent = '▶️';
+                    hymnBtn.classList.remove('playing');
+                    hymnIcon.textContent = '🎶';
+                    isPlaying = false;
+                }
+            });
+
+            // Add keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                // Space bar to play/pause
+                if (e.code === 'Space' && e.target.tagName !== 'INPUT') {
+                    e.preventDefault();
+                    togglePlayPause();
+                }
+                // 'M' key to mute/unmute
+                if (e.code === 'KeyM') {
+                    muteBtn.click();
+                }
+            });
+
+            // Auto-hide controls after 10 seconds of inactivity
+            let controlsTimeout;
+            function resetControlsTimeout() {
+                clearTimeout(controlsTimeout);
+                controlsTimeout = setTimeout(() => {
+                    if (!isPlaying && controlsVisible) {
+                        hymnControls.style.display = 'none';
+                        controlsVisible = false;
+                    }
+                }, 10000);
+            }
+
+            // Reset timeout on any interaction
+            [hymnBtn, playPauseBtn, muteBtn, volumeSlider].forEach(element => {
+                element.addEventListener('click', resetControlsTimeout);
+                element.addEventListener('input', resetControlsTimeout);
+            });
+
+            // Initial timeout
+            resetControlsTimeout();
+        });
     </script>
 </body>
 </html>
