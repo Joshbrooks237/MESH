@@ -576,6 +576,56 @@
             gap: 10px;
         }
 
+        .mute-btn {
+            background: linear-gradient(135deg, #666 0%, #999 100%);
+            border: 2px solid #fff;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .mute-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            background: linear-gradient(135deg, #999 0%, #666 100%);
+        }
+
+        .mute-btn.muted {
+            background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+            animation: pulse 2s infinite;
+        }
+
+        .mute-tooltip {
+            position: absolute;
+            right: 55px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .mute-btn:hover .mute-tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+
         .hymn-btn {
             background: linear-gradient(135deg, #003580 0%, #0052a5 100%);
             border: 2px solid #fff;
@@ -714,6 +764,8 @@
                 top: auto;
                 bottom: 20px;
                 transform: none;
+                flex-direction: row;
+                gap: 15px;
             }
 
             .hymn-controls {
@@ -723,6 +775,16 @@
 
             .hymn-title {
                 display: none;
+            }
+
+            .mute-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .mute-tooltip {
+                display: none; /* Hide tooltips on mobile for cleaner look */
             }
         }
 
@@ -2148,6 +2210,10 @@
             <span class="hymn-tooltip">🎵 Lina Sandellin virsi / Lina Sandell's Hymn</span>
             <span class="hymn-icon">🎵</span>
         </button>
+        <button class="mute-btn" id="globalMuteBtn" title="Mute/Unmute Hymn">
+            <span class="mute-tooltip">🔇 Mykistä / Mute</span>
+            <span class="mute-icon">🔊</span>
+        </button>
         <div class="hymn-controls" id="hymnControls" style="display: none;">
             <button class="control-btn" id="playPauseBtn">▶️</button>
             <button class="control-btn" id="muteBtn">🔊</button>
@@ -2933,7 +2999,9 @@
             'Lina Sandell Hymn': 'Lina Sandellin virsi',
             'Children of the Heavenly Father': 'Taivaan Isän lapsia',
             'Unable to load hymn audio': 'Virren ääntä ei voitu ladata',
-            'You can find "Children of the Heavenly Father" on YouTube or other music platforms': 'Löydät "Taivaan Isän lapsia" YouTubesta tai muilta musiikki alustoilta'
+            'You can find "Children of the Heavenly Father" on YouTube or other music platforms': 'Löydät "Taivaan Isän lapsia" YouTubesta tai muilta musiikki alustoilta',
+            'Mute/Unmute Hymn': 'Mykistä/Poista mykistys virrestä',
+            '🔇 Mykistä / Mute': '🔇 Mykistä / Mute'
         };
 
         // Function to translate text
@@ -3092,8 +3160,10 @@
             const hymnControls = document.getElementById('hymnControls');
             const playPauseBtn = document.getElementById('playPauseBtn');
             const muteBtn = document.getElementById('muteBtn');
+            const globalMuteBtn = document.getElementById('globalMuteBtn');
             const volumeSlider = document.getElementById('volumeSlider');
             const hymnIcon = document.querySelector('.hymn-icon');
+            const muteIcon = document.querySelector('.mute-icon');
 
             let isPlaying = false;
             let isMuted = false;
@@ -3117,23 +3187,35 @@
             // Play/Pause button
             playPauseBtn.addEventListener('click', togglePlayPause);
 
-            // Mute button
-            muteBtn.addEventListener('click', function() {
+            // Mute button functionality
+            function toggleMute() {
                 if (isMuted) {
                     hymnAudio.volume = volumeSlider.value;
                     muteBtn.textContent = '🔊';
+                    muteIcon.textContent = '🔊';
+                    globalMuteBtn.classList.remove('muted');
                     isMuted = false;
                 } else {
                     hymnAudio.volume = 0;
                     muteBtn.textContent = '🔇';
+                    muteIcon.textContent = '🔇';
+                    globalMuteBtn.classList.add('muted');
                     isMuted = true;
                 }
-            });
+            }
+
+            // Event listeners for both mute buttons
+            muteBtn.addEventListener('click', toggleMute);
+            globalMuteBtn.addEventListener('click', toggleMute);
 
             // Volume slider
             volumeSlider.addEventListener('input', function() {
                 if (!isMuted) {
                     hymnAudio.volume = this.value;
+                }
+                // If user adjusts volume while muted, unmute automatically
+                if (isMuted && this.value > 0) {
+                    toggleMute();
                 }
             });
 
@@ -3251,7 +3333,8 @@
                 }
                 // 'M' key to mute/unmute
                 if (e.code === 'KeyM') {
-                    muteBtn.click();
+                    e.preventDefault();
+                    toggleMute();
                 }
             });
 
