@@ -257,6 +257,71 @@
                 transform: translateY(-5px);
             }
         }
+
+        /* Translation Button Styles */
+        .translate-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #003580 0%, #0052a5 100%);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .translate-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+        }
+
+        .translate-btn.active {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+        }
+
+        .translate-btn::before {
+            content: '🇫🇮';
+            font-size: 1.8rem;
+        }
+
+        .translate-tooltip {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            background: #333;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .translate-btn:hover .translate-tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .translate-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            right: 15px;
+            border: 5px solid transparent;
+            border-top-color: #333;
+        }
     </style>
 </head>
 <body>
@@ -304,6 +369,26 @@
             <p>Finnish (Suomi) is one of the most unique languages in the world! It's part of the Finno-Ugric language family and has almost nothing in common with Indo-European languages.</p>
 
             <div class="highlight">
+                <h3>Ancient Origins - Finno-Ugric Roots</h3>
+                <p>Finnish belongs to the Finno-Ugric language family, which emerged around 6,000-7,000 years ago in the region between the Volga River and the Ural Mountains in Russia. This language family is divided into two main branches:</p>
+                <ul>
+                    <li><strong>Finnic branch:</strong> Finnish, Estonian, Karelian, Veps, Ingrian, Livonian</li>
+                    <li><strong>Ugric branch:</strong> Hungarian, Khanty, Mansi</li>
+                </ul>
+            </div>
+
+            <div class="fact-box">
+                <h3>The Proto-Finnic Homeland</h3>
+                <p>The original Finno-Ugric homeland is believed to be in the forests between the Volga and Kama rivers. Around 4,000 years ago, the Proto-Finnic people began migrating westward, eventually reaching the Baltic Sea region around 2,000 BCE.</p>
+                <ul>
+                    <li><strong>Volga-Kama region:</strong> Original Finno-Ugric homeland (modern-day Russia)</li>
+                    <li><strong>Baltic migrations:</strong> Proto-Finnic speakers moved westward around 2,000 BCE</li>
+                    <li><strong>Swedish influence:</strong> Began around 1,000 years ago during Swedish rule</li>
+                    <li><strong>Russian influence:</strong> Increased during Russian Grand Duchy period (1809-1917)</li>
+                </ul>
+            </div>
+
+            <div class="highlight">
                 <h3>Why Finnish is Awesome:</h3>
                 <ul>
                     <li>It's completely different from English, Swedish, or Russian</li>
@@ -331,6 +416,44 @@
                     <li>The Finnish word for "sauna" comes from Proto-Finnic</li>
                     <li>Finns are proud of their language and culture!</li>
                 </ul>
+            </div>
+
+            <div class="highlight">
+                <h3>The Kalevala - Finland's National Epic</h3>
+                <p>The Kalevala, compiled by Elias Lönnrot in 1835, is the national epic of Finland. It was crucial in developing Finnish national identity and standardizing the language. The Kalevala contains:</p>
+                <ul>
+                    <li><strong>Ancient oral poetry:</strong> Traditional Finnish folk poetry (runosäe)</li>
+                    <li><strong>Mythical heroes:</strong> Väinämöinen, Ilmarinen, Lemminkäinen</li>
+                    <li><strong>Cultural preservation:</strong> Saved many archaic words and expressions</li>
+                    <li><strong>Language development:</strong> Helped create a standardized written Finnish</li>
+                </ul>
+            </div>
+
+            <div class="fact-box">
+                <h3>Language Evolution Timeline</h3>
+                <ul>
+                    <li><strong>~6000 BCE:</strong> Proto-Finno-Ugric emerges in Volga region</li>
+                    <li><strong>~2000 BCE:</strong> Proto-Finnic speakers reach Baltic Sea</li>
+                    <li><strong>~1000 CE:</strong> Swedish influence begins during Swedish rule</li>
+                    <li><strong>1544:</strong> First Finnish book printed (Abckiria by Mikael Agricola)</li>
+                    <li><strong>1809:</strong> Russian influence increases during Grand Duchy period</li>
+                    <li><strong>1835:</strong> Kalevala published, boosting Finnish national identity</li>
+                    <li><strong>1863:</strong> Finnish becomes official language alongside Swedish</li>
+                    <li><strong>1919:</strong> Finnish becomes sole official language of independent Finland</li>
+                </ul>
+            </div>
+
+            <div class="language-example">
+                <h3>Ancient Finnish Words Still Used Today</h3>
+                <p><strong>Sauna:</strong> From Proto-Finnic *sauna (bathhouse) - one of the few words that hasn't changed much!</p>
+                <p><strong>Metsä:</strong> Forest (from Proto-Finnic *meccä)</p>
+                <p><strong>Vesi:</strong> Water (from Proto-Finnic *wete)</p>
+                <p><strong>Tuli:</strong> Fire (from Proto-Finnic *tuli)</p>
+                <p><strong>Käsi:</strong> Hand (from Proto-Finnic *käte)</p>
+            </div>
+
+            <div class="fun-fact">
+                <strong>Linguistic Isolation:</strong> Finnish is one of the most isolated major languages in Europe. It shares its grammar with only Estonian and has no close relatives among major European languages!
             </div>
         </section>
 
@@ -497,6 +620,11 @@
         <p class="bounce">🇫🇮 Suomi Finland Perkele! 🇫🇮</p>
     </footer>
 
+    <!-- Translation Button -->
+    <button class="translate-btn" id="translateBtn" title="Translate to Finnish">
+        <span class="translate-tooltip">Käännä suomeksi / Translate to Finnish</span>
+    </button>
+
     <script>
         // Smooth scrolling for navigation
         document.querySelectorAll('nav a').forEach(anchor => {
@@ -509,6 +637,136 @@
                 });
             });
         });
+
+        // Translation functionality
+        let isFinnish = false;
+        const translateBtn = document.getElementById('translateBtn');
+
+        // Finnish translations dictionary
+        const translations = {
+            // Header and navigation
+            'Discover Finland': 'Tutustu Suomeen',
+            'The Land of a Thousand Lakes, Northern Lights, and Incredible Resilience!': 'Tuhat järven maa, revontulet ja uskomaton sitkeys!',
+            'Home': 'Koti',
+            'Language': 'Kieli',
+            'Genealogy': 'Genealogia',
+            'History': 'Historia',
+            'World War II': 'Toinen maailmansota',
+            'Culture & Fun': 'Kulttuuri & Hauskaa',
+
+            // Intro section
+            'Welcome to Finland!': 'Tervetuloa Suomeen!',
+            'Finland is a Nordic country in Northern Europe known for its stunning natural beauty, rich history, and unique culture. From the magical Northern Lights to the world\'s best education system, Finland has something amazing to offer!': 'Suomi on Pohjoismaa Pohjois-Euroopassa, tunnettu upeasta luonnostaan, rikkaasta historiastaan ja ainutlaatuisesta kulttuuristaan. Taianomaisista revontuluista maailman parhaaseen koulutusjärjestelmään, Suomella on jotain upeaa tarjottavana!',
+            'Did you know?': 'Tiesitkö?',
+            'Finland has over 188,000 lakes and is home to Santa Claus in Rovaniemi!': 'Suomessa on yli 188 000 järveä ja Joulupukki asuu Rovaniemellä!',
+            'Quick Facts About Finland:': 'Pikatietoja Suomesta:',
+            'Population:': 'Väestö:',
+            '~5.5 million people': '~5,5 miljoonaa ihmistä',
+            'Capital:': 'Pääkaupunki:',
+            'Helsinki (the coolest capital ever!)': 'Helsinki (maailman viilein pääkaupunki!)',
+            'Official Languages:': 'Viralliset kielet:',
+            'Finnish and Swedish': 'Suomi ja ruotsi',
+            'Currency:': 'Valuutta:',
+            'Euro (€)': 'Euro (€)',
+            'Time Zone:': 'Aikavyöhyke:',
+            'Eastern European Time (EET)': 'Itä-Euroopan aika (EET)',
+            'National Symbols:': 'Kansalliset symbolit:',
+            'Whooper Swan and Lily-of-the-valley': 'Kyhmyjoutsen ja kielo',
+
+            // Language section
+            'The Finnish Language': 'Suomen kieli',
+            'Finnish (Suomi) is one of the most unique languages in the world! It\'s part of the Finno-Ugric language family and has almost nothing in common with Indo-European languages.': 'Suomi (Suomi) on yksi maailman ainutlaatuisimmista kielistä! Se kuuluu suomalais-ugrilaiseen kieliperheeseen, eikä sillä ole juuri mitään yhteistä indoeurooppalaisten kielten kanssa.',
+            'Ancient Origins - Finno-Ugric Roots': 'Muinaiset juuret - suomalais-ugrilaiset juuret',
+            'Finnish belongs to the Finno-Ugric language family, which emerged around 6,000-7,000 years ago in the region between the Volga River and the Ural Mountains in Russia. This language family is divided into two main branches:': 'Suomi kuuluu suomalais-ugrilaiseen kieliperheeseen, joka syntyi noin 6 000–7 000 vuotta sitten Volga-joen ja Ural-vuorten välisellä alueella Venäjällä. Tämä kieliperhe jakautuu kahteen päähaaraan:',
+            'Finnic branch:': 'Suomalainen haara:',
+            'Finnish, Estonian, Karelian, Veps, Ingrian, Livonian': 'Suomi, viro, karjala, vepsä, inkeroinen, liivi',
+            'Ugric branch:': 'Ugrilainen haara:',
+            'Hungarian, Khanty, Mansi': 'Unkari, hantti, manssi',
+            'The Proto-Finnic Homeland': 'Protosuomalaisten kotimaa',
+            'The original Finno-Ugric homeland is believed to be in the forests between the Volga and Kama rivers. Around 4,000 years ago, the Proto-Finnic people began migrating westward, eventually reaching the Baltic Sea region around 2,000 BCE.': 'Alkuperäinen suomalais-ugrilainen kotimaa uskotaan olleen Volga- ja Kama-jokien välisissä metsissä. Noin 4 000 vuotta sitten protosuomalaiset alkoivat siirtyä länteen ja saavuttivat lopulta Itämeren alueen noin 2000 eKr.',
+            'Why Finnish is Awesome:': 'Miksi suomi on mahtavaa:',
+            'It\'s completely different from English, Swedish, or Russian': 'Se on täysin erilainen kuin englanti, ruotsi tai venäjä',
+            'Uses the Latin alphabet but with some special letters: ä, ö, å': 'Käyttää latinalaista aakkostoa, mutta muutamin erikoismerkein: ä, ö, å',
+            'Words can be extremely long (compound words are common)': 'Sanat voivat olla erittäin pitkiä (yhdyssanat ovat yleisiä)',
+            'Has 15 noun cases! (English has only 2: subject and object)': 'Siinä on 15 sijamuotoa! (Englannissa vain 2: subjekti ja objekti)',
+            'Fun Examples:': 'Hauskoja esimerkkejä:',
+            'Hello:': 'Hei:',
+            'Hei (sounds like "hey")': 'Hei (ääntää kuin "hei")',
+            'Thank you:': 'Kiitos:',
+            'Kiitos': 'Kiitos',
+            'Finland:': 'Suomi:',
+            'Suomi': 'Suomi',
+            'Northern Lights:': 'Revontulet:',
+            'Revontulet (literally "fox fires")': 'Revontulet (kirjaimellisesti "ketun tulia")',
+            'Language Fun Facts:': 'Kielen hauskoja faktoja:',
+            'Finnish is spoken by about 5 million people worldwide': 'Suomea puhuu noin 5 miljoonaa ihmistä maailmanlaajuisesti',
+            'It\'s related to Estonian and Hungarian': 'Se on sukua viroille ja unkarille',
+            'The Finnish word for "sauna" comes from Proto-Finnic': 'Suomen sana "sauna" tulee protosuomesta',
+            'Finns are proud of their language and culture!': 'Suomalaiset ovat ylpeitä kielestään ja kulttuuristaan!',
+            'The Kalevala - Finland\'s National Epic': 'Kalevala - Suomen kansalliseepos',
+            'The Kalevala, compiled by Elias Lönnrot in 1835, is the national epic of Finland. It was crucial in developing Finnish national identity and standardizing the language.': 'Kalevala, jonka Elias Lönnrot kokosi vuonna 1835, on Suomen kansalliseepos. Se oli ratkaisevan tärkeä suomalaisen kansallisen identiteetin kehittämisessä ja kielen standardoinnissa.',
+            'Language Evolution Timeline': 'Kielen evoluutio aikajanalla',
+            'Ancient Finnish Words Still Used Today': 'Muinaisia suomalaisia sanoja, joita käytetään vielä tänään',
+            'Linguistic Isolation:': 'Kielellinen eristyneisyys:',
+            'Finnish is one of the most isolated major languages in Europe. It shares its grammar with only Estonian and has no close relatives among major European languages!': 'Suomi on yksi Euroopan eristyneimmistä suurista kielistä. Se jakaa kielioppinsa vain viron kanssa, eikä sillä ole läheisiä sukulaisia muiden suurten eurooppalaisten kielten joukossa!'
+        };
+
+        // Function to translate text
+        function translateText(text, toFinnish = true) {
+            if (!text) return text;
+
+            let translatedText = text;
+
+            if (toFinnish) {
+                // Replace English text with Finnish
+                Object.keys(translations).forEach(english => {
+                    const regex = new RegExp(english.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
+                    translatedText = translatedText.replace(regex, translations[english]);
+                });
+            } else {
+                // Replace Finnish text with English
+                Object.values(translations).forEach(finnish => {
+                    const english = Object.keys(translations).find(key => translations[key] === finnish);
+                    if (english) {
+                        const regex = new RegExp(finnish.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
+                        translatedText = translatedText.replace(regex, english);
+                    }
+                });
+            }
+
+            return translatedText;
+        }
+
+        // Function to translate all text elements on the page
+        function translatePage() {
+            const elements = document.querySelectorAll('h1, h2, h3, h4, p, li, span:not(.translate-tooltip), div:not(.translate-tooltip)');
+
+            elements.forEach(element => {
+                if (element.children.length === 0 || element.querySelector('.translate-tooltip')) {
+                    // Only translate text nodes, not elements with children
+                    const textNodes = [];
+                    const walk = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null, false);
+                    let node;
+                    while (node = walk.nextNode()) {
+                        if (node.parentNode !== element.querySelector('.translate-tooltip')) {
+                            textNodes.push(node);
+                        }
+                    }
+
+                    textNodes.forEach(textNode => {
+                        if (textNode.textContent.trim()) {
+                            textNode.textContent = translateText(textNode.textContent, !isFinnish);
+                        }
+                    });
+                }
+            });
+
+            isFinnish = !isFinnish;
+            translateBtn.classList.toggle('active');
+        }
+
+        // Add click event to translation button
+        translateBtn.addEventListener('click', translatePage);
 
         // Add some interactive fun
         document.addEventListener('DOMContentLoaded', function() {
