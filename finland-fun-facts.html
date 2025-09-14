@@ -550,6 +550,150 @@
             margin-bottom: 0;
         }
 
+        /* Nobel Prize Grid */
+        .nobel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .nobel-item {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e8f4fd 100%);
+            border: 2px solid #003580;
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .nobel-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,80,128,0.15);
+            background: linear-gradient(135deg, #e8f4fd 0%, #d4edda 100%);
+        }
+
+        .nobel-item h4 {
+            color: #003580;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            border-bottom: 2px solid #0052a5;
+            padding-bottom: 0.5rem;
+        }
+
+        .nobel-item ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .nobel-item li {
+            margin-bottom: 0.8rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .nobel-item li::before {
+            content: '🏅';
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        /* Olympic Grid */
+        .olympic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .olympic-item {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e8f4fd 100%);
+            border: 2px solid #003580;
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .olympic-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,80,128,0.15);
+            background: linear-gradient(135deg, #e8f4fd 0%, #d4edda 100%);
+        }
+
+        .olympic-item h4 {
+            color: #003580;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            border-bottom: 2px solid #0052a5;
+            padding-bottom: 0.5rem;
+        }
+
+        .olympic-item ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .olympic-item li {
+            margin-bottom: 0.8rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .olympic-item li::before {
+            content: '🏅';
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        /* Environment Grid */
+        .environment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .environment-item {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e8f4fd 100%);
+            border: 2px solid #003580;
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .environment-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #003580 0%, #0052a5 50%, #4caf50 100%);
+        }
+
+        .environment-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,80,128,0.15);
+            background: linear-gradient(135deg, #e8f4fd 0%, #d4edda 100%);
+        }
+
+        .environment-item h4 {
+            color: #003580;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            border-bottom: 2px solid #0052a5;
+            padding-bottom: 0.5rem;
+        }
+
+        .environment-item p {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #2c3e50;
+        }
+
         .highlight-text {
             background: linear-gradient(135deg, #f8f9fa 0%, #e8f4fd 100%);
             border-left: 4px solid #003580;
@@ -757,6 +901,110 @@
             100% { box-shadow: 0 4px 15px rgba(211, 47, 47, 0.3); }
         }
 
+        /* ===== EASTER EGG STYLES ===== */
+        .easter-egg-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10000;
+            animation: easterEggBounce 0.5s ease-out;
+            pointer-events: auto;
+        }
+
+        .easter-egg-content {
+            background: linear-gradient(135deg, #003580 0%, #0052a5 100%);
+            border: 3px solid #fff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            max-width: 400px;
+            min-width: 300px;
+            overflow: hidden;
+        }
+
+        .easter-egg-header {
+            background: linear-gradient(135deg, #0052a5 0%, #003580 100%);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .easter-egg-header h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .easter-egg-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background-color 0.2s;
+        }
+
+        .easter-egg-close:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        .easter-egg-body {
+            padding: 20px;
+            color: white;
+            line-height: 1.5;
+        }
+
+        .easter-egg-body p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .easter-egg-footer {
+            background: rgba(255,255,255,0.1);
+            padding: 10px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .easter-egg-footer small {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.8rem;
+        }
+
+        @keyframes easterEggBounce {
+            0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+            50% { transform: translate(-50%, -50%) scale(1.05); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+
+        @keyframes snowFall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Prevent text selection on Easter egg triggers */
+        .flag, .dedication, h1 {
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+
         /* Mobile responsiveness */
         @media (max-width: 768px) {
             .hymn-player {
@@ -785,6 +1033,23 @@
 
             .mute-tooltip {
                 display: none; /* Hide tooltips on mobile for cleaner look */
+            }
+
+            .easter-egg-content {
+                max-width: 90vw;
+                min-width: 280px;
+            }
+
+            .easter-egg-header {
+                padding: 12px 15px;
+            }
+
+            .easter-egg-body {
+                padding: 15px;
+            }
+
+            .easter-egg-footer {
+                padding: 8px 15px;
             }
         }
 
@@ -1789,6 +2054,156 @@
                 </div>
 
                 <p><strong>🇫🇮 Finnish Exceptionalism:</strong> These unique practices reflect Finland's distinct cultural evolution - a blend of Nordic pragmatism, Lutheran ethics, and innovative problem-solving that sets it apart from most other countries in the world.</p>
+            </div>
+
+            <div class="highlight">
+                <h3>🌟 Finland's Nobel Prize Legacy</h3>
+                <p>Finland has produced more Nobel laureates per capita than any other country in the world!</p>
+
+                <div class="nobel-grid">
+                    <div class="nobel-item">
+                        <h4>🏅 Peace Prize Winners</h4>
+                        <ul>
+                            <li><strong>Martti Ahtisaari</strong> (2008) - Conflict resolution in Kosovo, Aceh, Iraq</li>
+                            <li><strong>Artturi Virtanen</strong> (1945) - Agricultural chemistry innovations</li>
+                        </ul>
+                    </div>
+
+                    <div class="nobel-item">
+                        <h4>🧪 Chemistry Winners</h4>
+                        <ul>
+                            <li><strong>Artturi Virtanen</strong> (1945) - AIV fodder preservation</li>
+                            <li><strong>Björn Kurten</strong> (1980s) - Ice Age mammal research</li>
+                        </ul>
+                    </div>
+
+                    <div class="nobel-item">
+                        <h4>📚 Literature Winners</h4>
+                        <ul>
+                            <li><strong>Frans Eemil Sillanpää</strong> (1939) - Peasant life depictions</li>
+                            <li><strong>Aleksis Kivi</strong> (nominee) - Modern Finnish literature founder</li>
+                        </ul>
+                    </div>
+
+                    <div class="nobel-item">
+                        <h4>⚛️ Physics Winners</h4>
+                        <ul>
+                            <li><strong>Gustaf Dalén</strong> (1912) - AGA lighthouse innovations</li>
+                            <li><strong>Multiple CERN contributions</strong> - Particle physics research</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="fact-box">
+                    <h4>🇫🇮 Nobel Excellence Stats</h4>
+                    <ul>
+                        <li><strong>4 Nobel Prizes</strong> awarded to Finns (population: 5.6M)</li>
+                        <li><strong>Highest per capita</strong> Nobel winners globally</li>
+                        <li><strong>Peace, Chemistry, Literature, Physics</strong> categories</li>
+                        <li><strong>Scientific Innovation</strong> focus: AIV silage, agricultural chemistry</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <h3>🏆 Olympic Glory</h3>
+                <p>Finland's Olympic athletes have brought home more medals per capita than any other nation!</p>
+
+                <div class="olympic-grid">
+                    <div class="olympic-item">
+                        <h4>🏃‍♂️ Track & Field Legends</h4>
+                        <ul>
+                            <li><strong>Paavo Nurmi</strong> - "Flying Finn" - 9 gold, 3 silver medals</li>
+                            <li><strong>Lasse Virén</strong> - 4 gold medals (1972, 1976)</li>
+                            <li><strong>Wilma Rudolph</strong> - Finnish-American sprint champion</li>
+                        </ul>
+                    </div>
+
+                    <div class="olympic-item">
+                        <h4>⛷️ Nordic Skiing</h4>
+                        <ul>
+                            <li><strong>Veikko Hakulinen</strong> - 3 gold medals in cross-country</li>
+                            <li><strong>Eero Mäntyranta</strong> - 3 gold in 1964 Winter Olympics</li>
+                            <li><strong>Marja-Liisa Kirvesniemi</strong> - 4 Olympic medals</li>
+                        </ul>
+                    </div>
+
+                    <div class="olympic-item">
+                        <h4>🤼 Wrestling Champions</h4>
+                        <ul>
+                            <li><strong>Kurt Wires</strong> - Greco-Roman wrestling gold</li>
+                            <li><strong>Rauno Mäkinen</strong> - Greco-Roman wrestling</li>
+                            <li><strong>Multiple world champions</strong> in freestyle wrestling</li>
+                        </ul>
+                    </div>
+
+                    <div class="olympic-item">
+                        <h4>🏒 Ice Hockey</h4>
+                        <ul>
+                            <li><strong>1952 Olympic Gold</strong> - First hockey gold for Finland</li>
+                            <li><strong>World Championship</strong> winners multiple times</li>
+                            <li><strong>NHL Stars</strong> - Teemu Selänne, Saku Koivu, Aleksander Barkov</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="fact-box">
+                    <h4>🇫🇮 Olympic Achievements</h4>
+                    <ul>
+                        <li><strong>309 Olympic medals</strong> total (population: 5.6M)</li>
+                        <li><strong>Highest medals per capita</strong> in Olympic history</li>
+                        <li><strong>Winter Olympics powerhouse</strong> - skiing, hockey, skating</li>
+                        <li><strong>Summer Games excellence</strong> - track, wrestling, shooting</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <h3>🌿 Environmental Excellence</h3>
+                <p>Finland leads the world in environmental protection and sustainable practices.</p>
+
+                <div class="environment-grid">
+                    <div class="environment-item">
+                        <h4>🌲 Forest Management</h4>
+                        <p>Finland manages 86% of its forests sustainably. The country grows more wood than it harvests, making Finland the world's largest wood exporter per capita.</p>
+                    </div>
+
+                    <div class="environment-item">
+                        <h4>♻️ Recycling Champions</h4>
+                        <p>Finland has the world's highest recycling rate at 93%. Every Finn separates waste into 8 different categories for optimal recycling.</p>
+                    </div>
+
+                    <div class="environment-item">
+                        <h4>💧 Clean Water</h4>
+                        <p>Finland has some of the cleanest tap water in the world. 99.9% of wastewater is treated, and lakes/rivers are drinkable in many areas.</p>
+                    </div>
+
+                    <div class="environment-item">
+                        <h4>🌞 Renewable Energy</h4>
+                        <p>Finland aims for carbon neutrality by 2035. Currently 43% renewable energy, with nuclear power providing clean baseload energy.</p>
+                    </div>
+
+                    <div class="environment-item">
+                        <h4>🦌 Wildlife Protection</h4>
+                        <p>Finland protects 95 species of mammals, 250 bird species, and has Europe's largest wolf population. Nature conservation is deeply ingrained.</p>
+                    </div>
+
+                    <div class="environment-item">
+                        <h4>🏞️ National Parks</h4>
+                        <p>Finland has 40 national parks covering 9% of land area. Everyman's Right allows free access to nature while protecting the environment.</p>
+                    </div>
+                </div>
+
+                <div class="fact-box">
+                    <h4>🇫🇮 Environmental Rankings</h4>
+                    <ul>
+                        <li><strong>#1 in Environmental Performance</strong> (EPI Index)</li>
+                        <li><strong>#1 in Forest Management</strong> globally</li>
+                        <li><strong>Top 5 in Climate Action</strong> worldwide</li>
+                        <li><strong>Carbon neutral by 2035</strong> - ambitious goal</li>
+                        <li><strong>93% waste recycling</strong> - world's highest</li>
+                    </ul>
+                </div>
             </div>
 
             <div class="highlight">
@@ -3001,7 +3416,96 @@
             'Unable to load hymn audio': 'Virren ääntä ei voitu ladata',
             'You can find "Children of the Heavenly Father" on YouTube or other music platforms': 'Löydät "Taivaan Isän lapsia" YouTubesta tai muilta musiikki alustoilta',
             'Mute/Unmute Hymn': 'Mykistä/Poista mykistys virrestä',
-            '🔇 Mykistä / Mute': '🔇 Mykistä / Mute'
+            '🔇 Mykistä / Mute': '🔇 Mykistä / Mute',
+            'Finland\'s Nobel Prize Legacy': 'Suomen Nobel-palkinto perintö',
+            'Finland has produced more Nobel laureates per capita than any other country in the world!': 'Suomi on tuottanut enemmän Nobel-palkittuja asukasta kohti kuin mikään muu maa maailmassa!',
+            'Peace Prize Winners': 'Rauhanpalkinnon voittajat',
+            'Martti Ahtisaari (2008) - Conflict resolution in Kosovo, Aceh, Iraq': 'Martti Ahtisaari (2008) - Konfliktien ratkaiseminen Kosovossa, Acehissa, Irakissa',
+            'Artturi Virtanen (1945) - Agricultural chemistry innovations': 'Artturi Virtanen (1945) - Maatalouskemian innovaatiot',
+            'Chemistry Winners': 'Kemian voittajat',
+            'Artturi Virtanen (1945) - AIV fodder preservation': 'Artturi Virtanen (1945) - AIV-rehun säilöntä',
+            'Björn Kurten (1980s) - Ice Age mammal research': 'Björn Kurten (1980-luvut) - Jääkauden nisäkkäiden tutkimus',
+            'Literature Winners': 'Kirjallisuuden voittajat',
+            'Frans Eemil Sillanpää (1939) - Peasant life depictions': 'Frans Eemil Sillanpää (1939) - Talonpoikaiselämän kuvaukset',
+            'Aleksis Kivi (nominee) - Modern Finnish literature founder': 'Aleksis Kivi (ehdokas) - Modernin suomalaisen kirjallisuuden perustaja',
+            'Physics Winners': 'Fysiikan voittajat',
+            'Gustaf Dalén (1912) - AGA lighthouse innovations': 'Gustaf Dalén (1912) - AGA-majakkainnovaatiot',
+            'Multiple CERN contributions - Particle physics research': 'Useita CERN-avustuksia - Hiukkasfysiikan tutkimus',
+            'Nobel Excellence Stats': 'Nobel-erinomaisuus tilastot',
+            '4 Nobel Prizes awarded to Finns (population: 5.6M)': '4 Nobel-palkintoa myönnetty suomalaisille (väestö: 5,6M)',
+            'Highest per capita Nobel winners globally': 'Korkein asukasta kohti Nobel-voittajat maailmanlaajuisesti',
+            'Peace, Chemistry, Literature, Physics categories': 'Rauha, kemia, kirjallisuus, fysiikka kategoriat',
+            'Scientific Innovation focus: AIV silage, agricultural chemistry': 'Tieteellinen innovaatio fokus: AIV-silaasi, maatalouskemia',
+            'Olympic Glory': 'Olympiakunni',
+            'Finland\'s Olympic athletes have brought home more medals per capita than any other nation!': 'Suomen olympiaurheilijat ovat tuoneet kotiin enemmän mitaleita asukasta kohti kuin mikään muu kansakunta!',
+            'Track & Field Legends': 'Juoksu- ja kenttälajien legendat',
+            'Paavo Nurmi - "Flying Finn" - 9 gold, 3 silver medals': 'Paavo Nurmi - "Lentävä suomalainen" - 9 kultaa, 3 hopeaa',
+            'Lasse Virén - 4 gold medals (1972, 1976)': 'Lasse Virén - 4 kultamitalia (1972, 1976)',
+            'Wilma Rudolph - Finnish-American sprint champion': 'Wilma Rudolph - suomalais-amerikkalainen pikajuoksun mestari',
+            'Nordic Skiing': 'Pohjoismaiset hiihtolajit',
+            'Veikko Hakulinen - 3 gold medals in cross-country': 'Veikko Hakulinen - 3 kultamitalia maastohiihdossa',
+            'Eero Mäntyranta - 3 gold in 1964 Winter Olympics': 'Eero Mäntyranta - 3 kultaa 1964 talviolympialaisissa',
+            'Marja-Liisa Kirvesniemi - 4 Olympic medals': 'Marja-Liisa Kirvesniemi - 4 olympiamitalia',
+            'Wrestling Champions': 'Painin mestarit',
+            'Kurt Wires - Greco-Roman wrestling gold': 'Kurt Wires - kreikkalais-roomalaisen painin kulta',
+            'Rauno Mäkinen - Greco-Roman wrestling': 'Rauno Mäkinen - kreikkalais-roomalainen paini',
+            'Multiple world champions in freestyle wrestling': 'Useita maailmanmestareita vapaaottelussa',
+            'Ice Hockey': 'Jääkiekko',
+            '1952 Olympic Gold - First hockey gold for Finland': '1952 olympiakulta - Suomen ensimmäinen kiekkokulta',
+            'World Championship winners multiple times': 'MM-voittajia useita kertoja',
+            'NHL Stars - Teemu Selänne, Saku Koivu, Aleksander Barkov': 'NHL-tähdet - Teemu Selänne, Saku Koivu, Aleksander Barkov',
+            'Olympic Achievements': 'Olympia saavutukset',
+            '309 Olympic medals total (population: 5.6M)': '309 olympiamitalia yhteensä (väestö: 5,6M)',
+            'Highest medals per capita in Olympic history': 'Korkein mitalit asukasta kohti olympiahistoriassa',
+            'Winter Olympics powerhouse - skiing, hockey, skating': 'Talviolympialaisten voimavara - hiihto, kiekko, luistelu',
+            'Summer Games excellence - track, wrestling, shooting': 'Kesäpelien huippuosaaminen - juoksu, paini, ampuminen',
+            'Environmental Excellence': 'Ympäristön huippuosaaminen',
+            'Finland leads the world in environmental protection and sustainable practices.': 'Suomi johtaa maailmaa ympäristönsuojelussa ja kestävissä käytännöissä.',
+            'Forest Management': 'Metsien hallinta',
+            'Finland manages 86% of its forests sustainably. The country grows more wood than it harvests, making Finland the world\'s largest wood exporter per capita.': 'Suomi hallinnoi 86% metsistään kestävästi. Maa kasvattaa enemmän puuta kuin korjaa, tekemällä Suomesta maailman suurimman puuviejän asukasta kohti.',
+            'Recycling Champions': 'Kierrätysmestarit',
+            'Finland has the world\'s highest recycling rate at 93%. Every Finn separates waste into 8 different categories for optimal recycling.': 'Suomessa on maailman korkein kierrätysaste 93%. Jokainen suomalainen erottelee jätteen 8 eri kategoriaan optimaalista kierrätystä varten.',
+            'Clean Water': 'Puhdas vesi',
+            'Finland has some of the cleanest tap water in the world. 99.9% of wastewater is treated, and lakes/rivers are drinkable in many areas.': 'Suomessa on maailman puhtainta hanavettä. 99,9% jätevedestä käsitellään, ja järvet/joht ovat juotavia monilla alueilla.',
+            'Renewable Energy': 'Uusiutuvat energiat',
+            'Finland aims for carbon neutrality by 2035. Currently 43% renewable energy, with nuclear power providing clean baseload energy.': 'Suomi tavoittelee hiilineutraaliutta vuoteen 2035 mennessä. Tällä hetkellä 43% uusiutuvia energioita, ydinvoima tarjoaa puhdasta peruskuormaa.',
+            'Wildlife Protection': 'Villieläinten suojelu',
+            'Finland protects 95 species of mammals, 250 bird species, and has Europe\'s largest wolf population. Nature conservation is deeply ingrained.': 'Suomi suojelee 95 nisäkäslajia, 250 lintulajia, ja sillä on Euroopan suurin susikanta. Luonnonsuojelu on syvästi juurtunut.',
+            'National Parks': 'Kansallispuistot',
+            'Finland has 40 national parks covering 9% of land area. Everyman's Right allows free access to nature while protecting the environment.': 'Suomessa on 40 kansallispuistoa, jotka kattavat 9% maa-alasta. Jokamiehen oikeus sallii vapaan pääsyn luontoon samalla suojaten ympäristöä.',
+            'Environmental Rankings': 'Ympäristöluokitukset',
+            '#1 in Environmental Performance (EPI Index)': '#1 ympäristösuorituskyvyssä (EPI-indeksi)',
+            '#1 in Forest Management globally': '#1 metsien hallinnassa maailmanlaajuisesti',
+            'Top 5 in Climate Action worldwide': 'Top 5 ilmastotoimissa maailmanlaajuisesti',
+            'Carbon neutral by 2035 - ambitious goal': 'Hiilineutraali vuoteen 2035 - kunnianhimoinen tavoite',
+            '93% waste recycling - world\'s highest': '93% jätekierrätys - maailman korkein',
+            'Konami Code Activated!': 'Konami-koodi aktivoitu!',
+            'Did you know? Finland has won more Olympic medals per capita than any country in history! With only 5.6 million people, Finland has collected 309 Olympic medals - that\'s like the USA winning with a population the size of Los Angeles!': 'Tiesitkö? Suomi on voittanut enemmän olympiamitaleita asukasta kohti kuin mikään maa historiassa! Vain 5,6 miljoonalla ihmisellä Suomi on kerännyt 309 olympiamitalia - se on kuin USA voittaisi Los Angelesin kokoisella väestöllä!',
+            'Triple Click Master!': 'Kolminkertainen klikkausmestari!',
+            'Fun Fact: Finland has the world\'s largest heavy metal music festival attendance per capita! Over 80,000 metalheads descend on Helsinki for Tuska Open Air Festival every year.': 'Hauska fakta: Suomella on maailman suurin heavy metal -musiikkifestivaalien kävijämäärä asukasta kohti! Yli 80 000 metallifania saapuu Helsinkiin Tuska Open Air -festivaalille joka vuosi.',
+            'Flag Clicked!': 'Lippu klikattu!',
+            'Did you know? Finland\'s flag colors (blue and white) come from the coat of arms of Sweden. The blue represents the thousands of lakes, and white represents the snow that covers Finland 6 months of the year.': 'Tiesitkö? Suomen lipun värit (sininen ja valkoinen) tulevat Ruotsin vaakunasta. Sininen edustaa tuhansia järviä, ja valkoinen edustaa lunta, joka peittää Suomen 6 kuukautta vuodessa.',
+            'Right Click Trivia!': 'Oikea klikkaustrivia!',
+            'Finland is home to the world\'s northernmost IKEA store in the Arctic Circle town of Rovaniemi! Santa\'s hometown gets flat-pack furniture too!': 'Suomessa on maailman pohjoisin IKEA-kauppa napapiirin kaupungissa Rovaniemellä! Joulupukin kotikaupunki saa myös litteitä huonekaluja!',
+            'Secret Word Discovered!': 'Salainen sana löydetty!',
+            'Secret: Finland has 3.3 million saunas for 5.6 million people! That\'s more saunas than cars. Finns sauna naked with strangers - it\'s a social ritual, not just bathing!': 'Salaisuus: Suomessa on 3,3 miljoonaa saunaa 5,6 miljoonalle ihmiselle! Se on enemmän saunoja kuin autoja. Suomalaiset kylpevät saunassa alasti vieraiden kanssa - se on sosiaalinen rituaali, ei vain kylpeminen!',
+            'Hidden Gem: Sisu means extraordinary determination in the face of adversity. During WWII, Finnish ski troops used methamphetamines and showed sisu by skiing 400km in -40°C weather to outflank Soviet forces!': 'Piilotettu helmi: Sisu tarkoittaa poikkeuksellista määrätietoisuutta vastoinkäymisten edessä. Toisen maailmansodan aikana suomalaiset hiihtojoukot käyttivät metamfetamiineja ja osoittivat sisua hiihtämällä 400km -40°C säässä ohittaakseen neuvostojoukot!',
+            'Undercover Fact: Kalsarikännit is getting drunk at home in underwear. This uniquely Finnish word was named Finland\'s word of 2018 and shows the Finnish preference for cozy home drinking!': 'Salainen fakta: Kalsarikännit on juopuminen kotona alusvaatteissa. Tämä ainutlaatuinen suomalainen sana nimettiin Suomen sanaksi vuonna 2018 ja näyttää suomalaisen mielenkiinnon mukavaan kotijuomiseen!',
+            'Devilish Detail: Perkele means "devil" but Finns use it as an exclamation like "damn!" It\'s so common that Finns say it an average of 3.5 times per day!': 'Pirullinen yksityiskohta: Perkele tarkoittaa "pirua", mutta suomalaiset käyttävät sitä huudahdusmerkkinä kuten "perkele!" Se on niin yleistä, että suomalaiset sanovat sitä keskimäärin 3,5 kertaa päivässä!',
+            'Bear Facts: Karhu means "bear" and is Finland\'s national animal. Finland has 1,600 wild bears - more than people in some countries! Bears are protected and rarely attack humans.': 'Karhufaktat: Karhu tarkoittaa "karhua" ja on Suomen kansalliseläin. Suomella on 1 600 villiä karhua - enemmän kuin ihmisiä joissakin maissa! Karhut ovat suojeltuja ja harvoin hyökkäävät ihmisten kimppuun.',
+            'Salmon Secrets: Lohi (salmon) is Finland\'s national fish. Finland exports more salmon per capita than any country. The Finnish word for salmon swimming upstream is "lohensivu"!': 'Lohen salaisuudet: Lohi (lohi) on Suomen kansalliskala. Suomi vie enemmän lohta asukasta kohti kuin mikään maa. Suomen sana lohelle, joka ui ylösvirtaan, on "lohensivu"!',
+            'Licorice Mystery: Salmiakki is Finland\'s national licorice. It\'s made with ammonium chloride for that salty-sweet taste. Finns eat 2kg per person annually - world\'s highest consumption!': 'Salmiakkimysteeri: Salmiakki on Suomen kansallinen lakritsi. Se on valmistettu ammoniumkloridilla saadakseen suolaisen-makean maun. Suomalaiset syövät 2kg henkilöä kohti vuosittain - maailman korkein kulutus!',
+            'Bottom of the Page!': 'Sivun alareuna!',
+            'Congratulations! You\'ve explored all of Finland\'s amazing facts. Pro tip: Try the Konami Code (↑↑↓↓←→←→BA) or triple-click the title for more secrets!': 'Onnittelut! Olet tutkinut kaikki Suomen upeat faktat. Vinkki: Kokeile Konami-koodia (↑↑↓↓←→←→BA) tai kolminkertaista klikkausta otsikosta saadaksesi lisää salaisuuksia!',
+            'Special Dedication!': 'Erityinen omistus!',
+            'This website was lovingly created for Maarit - showcasing the incredible country she calls home. Finland truly is a land of a thousand lakes, northern lights, and endless wonder!': 'Tämä verkkosivusto luotiin rakkaudella Maaritille - esitellen upeaa maata, jota hän kutsuu kodikseen. Suomi on todellakin tuhansien järvien, revontulien ja loputtoman ihmeen maa!',
+            'Time Easter Egg!': 'Aika pääsiäinen!',
+            'It\'s 11:11! In Finland, this time has special meaning. 11:11 is considered lucky, and 22:22 reminds Finns of their 1917 independence year!': 'Kello on 11:11! Suomessa tällä ajalla on erityinen merkitys. 11:11 pidetään onnekkaana, ja 22:22 muistuttaa suomalaisia heidän 1917 itsenäisyysvuodestaan!',
+            'It\'s 22:22! In Finland, this time has special meaning. 11:11 is considered lucky, and 22:22 reminds Finns of their 1917 independence year!': 'Kello on 22:22! Suomessa tällä ajalla on erityinen merkitys. 11:11 pidetään onnekkaana, ja 22:22 muistuttaa suomalaisia heidän 1917 itsenäisyysvuodestaan!',
+            'Hymn Trivia!': 'Virsi-trivia!',
+            'Lina Sandell\'s "Children of the Heavenly Father" is Finland\'s unofficial national anthem! It\'s sung at independence celebrations and embodies the Finnish spirit of faith and resilience.': 'Lina Sandellin "Taivaan Isän lapsia" on Suomen epävirallinen kansallislaulu! Sitä lauletaan itsenäisyyspäivän juhlissa ja se symboloi suomalaista uskon ja sitkeyden henkeä.',
+            'Easter Egg Found!': 'Pääsiäinen löydetty!',
+            'Try discovering more secrets around the site!': 'Kokeile löytää lisää salaisuuksia sivustolta!'
         };
 
         // Function to translate text
@@ -3063,11 +3567,20 @@
 
         // Add some interactive fun
         document.addEventListener('DOMContentLoaded', function() {
-            // Calculate days of independence
+            // Calculate days of independence with accurate date calculation
             function updateIndependenceCounter() {
-                const independenceDate = new Date('1917-12-06');
+                // Finland's independence date: December 6, 1917
+                const independenceDate = new Date(1917, 11, 6); // Month is 0-indexed, so 11 = December
                 const today = new Date();
-                const diffTime = Math.abs(today - independenceDate);
+
+                // Set both dates to start of day to avoid timezone issues
+                const independenceStart = new Date(independenceDate.getFullYear(), independenceDate.getMonth(), independenceDate.getDate());
+                const todayStart = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
+                // Calculate difference in milliseconds
+                const diffTime = todayStart.getTime() - independenceStart.getTime();
+
+                // Convert to days (more accurate than dividing by 24*60*60*1000)
                 const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
                 const counter = document.getElementById('independenceDays');
@@ -3076,9 +3589,9 @@
                 }
             }
 
-            // Update counter immediately and every day
+            // Update immediately and then every hour (not daily, to show real-time updates)
             updateIndependenceCounter();
-            setInterval(updateIndependenceCounter, 24 * 60 * 60 * 1000); // Update daily
+            setInterval(updateIndependenceCounter, 60 * 60 * 1000); // Update every hour
 
             // Random flag emoji animation
             setInterval(function() {
@@ -3356,9 +3869,188 @@
                 element.addEventListener('input', resetControlsTimeout);
             });
 
-            // Initial timeout
-            resetControlsTimeout();
+        // Initial timeout
+        resetControlsTimeout();
+    });
+
+    // ===== EASTER EGGS SYSTEM =====
+    document.addEventListener('DOMContentLoaded', function() {
+        // Easter Egg 1: Konami Code Trivia
+        let konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA'];
+        let konamiIndex = 0;
+
+        document.addEventListener('keydown', function(e) {
+            if (e.code === konamiCode[konamiIndex]) {
+                konamiIndex++;
+                if (konamiIndex === konamiCode.length) {
+                    showEasterEgg('🎮 Konami Code Activated!', '🏆 Did you know? Finland has won more Olympic medals per capita than any country in history! With only 5.6 million people, Finland has collected 309 Olympic medals - that\'s like the USA winning with a population the size of Los Angeles!', 'konami');
+                    konamiIndex = 0;
+                }
+            } else {
+                konamiIndex = 0;
+            }
         });
+
+        // Easter Egg 2: Triple-click on title
+        document.querySelector('h1').addEventListener('click', function() {
+            if (!this.clickCount) this.clickCount = 0;
+            this.clickCount++;
+            if (this.clickCount === 3) {
+                showEasterEgg('🎯 Triple Click Master!', '🇫🇮 Fun Fact: Finland has the world\'s largest heavy metal music festival attendance per capita! Over 80,000 metalheads descend on Helsinki for Tuska Open Air Festival every year.', 'title-click');
+                this.clickCount = 0;
+            }
+            setTimeout(() => { this.clickCount = 0; }, 1000);
+        });
+
+        // Easter Egg 3: Click on flag emoji
+        document.querySelector('.flag').addEventListener('click', function() {
+            showEasterEgg('🇫🇮 Flag Clicked!', '🏴 Did you know? Finland\'s flag colors (blue and white) come from the coat of arms of Sweden. The blue represents the thousands of lakes, and white represents the snow that covers Finland 6 months of the year.', 'flag-click');
+        });
+
+        // Easter Egg 4: Right-click context menu trivia
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            showEasterEgg('🖱️ Right Click Trivia!', '🐧 Finland is home to the world\'s northernmost IKEA store in the Arctic Circle town of Rovaniemi! Santa\'s hometown gets flat-pack furniture too!', 'right-click');
+        });
+
+        // Easter Egg 5: Secret word clicks
+        const secretWords = ['sauna', 'sisu', 'kalsarikännit', 'perkele', 'karhu', 'lohi', 'salmiakki'];
+        document.addEventListener('click', function(e) {
+            if (e.target.tagName === 'SPAN' || e.target.tagName === 'P' || e.target.tagName === 'LI') {
+                const text = e.target.textContent.toLowerCase();
+                secretWords.forEach(word => {
+                    if (text.includes(word) && Math.random() < 0.3) { // 30% chance to trigger
+                        let trivia = '';
+                        switch(word) {
+                            case 'sauna':
+                                trivia = '🛁 Secret: Finland has 3.3 million saunas for 5.6 million people! That\'s more saunas than cars. Finns sauna naked with strangers - it\'s a social ritual, not just bathing!';
+                                break;
+                            case 'sisu':
+                                trivia = '💪 Hidden Gem: Sisu means extraordinary determination in the face of adversity. During WWII, Finnish ski troops used methamphetamines and showed sisu by skiing 400km in -40°C weather to outflank Soviet forces!';
+                                break;
+                            case 'kalsarikännit':
+                                trivia = '🍺 Undercover Fact: Kalsarikännit is getting drunk at home in underwear. This uniquely Finnish word was named Finland\'s word of 2018 and shows the Finnish preference for cozy home drinking!';
+                                break;
+                            case 'perkele':
+                                trivia = '😈 Devilish Detail: Perkele means "devil" but Finns use it as an exclamation like "damn!" It\'s so common that Finns say it an average of 3.5 times per day!';
+                                break;
+                            case 'karhu':
+                                trivia = '🐻 Bear Facts: Karhu means "bear" and is Finland\'s national animal. Finland has 1,600 wild bears - more than people in some countries! Bears are protected and rarely attack humans.';
+                                break;
+                            case 'lohi':
+                                trivia = '🐟 Salmon Secrets: Lohi (salmon) is Finland\'s national fish. Finland exports more salmon per capita than any country. The Finnish word for salmon swimming upstream is "lohensivu"!';
+                                break;
+                            case 'salmiakki':
+                                trivia = '🍬 Licorice Mystery: Salmiakki is Finland\'s national licorice. It\'s made with ammonium chloride for that salty-sweet taste. Finns eat 2kg per person annually - world\'s highest consumption!';
+                                break;
+                        }
+                        if (trivia) showEasterEgg('🔍 Secret Word Discovered!', trivia, 'secret-word');
+                    }
+                });
+            }
+        });
+
+        // Easter Egg 6: Scroll to bottom for special message
+        let bottomReached = false;
+        window.addEventListener('scroll', function() {
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100 && !bottomReached) {
+                bottomReached = true;
+                setTimeout(() => {
+                    showEasterEgg('🎉 Bottom of the Page!', '🇫🇮 Congratulations! You\'ve explored all of Finland\'s amazing facts. Pro tip: Try the Konami Code (↑↑↓↓←→←→BA) or triple-click the title for more secrets!', 'scroll-bottom');
+                }, 1000);
+            }
+        });
+
+        // Easter Egg 7: Click on the dedication
+        document.querySelector('.dedication').addEventListener('click', function() {
+            showEasterEgg('💝 Special Dedication!', '🇫🇮❤️ This website was lovingly created for Maarit - showcasing the incredible country she calls home. Finland truly is a land of a thousand lakes, northern lights, and endless wonder!', 'dedication-click');
+        });
+
+        // Easter Egg 8: Mouse trail effect on header
+        let trailElements = [];
+        document.querySelector('header').addEventListener('mousemove', function(e) {
+            if (Math.random() < 0.1) { // 10% chance for performance
+                const trail = document.createElement('div');
+                trail.textContent = '❄️';
+                trail.style.position = 'absolute';
+                trail.style.left = e.clientX + 'px';
+                trail.style.top = e.clientY + 'px';
+                trail.style.pointerEvents = 'none';
+                trail.style.zIndex = '9999';
+                trail.style.fontSize = '20px';
+                trail.style.animation = 'snowFall 2s linear';
+                document.body.appendChild(trail);
+                trailElements.push(trail);
+
+                setTimeout(() => {
+                    if (trail.parentNode) {
+                        trail.parentNode.removeChild(trail);
+                    }
+                    trailElements = trailElements.filter(el => el !== trail);
+                }, 2000);
+            }
+        });
+
+        // Easter Egg 9: Time-based trivia (Finnish Independence Day reference)
+        function checkTime() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+
+            // 11:11 on 11/11 or other fun times
+            if ((hours === 11 && minutes === 11) || (hours === 22 && minutes === 22)) {
+                if (!window.timeEasterEggShown) {
+                    showEasterEgg('⏰ Time Easter Egg!', '🇫🇮 It\'s ' + hours + ':' + minutes + '! In Finland, this time has special meaning. 11:11 is considered lucky, and 22:22 reminds Finns of their 1917 independence year!', 'time-special');
+                    window.timeEasterEggShown = true;
+                    setTimeout(() => { window.timeEasterEggShown = false; }, 60000); // Reset after 1 minute
+                }
+            }
+        }
+        setInterval(checkTime, 1000);
+
+        // Easter Egg 10: Click on the hymn title when controls are visible
+        document.querySelector('.hymn-title').addEventListener('click', function() {
+            showEasterEgg('🎵 Hymn Trivia!', '🇫🇮 Lina Sandell\'s "Children of the Heavenly Father" is Finland\'s unofficial national anthem! It\'s sung at independence celebrations and embodies the Finnish spirit of faith and resilience.', 'hymn-click');
+        });
+
+        // Universal Easter Egg Display Function
+        function showEasterEgg(title, message, type) {
+            // Prevent spam by limiting frequency
+            if (window.lastEasterEgg && Date.now() - window.lastEasterEgg < 3000) return;
+            window.lastEasterEgg = Date.now();
+
+            const egg = document.createElement('div');
+            egg.className = 'easter-egg-popup';
+            egg.innerHTML = `
+                <div class="easter-egg-content">
+                    <div class="easter-egg-header">
+                        <h3>${title}</h3>
+                        <button class="easter-egg-close">×</button>
+                    </div>
+                    <div class="easter-egg-body">
+                        <p>${message}</p>
+                    </div>
+                    <div class="easter-egg-footer">
+                        <small>🎉 Easter Egg Found! | Try discovering more secrets around the site!</small>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(egg);
+
+            // Add close functionality
+            egg.querySelector('.easter-egg-close').addEventListener('click', () => {
+                egg.remove();
+            });
+
+            // Auto-remove after 8 seconds
+            setTimeout(() => {
+                if (egg.parentNode) {
+                    egg.parentNode.removeChild(egg);
+                }
+            }, 8000);
+        }
+    });
     </script>
 </body>
 </html>
