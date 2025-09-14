@@ -63,3 +63,4 @@ The project is self-contained in a single HTML file for easy sharing and deploym
 ## License
 
 Feel free to use, modify, and share this interactive particle playground!
+
