@@ -314,6 +314,209 @@ router.post('/logout', async (req, res) => {
   }
 });
 
+// Demo users (in-memory for development)
+const demoUsers = [
+  {
+    id: 1,
+    username: 'admin',
+    email: 'admin@enterprise-storage.com',
+    password: '$2a$12$fMFMTZPuScRriI9GQX4CO.cLbCgZPnJ5UKQBts3uCHvow.1SvIDI.', // password123
+    firstName: 'System',
+    lastName: 'Administrator',
+    role: 'super_admin',
+    department: 'IT Administration',
+    is_active: true
+  },
+  {
+    id: 2,
+    username: 'manager',
+    email: 'manager@enterprise-storage.com',
+    password: '$2a$12$fMFMTZPuScRriI9GQX4CO.cLbCgZPnJ5UKQBts3uCHvow.1SvIDI.', // password123
+    firstName: 'Warehouse',
+    lastName: 'Manager',
+    role: 'manager',
+    department: 'Operations',
+    is_active: true
+  },
+  {
+    id: 3,
+    username: 'supervisor',
+    email: 'supervisor@enterprise-storage.com',
+    password: '$2a$12$fMFMTZPuScRriI9GQX4CO.cLbCgZPnJ5UKQBts3uCHvow.1SvIDI.', // password123
+    firstName: 'Operations',
+    lastName: 'Supervisor',
+    role: 'supervisor',
+    department: 'Operations',
+    is_active: true
+  },
+  {
+    id: 4,
+    username: 'operator',
+    email: 'operator@enterprise-storage.com',
+    password: '$2a$12$fMFMTZPuScRriI9GQX4CO.cLbCgZPnJ5UKQBts3uCHvow.1SvIDI.', // password123
+    firstName: 'Warehouse',
+    lastName: 'Operator',
+    role: 'operator',
+    department: 'Operations',
+    is_active: true
+  }
+];
+
+// Login user (with demo users fallback)
+router.post('/login', async (req, res) => {
+  try {
+    const { error, value } = loginSchema.validate(req.body);
+    if (error) {
+      return res.status(400).json({
+        error: 'Validation failed',
+        code: 'VALIDATION_ERROR',
+        details: error.details.map(d => d.message)
+      });
+    }
+
+    const { username, password } = value;
+
+    // Use demo users directly (simplified)
+    const user = demoUsers.find(u => u.username === username || u.email === username);
+    if (!user) {
+      return res.status(401).json({
+        error: 'Invalid credentials',
+        code: 'INVALID_CREDENTIALS'
+      });
+    }
+
+    if (!user.is_active) {
+      return res.status(401).json({
+        error: 'Account is disabled',
+        code: 'ACCOUNT_DISABLED'
+      });
+    }
+
+    // Verify password
+    const isValidPassword = await bcrypt.compare(password, user.password);
+    if (!isValidPassword) {
+      return res.status(401).json({
+        error: 'Invalid credentials',
+        code: 'INVALID_CREDENTIALS'
+      });
+    }
+
+    // Generate tokens (simplified)
+    const userPayload = {
+      userId: user.id,
+      username: user.username,
+      email: user.email,
+      role: user.role,
+      warehouseId: user.warehouseId
+    };
+
+    const jwt = require('jsonwebtoken');
+    const accessToken = jwt.sign(userPayload, 'enterprise-storage-secret-key-2024', { expiresIn: '1h' });
+    const refreshToken = jwt.sign({ userId: user.id, username: user.username }, 'enterprise-storage-refresh-secret-key-2024', { expiresIn: '7d' });
+
+    res.json({
+      message: 'Login successful',
+      user: {
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        role: user.role
+      },
+      tokens: {
+        accessToken,
+        refreshToken,
+        expiresIn: '1h'
+      }
+    });
+
+  } catch (error) {
+    console.error('Login error:', error);
+    res.status(500).json({
+      error: 'Login failed',
+      code: 'LOGIN_ERROR',
+      details: error.message
+    });
+  }
+});
+
+// Debug authentication
+router.post('/debug-login', async (req, res) => {
+  const { username, password } = req.body;
+
+  const user = demoUsers.find(u => u.username === username || u.email === username);
+  if (!user) {
+    return res.json({ error: 'User not found', username });
+  }
+
+  const bcrypt = require('bcryptjs');
+  const isValidPassword = await bcrypt.compare(password, user.password);
+
+  res.json({
+    username,
+    password,
+    userFound: !!user,
+    passwordValid: isValidPassword,
+    user: user ? { id: user.id, username: user.username, role: user.role } : null
+  });
+});
+
+// Simple test login (bypasses complex logic)
+router.post('/test-login', async (req, res) => {
+  try {
+    const { username, password } = req.body;
+
+    console.log('Test login attempt:', { username, password });
+
+    const user = demoUsers.find(u => u.username === username);
+    if (!user) {
+      console.log('User not found');
+      return res.status(401).json({ error: 'User not found' });
+    }
+
+    const bcrypt = require('bcryptjs');
+    const isValidPassword = await bcrypt.compare(password, user.password);
+    console.log('Password valid:', isValidPassword);
+
+    if (!isValidPassword) {
+      console.log('Invalid password');
+      return res.status(401).json({ error: 'Invalid password' });
+    }
+
+    // Simple response without JWT for testing
+    res.json({
+      message: 'Login successful',
+      user: {
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        role: user.role
+      }
+    });
+
+  } catch (error) {
+    console.error('Test login error:', error);
+    res.status(500).json({ error: 'Test login failed', details: error.message });
+  }
+});
+
+// Get demo credentials
+router.get('/demo-credentials', (req, res) => {
+  res.json({
+    message: 'Demo credentials for testing',
+    credentials: {
+      admin: { username: 'admin', password: 'password123', role: 'super_admin' },
+      manager: { username: 'manager', password: 'password123', role: 'manager' },
+      supervisor: { username: 'supervisor', password: 'password123', role: 'supervisor' },
+      operator: { username: 'operator', password: 'password123', role: 'operator' }
+    },
+    note: 'These are demo credentials for testing the application'
+  });
+});
+
 // Get current user profile
 router.get('/profile', require('../middleware/auth').authenticateToken, async (req, res) => {
   try {

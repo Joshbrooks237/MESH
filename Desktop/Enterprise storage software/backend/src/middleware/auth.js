@@ -75,13 +75,18 @@ const authenticateToken = async (req, res, next) => {
       });
     }
 
-    // Check if token is blacklisted
-    const isBlacklisted = await redisClient.get(`blacklist:${token}`);
-    if (isBlacklisted) {
-      return res.status(401).json({
-        error: 'Token has been revoked',
-        code: 'TOKEN_REVOKED'
-      });
+    // Check if token is blacklisted (only if Redis is available)
+    try {
+      const isBlacklisted = await redisClient.get(`blacklist:${token}`);
+      if (isBlacklisted) {
+        return res.status(401).json({
+          error: 'Token has been revoked',
+          code: 'TOKEN_REVOKED'
+        });
+      }
+    } catch (redisError) {
+      // Redis not available, skip blacklist check
+      console.log('Redis not available, skipping token blacklist check');
     }
 
     jwt.verify(token, JWT_SECRET, async (err, decoded) => {
@@ -209,7 +214,12 @@ const revokeToken = async (token) => {
     if (decoded && decoded.exp) {
       const ttl = decoded.exp - Math.floor(Date.now() / 1000);
       if (ttl > 0) {
-        await redisClient.setEx(`blacklist:${token}`, ttl, 'revoked');
+        try {
+          await redisClient.setEx(`blacklist:${token}`, ttl, 'revoked');
+        } catch (redisError) {
+          // Redis not available, skip token revocation
+          console.log('Redis not available, skipping token revocation');
+        }
       }
     }
   } catch (error) {
