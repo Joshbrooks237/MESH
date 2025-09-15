@@ -901,6 +901,50 @@
             100% { box-shadow: 0 4px 15px rgba(211, 47, 47, 0.3); }
         }
 
+        /* Hymn Info Styling */
+        .hymn-info {
+            background: linear-gradient(135deg, #003580 0%, #0052a5 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border: 2px solid #fff;
+            display: none;
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            min-width: 200px;
+            z-index: 1000;
+        }
+
+        .hymn-info p {
+            margin: 5px 0;
+            font-size: 0.9rem;
+        }
+
+        .hymn-info strong {
+            color: #fff;
+        }
+
+        .hymn-link {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: bold;
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .hymn-link:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.05);
+        }
+
         /* ===== EASTER EGG STYLES ===== */
         .easter-egg-popup {
             position: fixed;
@@ -2635,25 +2679,15 @@
     <!-- Translation Button -->
     <!-- Lina Sandell Hymn Audio Player -->
     <div class="hymn-player" id="hymnPlayer">
-        <audio id="sandellHymn" loop preload="none">
-            <source src="https://www.christianradio.com/mp3/Children_of_the_Heavenly_Father_Lina_Sandell.mp3" type="audio/mpeg">
-            <source src="https://www.christianradio.com/ogg/Children_of_the_Heavenly_Father_Lina_Sandell.ogg" type="audio/ogg">
-            Your browser does not support the audio element.
-        </audio>
+        <div class="hymn-info" id="hymnInfo">
+            <p>🎵 <strong>Lina Sandell's Hymn</strong></p>
+            <p><em>"Children of the Heavenly Father"</em></p>
+            <a href="https://www.youtube.com/results?search_query=children+of+the+heavenly+father+ina+sandell+hymn" target="_blank" class="hymn-link">🎧 Listen on YouTube</a>
+        </div>
         <button class="hymn-btn" id="hymnBtn" title="Play Lina Sandell's Hymn">
             <span class="hymn-tooltip">🎵 Lina Sandellin virsi / Lina Sandell's Hymn</span>
             <span class="hymn-icon">🎵</span>
         </button>
-        <button class="mute-btn" id="globalMuteBtn" title="Mute/Unmute Hymn">
-            <span class="mute-tooltip">🔇 Mykistä / Mute</span>
-            <span class="mute-icon">🔊</span>
-        </button>
-        <div class="hymn-controls" id="hymnControls" style="display: none;">
-            <button class="control-btn" id="playPauseBtn">▶️</button>
-            <button class="control-btn" id="muteBtn">🔊</button>
-            <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="0.3">
-            <span class="hymn-title">Children of the Heavenly Father</span>
-        </div>
     </div>
 
     <button class="translate-btn" id="translateBtn" title="Translate to Finnish">
@@ -3559,39 +3593,62 @@
         function translatePage() {
             console.log('translatePage called, isFinnish:', isFinnish);
 
-            const elements = document.querySelectorAll('h1, h2, h3, h4, p, li, span:not(.translate-tooltip), div:not(.translate-tooltip)');
-            console.log('Found elements to translate:', elements.length);
-
+            // Simple approach: translate all text content directly
+            const allElements = document.querySelectorAll('*');
             let translatedCount = 0;
 
-            elements.forEach((element, index) => {
-                if (element.children.length === 0 || element.querySelector('.translate-tooltip')) {
-                    // Only translate text nodes, not elements with children
-                    const textNodes = [];
-                    const walk = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null, false);
-                    let node;
-                    while (node = walk.nextNode()) {
-                        if (node.parentNode !== element.querySelector('.translate-tooltip')) {
-                            textNodes.push(node);
-                        }
+            allElements.forEach(element => {
+                // Skip certain elements that shouldn't be translated
+                if (element.id === 'translateBtn' ||
+                    element.id === 'translateStatus' ||
+                    element.classList.contains('translate-tooltip') ||
+                    element.tagName === 'SCRIPT' ||
+                    element.tagName === 'STYLE' ||
+                    element.tagName === 'LINK' ||
+                    element.tagName === 'META') {
+                    return;
+                }
+
+                // Translate text content of elements with no children or simple text
+                if (element.children.length === 0 && element.textContent && element.textContent.trim()) {
+                    const originalText = element.textContent.trim();
+                    const translatedText = translateText(originalText, !isFinnish);
+
+                    if (originalText !== translatedText && translatedText) {
+                        element.textContent = translatedText;
+                        translatedCount++;
+                        console.log('Translated:', originalText, '->', translatedText);
                     }
-
-                    textNodes.forEach(textNode => {
-                        if (textNode.textContent.trim()) {
-                            const originalText = textNode.textContent;
-                            const translatedText = translateText(originalText, !isFinnish);
-
-                            if (originalText !== translatedText) {
-                                textNode.textContent = translatedText;
-                                translatedCount++;
-                                console.log('Translated:', originalText.substring(0, 50) + '...', '->', translatedText.substring(0, 50) + '...');
-                            }
+                }
+                // Also handle elements with text and child elements
+                else if (element.children.length > 0 && element.textContent && element.textContent.trim()) {
+                    // Get only the direct text content (not child elements)
+                    let directText = '';
+                    element.childNodes.forEach(node => {
+                        if (node.nodeType === Node.TEXT_NODE) {
+                            directText += node.textContent;
                         }
                     });
+
+                    if (directText.trim()) {
+                        const originalText = directText.trim();
+                        const translatedText = translateText(originalText, !isFinnish);
+
+                        if (originalText !== translatedText && translatedText) {
+                            // Replace only the text nodes
+                            element.childNodes.forEach(node => {
+                                if (node.nodeType === Node.TEXT_NODE) {
+                                    node.textContent = node.textContent.replace(originalText, translatedText);
+                                }
+                            });
+                            translatedCount++;
+                            console.log('Translated complex element:', originalText, '->', translatedText);
+                        }
+                    }
                 }
             });
 
-            console.log('Translation completed. Translated', translatedCount, 'text nodes.');
+            console.log('Translation completed. Translated', translatedCount, 'elements.');
             isFinnish = !isFinnish;
             translateBtn.classList.toggle('active');
 
@@ -3600,6 +3657,12 @@
             if (statusIndicator) {
                 statusIndicator.textContent = isFinnish ? 'FI' : 'EN';
             }
+
+            // Add visual feedback
+            translateBtn.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                translateBtn.style.transform = 'scale(1)';
+            }, 200);
         }
 
         // Add click event to translation button
@@ -3692,34 +3755,35 @@
     <script>
         // Hymn Player Functionality
         document.addEventListener('DOMContentLoaded', function() {
-            const hymnAudio = document.getElementById('sandellHymn');
             const hymnBtn = document.getElementById('hymnBtn');
-            const hymnControls = document.getElementById('hymnControls');
-            const playPauseBtn = document.getElementById('playPauseBtn');
-            const muteBtn = document.getElementById('muteBtn');
-            const globalMuteBtn = document.getElementById('globalMuteBtn');
-            const volumeSlider = document.getElementById('volumeSlider');
+            const hymnInfo = document.getElementById('hymnInfo');
             const hymnIcon = document.querySelector('.hymn-icon');
-            const muteIcon = document.querySelector('.mute-icon');
 
-            let isPlaying = false;
-            let isMuted = false;
-            let controlsVisible = false;
+            let infoVisible = false;
 
-            // Set initial volume to low
-            hymnAudio.volume = 0.3;
-
-            // Toggle hymn player
+            // Toggle hymn info display
             hymnBtn.addEventListener('click', function() {
-                if (!controlsVisible) {
-                    // First click - show controls
-                    hymnControls.style.display = 'flex';
-                    controlsVisible = true;
+                if (!infoVisible) {
+                    hymnInfo.style.display = 'block';
+                    hymnIcon.textContent = '🎶';
+                    infoVisible = true;
                 } else {
-                    // Second click - toggle play/pause
-                    togglePlayPause();
+                    hymnInfo.style.display = 'none';
+                    hymnIcon.textContent = '🎵';
+                    infoVisible = false;
                 }
             });
+
+            // Close hymn info when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!hymnBtn.contains(e.target) && !hymnInfo.contains(e.target) && infoVisible) {
+                    hymnInfo.style.display = 'none';
+                    hymnIcon.textContent = '🎵';
+                    infoVisible = false;
+                }
+            });
+        });
+    </script>
 
             // Play/Pause button
             playPauseBtn.addEventListener('click', togglePlayPause);

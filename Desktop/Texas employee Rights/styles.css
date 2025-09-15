@@ -1,0 +1,1220 @@
+/* VISIONARY TEXAS EMPLOYEE RIGHTS - ELITE DESIGN SYSTEM */
+
+/* Advanced Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-glow: linear-gradient(135deg, #00ffff 0%, #ff00ff 50%, #ffff00 100%);
+    --secondary-glow: linear-gradient(45deg, #ff6b6b 0%, #4ecdc4 50%, #45b7d1 100%);
+    --accent-glow: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    --neon-blue: #00ffff;
+    --neon-purple: #ff00ff;
+    --neon-green: #00ff00;
+    --dark-elite: #0a0a0f;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+body {
+    font-family: 'Orbitron', 'Courier New', monospace;
+    line-height: 1.8;
+    color: #ffffff;
+    background:
+        radial-gradient(circle at 20% 50%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 0, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(255, 255, 0, 0.1) 0%, transparent 50%),
+        linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
+    background-attachment: fixed;
+    overflow-x: hidden;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        repeating-linear-gradient(
+            90deg,
+            rgba(0, 255, 255, 0.03) 0px,
+            rgba(0, 255, 255, 0.03) 1px,
+            transparent 1px,
+            transparent 50px
+        ),
+        repeating-linear-gradient(
+            0deg,
+            rgba(255, 0, 255, 0.03) 0px,
+            rgba(255, 0, 255, 0.03) 1px,
+            transparent 1px,
+            transparent 50px
+        );
+    z-index: -1;
+    animation: gridPulse 8s ease-in-out infinite;
+}
+
+@keyframes gridPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+}
+
+/* ELITE HEADER - VISIONARY DESIGN */
+header {
+    background: rgba(10, 10, 15, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--glass-border);
+    padding: 2rem 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow:
+        0 0 50px rgba(0, 255, 255, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.header-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo h1 {
+    font-size: 2.8rem;
+    margin-bottom: 0.5rem;
+    font-weight: 300;
+    background: var(--primary-glow);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow:
+        0 0 20px rgba(0, 255, 255, 0.5),
+        0 0 40px rgba(255, 0, 255, 0.3);
+    letter-spacing: 2px;
+    animation: textGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes textGlow {
+    from { filter: brightness(1) hue-rotate(0deg); }
+    to { filter: brightness(1.2) hue-rotate(15deg); }
+}
+
+.logo p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--neon-blue);
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+/* ELITE NAVIGATION MATRIX */
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: 50px;
+    padding: 0.5rem;
+    backdrop-filter: blur(10px);
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 400;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+nav a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--primary-glow);
+    border-radius: 25px;
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+}
+
+nav a:hover::before {
+    opacity: 0.2;
+}
+
+nav a:hover {
+    color: var(--neon-blue);
+    text-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+    transform: translateY(-2px);
+}
+
+/* Main Content */
+main {
+    min-height: calc(100vh - 200px);
+}
+
+.section {
+    padding: 4rem 0;
+    background: white;
+}
+
+.section:nth-child(even) {
+    background: #f8f9fa;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #002868;
+    text-align: center;
+    border-bottom: 3px solid #BF0A30;
+    padding-bottom: 1rem;
+    display: inline-block;
+}
+
+.section h3 {
+    font-size: 1.8rem;
+    margin: 2rem 0 1rem 0;
+    color: #002868;
+}
+
+.section h4 {
+    font-size: 1.4rem;
+    margin: 1.5rem 0 0.8rem 0;
+    color: #BF0A30;
+}
+
+/* Key Rights Grid */
+.key-rights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.right-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-left: 4px solid #BF0A30;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.right-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+}
+
+.right-card h3 {
+    color: #002868;
+    margin-bottom: 1rem;
+}
+
+/* Lists */
+ul, ol {
+    margin: 1.5rem 0;
+    padding-left: 2rem;
+}
+
+li {
+    margin-bottom: 0.8rem;
+    line-height: 1.6;
+}
+
+ol li {
+    padding-left: 0.5rem;
+}
+
+/* Resources Grid */
+.resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.resource-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-top: 4px solid #002868;
+    transition: transform 0.3s ease;
+}
+
+.resource-card:hover {
+    transform: translateY(-5px);
+}
+
+.resource-card h3 {
+    color: #002868;
+    margin-bottom: 1rem;
+}
+
+.resource-card a {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.8rem 1.5rem;
+    background: #BF0A30;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.resource-card a:hover {
+    background: #a00826;
+}
+
+/* Abuse Types Grid */
+.abuse-types-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.abuse-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-left: 4px solid #BF0A30;
+    transition: transform 0.3s ease;
+}
+
+.abuse-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.abuse-card h4 {
+    color: #002868;
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+}
+
+/* Documentation Steps */
+.documentation-steps {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 8px;
+    margin: 2rem 0;
+    border: 2px solid #002868;
+}
+
+.documentation-steps h4 {
+    color: #002868;
+    margin-bottom: 1rem;
+}
+
+/* Help Resources Grid */
+.help-resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.help-card {
+    background: #002868;
+    color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.help-card:hover {
+    transform: translateY(-3px);
+}
+
+.help-card h4 {
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+}
+
+.help-card p {
+    margin-bottom: 1rem;
+    opacity: 0.9;
+    font-size: 0.9rem;
+}
+
+.help-card a {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    background: #BF0A30;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.help-card a:hover {
+    background: #a00826;
+}
+
+/* Alert Boxes */
+.alert-box {
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    border-left: 4px solid #f39c12;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 2rem 0;
+}
+
+.alert-box.success {
+    background: #d4edda;
+    border-color: #c3e6cb;
+    border-left-color: #28a745;
+}
+
+.alert-box h4 {
+    color: #856404;
+    margin-bottom: 0.5rem;
+}
+
+.alert-box.success h4 {
+    color: #155724;
+}
+
+/* Union Rights Grid */
+.union-rights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.union-card {
+    background: #002868;
+    color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.union-card:hover {
+    transform: translateY(-3px);
+}
+
+.union-card h4 {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+/* Interference Alert */
+.interference-alert {
+    background: #f8d7da;
+    border: 2px solid #dc3545;
+    border-left: 4px solid #dc3545;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 2rem 0;
+}
+
+.interference-alert h4 {
+    color: #721c24;
+    margin-bottom: 1rem;
+}
+
+.interference-alert ul {
+    margin: 0;
+}
+
+/* Union Resources Grid */
+.union-resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.union-resource-card {
+    background: white;
+    border: 2px solid #002868;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.union-resource-card:hover {
+    transform: translateY(-3px);
+    border-color: #BF0A30;
+}
+
+.union-resource-card h4 {
+    color: #002868;
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+}
+
+.union-resource-card p {
+    margin-bottom: 1rem;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.union-resource-card a {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    background: #BF0A30;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.union-resource-card a:hover {
+    background: #a00826;
+}
+
+/* Success Stories Grid */
+.stories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.story-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    border-left: 4px solid #BF0A30;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.story-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+}
+
+.story-header {
+    background: #002868;
+    color: white;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.story-header h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    flex: 1;
+}
+
+.outcome-badge {
+    background: #28a745;
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.story-card blockquote {
+    padding: 1.5rem;
+    margin: 0;
+    font-style: italic;
+    color: #333;
+    border-left: none;
+    position: relative;
+}
+
+.story-card blockquote:before {
+    content: '"';
+    font-size: 3rem;
+    color: #BF0A30;
+    position: absolute;
+    top: 0.5rem;
+    left: 1rem;
+    opacity: 0.3;
+}
+
+.story-location {
+    background: #f8f9fa;
+    padding: 0.8rem 1.5rem;
+    margin: 0;
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 500;
+}
+
+/* Impact Stats */
+.impact-stats {
+    background: linear-gradient(135deg, #002868 0%, #BF0A30 100%);
+    color: white;
+    padding: 3rem;
+    border-radius: 12px;
+    margin: 3rem 0;
+    text-align: center;
+}
+
+.impact-stats h3 {
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+}
+
+.stat-item {
+    background: rgba(255,255,255,0.1);
+    padding: 1.5rem;
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #FFD700;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    line-height: 1.4;
+}
+
+/* Hope Stories */
+.hope-stories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.hope-card {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 2px solid #dee2e6;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.hope-card:hover {
+    transform: translateY(-3px);
+    border-color: #BF0A30;
+}
+
+.hope-card h4 {
+    color: #002868;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.hope-card ul {
+    margin: 1rem 0 0 0;
+    padding-left: 1.5rem;
+}
+
+.hope-card li {
+    margin-bottom: 0.5rem;
+    position: relative;
+}
+
+.hope-card li:before {
+    content: "✨";
+    position: absolute;
+    left: -1.5rem;
+    color: #BF0A30;
+}
+
+/* Inspiration Grid */
+.inspiration-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 3rem 0;
+}
+
+.inspire-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-top: 4px solid #002868;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.inspire-card:hover {
+    transform: translateY(-5px);
+}
+
+.inspire-card h4 {
+    color: #002868;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.inspire-card p {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Future Vision */
+.future-vision {
+    background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 100%);
+    padding: 3rem;
+    border-radius: 12px;
+    margin: 3rem 0;
+    border: 2px solid #002868;
+}
+
+.future-vision h4 {
+    color: #002868;
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+}
+
+.future-vision ul {
+    margin: 1.5rem 0;
+    padding-left: 2rem;
+}
+
+.future-vision li {
+    margin-bottom: 0.8rem;
+    position: relative;
+}
+
+.future-vision li:before {
+    content: "🌟";
+    position: absolute;
+    left: -2rem;
+    top: 0;
+}
+
+.action-call {
+    background: #002868;
+    color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.action-call h4 {
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.action-steps {
+    background: rgba(255,255,255,0.1);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 1rem 0 0 0;
+}
+
+.action-steps p {
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Enhanced Alert Box for Hope Section */
+.alert-box.success {
+    background: linear-gradient(135deg, #d4edda 0%, #a8d5ba 100%);
+    border: 2px solid #28a745;
+    border-left: 6px solid #28a745;
+    position: relative;
+    overflow: hidden;
+}
+
+.alert-box.success:before {
+    content: "🌅";
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    opacity: 0.6;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .stories-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .stat-number {
+        font-size: 2rem;
+    }
+
+    .hope-stories {
+        grid-template-columns: 1fr;
+    }
+
+    .inspiration-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .impact-stats {
+        padding: 2rem;
+    }
+
+    .future-vision {
+        padding: 2rem;
+    }
+
+    .action-call {
+        padding: 1.5rem;
+    }
+}
+
+/* Texas Help Section */
+.emergency-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.emergency-card {
+    background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+    border: 3px solid #f44336;
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 6px 12px rgba(244, 67, 54, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.emergency-card:before {
+    content: "🚨";
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    opacity: 0.8;
+}
+
+.emergency-card h4 {
+    color: #c62828;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.emergency-card p {
+    color: #666;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.contact-info {
+    background: rgba(244, 67, 54, 0.1);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 2px solid #f44336;
+}
+
+.contact-info strong {
+    color: #c62828;
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.contact-info small {
+    color: #666;
+    font-style: italic;
+}
+
+/* Texas Cities Grid */
+.texas-cities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.city-card {
+    background: white;
+    border: 2px solid #002868;
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.city-card:hover {
+    transform: translateY(-5px);
+    border-color: #BF0A30;
+}
+
+.city-card h4 {
+    color: #002868;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.city-card p {
+    color: #666;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.city-card strong {
+    color: #002868;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.city-card a {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background: #BF0A30;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.city-card a:hover {
+    background: #a00826;
+}
+
+/* Legal Aid Grid */
+.legal-aid-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.legal-card {
+    background: linear-gradient(135deg, #e8f5e8 0%, #f1f8e9 100%);
+    border: 2px solid #4caf50;
+    border-radius: 12px;
+    padding: 2rem;
+    transition: transform 0.3s ease;
+}
+
+.legal-card:hover {
+    transform: translateY(-3px);
+}
+
+.legal-card h4 {
+    color: #2e7d32;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.legal-card p {
+    color: #666;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.legal-card .contact-info {
+    background: rgba(76, 175, 80, 0.1);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 2px solid #4caf50;
+    text-align: center;
+}
+
+.legal-card .contact-info strong {
+    color: #2e7d32;
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.legal-card .contact-info a {
+    color: #2e7d32;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.legal-card .contact-info a:hover {
+    text-decoration: underline;
+}
+
+/* Agency Grid */
+.agency-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.agency-card {
+    background: white;
+    border: 2px solid #002868;
+    border-radius: 12px;
+    padding: 2rem;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.agency-card:hover {
+    transform: translateY(-3px);
+}
+
+.agency-card h4 {
+    color: #002868;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.agency-card ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.agency-card li {
+    margin-bottom: 0.5rem;
+    color: #666;
+}
+
+.agency-card a {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.8rem 1.5rem;
+    background: #002868;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.agency-card a:hover {
+    background: #001a4d;
+}
+
+/* Warning Alert Box */
+.alert-box.warning {
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    border-left: 4px solid #f39c12;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 2rem 0;
+}
+
+.alert-box.warning h4 {
+    color: #856404;
+    margin-bottom: 0.5rem;
+}
+
+/* Responsive adjustments for Texas Help */
+@media (max-width: 768px) {
+    .emergency-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .texas-cities-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .legal-aid-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .agency-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .emergency-card {
+        padding: 1.5rem;
+    }
+
+    .city-card {
+        padding: 1.5rem;
+    }
+
+    .legal-card {
+        padding: 1.5rem;
+    }
+
+    .agency-card {
+        padding: 1.5rem;
+    }
+}
+
+/* Footer */
+footer {
+    background: #002868;
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+    margin-top: 4rem;
+}
+
+footer p {
+    margin-bottom: 0.5rem;
+    opacity: 0.9;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    nav a {
+        padding: 0.3rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .section h2 {
+        font-size: 2rem;
+    }
+
+    .section h3 {
+        font-size: 1.5rem;
+    }
+
+    .key-rights-grid,
+    .resources-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .container {
+        padding: 0 15px;
+    }
+
+    .section {
+        padding: 2rem 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo h1 {
+        font-size: 1.8rem;
+    }
+
+    .logo p {
+        font-size: 1rem;
+    }
+
+    nav ul {
+        gap: 0.5rem;
+    }
+
+    nav a {
+        padding: 0.2rem 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    .section h2 {
+        font-size: 1.8rem;
+    }
+
+    .right-card,
+    .resource-card {
+        padding: 1.5rem;
+    }
+}
+
+/* Print Styles */
+@media print {
+    header,
+    nav,
+    footer {
+        display: none;
+    }
+
+    .section {
+        page-break-inside: avoid;
+    }
+
+    .right-card,
+    .resource-card {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Focus Styles */
+nav a:focus,
+.resource-card a:focus {
+    outline: 2px solid #BF0A30;
+    outline-offset: 2px;
+}
+
+/* Skip Link for Screen Readers */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: #BF0A30;
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+    z-index: 1000;
+}
+
+.skip-link:focus {
+    top: 6px;
+}
