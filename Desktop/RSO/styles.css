@@ -1,0 +1,1109 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #fafafa;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header & Navigation */
+.header {
+    background: linear-gradient(135deg, #2d5a3d 0%, #1a3d2a 100%);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+
+.logo h1 {
+    color: #fff;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.tagline {
+    color: #a8d5ba;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-menu a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.nav-menu a:hover {
+    color: #a8d5ba;
+}
+
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: #a8d5ba;
+    transition: width 0.3s ease;
+}
+
+.nav-menu a:hover::after {
+    width: 100%;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: #fff;
+    margin: 3px 0;
+    transition: 0.3s;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #2d5a3d 0%, #1a3d2a 100%);
+    padding: 120px 0 80px;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="60" cy="80" r="1.5" fill="rgba(255,255,255,0.1)"/></svg>');
+    opacity: 0.3;
+}
+
+.hero-content {
+    max-width: 600px;
+    position: relative;
+    z-index: 2;
+}
+
+.hero h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero-subtitle {
+    font-size: 20px;
+    margin-bottom: 40px;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+.hero-stats {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.stat h3 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.stat p {
+    font-size: 14px;
+    opacity: 0.8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cta-button {
+    display: inline-block;
+    background: #a8d5ba;
+    color: #2d5a3d;
+    padding: 15px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(168, 213, 186, 0.3);
+}
+
+.cta-button:hover {
+    background: #96c9a8;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(168, 213, 186, 0.4);
+}
+
+.hero-image {
+    position: absolute;
+    right: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 300px;
+    height: 300px;
+}
+
+/* Animated oil drop */
+.oil-drop {
+    width: 200px;
+    height: 280px;
+    background: linear-gradient(180deg, #a8d5ba 0%, #2d5a3d 50%, #1a3d2a 100%);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    position: relative;
+    margin: 0 auto;
+    animation: drip 3s ease-in-out infinite;
+    box-shadow:
+        0 0 20px rgba(168, 213, 186, 0.3),
+        inset -10px -10px 20px rgba(0,0,0,0.2),
+        inset 10px 10px 20px rgba(255,255,255,0.1);
+}
+
+.oil-drop::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 60px;
+    background: linear-gradient(180deg, #a8d5ba 0%, #2d5a3d 100%);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation: dripString 3s ease-in-out infinite;
+}
+
+@keyframes drip {
+    0%, 100% {
+        transform: scale(1) translateY(0px);
+    }
+    50% {
+        transform: scale(1.05) translateY(-10px);
+    }
+}
+
+@keyframes dripString {
+    0%, 100% {
+        transform: translateX(-50%) scaleY(1);
+        opacity: 0.7;
+    }
+    50% {
+        transform: translateX(-50%) scaleY(0.8);
+        opacity: 0.4;
+    }
+}
+
+/* Section Styles */
+.section {
+    padding: 80px 0;
+}
+
+.section h2 {
+    font-size: 36px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #2d5a3d;
+}
+
+.section-intro {
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 60px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* About Section */
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.about-text p {
+    font-size: 18px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.highlight-box {
+    background: linear-gradient(135deg, #f8fdf9 0%, #e8f5ea 100%);
+    border: 2px solid #a8d5ba;
+    border-radius: 15px;
+    padding: 30px;
+    margin: 30px 0;
+}
+
+.highlight-box h3 {
+    color: #2d5a3d;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.highlight-box ul {
+    list-style: none;
+    padding: 0;
+}
+
+.highlight-box li {
+    padding: 8px 0;
+    position: relative;
+    padding-left: 25px;
+}
+
+.highlight-box li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #2d5a3d;
+    font-weight: bold;
+}
+
+/* Benefits Section */
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.benefit-card {
+    background: #fff;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #f0f0f0;
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.benefit-icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.benefit-card h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #2d5a3d;
+}
+
+.benefit-card p {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Testimonials */
+.testimonial-section {
+    background: #fff;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.testimonials {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.testimonial {
+    background: #f8fdf9;
+    padding: 25px;
+    border-radius: 10px;
+    border-left: 4px solid #a8d5ba;
+}
+
+.testimonial p {
+    font-style: italic;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.testimonial cite {
+    font-weight: 600;
+    color: #2d5a3d;
+}
+
+/* How It Works */
+.process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.step {
+    text-align: center;
+    background: #fff;
+    padding: 30px 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    position: relative;
+}
+
+.step-number {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #2d5a3d 0%, #1a3d2a 100%);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0 auto 20px;
+}
+
+.step h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #2d5a3d;
+}
+
+/* Safety Section */
+.safety-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+.safety-text h3 {
+    color: #2d5a3d;
+    font-size: 24px;
+    margin: 30px 0 15px 0;
+}
+
+.safety-text ul {
+    margin: 15px 0 20px 20px;
+}
+
+.safety-text li {
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.safety-tips {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.tip-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    border-left: 4px solid #a8d5ba;
+}
+
+.tip-card h4 {
+    color: #2d5a3d;
+    margin-bottom: 10px;
+}
+
+/* Footer */
+.footer {
+    background: #2d5a3d;
+    color: #fff;
+    padding: 60px 0 30px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-section h3 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #a8d5ba;
+}
+
+.footer-section p {
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section a {
+    color: #fff;
+    text-decoration: none;
+    margin-bottom: 10px;
+    display: block;
+    transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+    color: #a8d5ba;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 30px;
+    text-align: center;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .hero {
+        padding: 100px 0 60px;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .hero-stats {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .about-content,
+    .safety-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .testimonials {
+        grid-template-columns: 1fr;
+    }
+
+    .process-steps {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .section {
+        padding: 60px 0;
+    }
+
+    .section h2 {
+        font-size: 28px;
+    }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Sources Section */
+.sources-section {
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+}
+
+.sources-section h4 {
+    color: #a8d5ba;
+    font-size: 16px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.sources-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.sources-list li {
+    margin-bottom: 8px;
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.sources-list a {
+    color: #a8d5ba;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.sources-list a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2d5a3d;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #1a3d2a;
+}
+
+/* Artistic CSS Elements */
+
+/* Floating Particles Animation */
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* Add floating particles to hero section */
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle at 20% 80%, rgba(168, 213, 186, 0.3) 2px, transparent 2px),
+        radial-gradient(circle at 80% 20%, rgba(168, 213, 186, 0.2) 1px, transparent 1px),
+        radial-gradient(circle at 40% 40%, rgba(168, 213, 186, 0.4) 1px, transparent 1px),
+        radial-gradient(circle at 60% 90%, rgba(168, 213, 186, 0.2) 2px, transparent 2px),
+        radial-gradient(circle at 90% 60%, rgba(168, 213, 186, 0.3) 1px, transparent 1px);
+    background-size: 100px 100px, 150px 150px, 80px 80px, 120px 120px, 90px 90px;
+    animation: float 20s ease-in-out infinite;
+    pointer-events: none;
+}
+
+/* Artistic gradient overlays */
+.about::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(168, 213, 186, 0.05) 0%, transparent 50%, rgba(45, 90, 61, 0.05) 100%);
+    pointer-events: none;
+}
+
+.benefits::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 20%, rgba(168, 213, 186, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(45, 90, 61, 0.06) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* Enhanced benefit cards with artistic borders */
+.benefit-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #a8d5ba, #2d5a3d, #a8d5ba);
+    border-radius: 18px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.benefit-card:hover::before {
+    opacity: 0.3;
+}
+
+/* Artistic testimonial cards */
+.testimonial::after {
+    content: '"';
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    font-size: 60px;
+    color: rgba(168, 213, 186, 0.2);
+    font-family: Georgia, serif;
+    line-height: 1;
+}
+
+/* Enhanced process steps with artistic elements */
+.step::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 3px;
+    background: linear-gradient(90deg, #a8d5ba, #2d5a3d);
+    border-radius: 2px;
+}
+
+/* Artistic footer patterns */
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 10px,
+            rgba(168, 213, 186, 0.03) 10px,
+            rgba(168, 213, 186, 0.03) 20px
+        );
+    pointer-events: none;
+}
+
+/* Pulsing animation for CTA button */
+.cta-button {
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.cta-button:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Artistic section dividers */
+.section::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #a8d5ba, #2d5a3d);
+    margin: 40px auto 0;
+    border-radius: 2px;
+}
+
+/* Enhanced logo with artistic flair */
+.logo h1 {
+    position: relative;
+}
+
+.logo h1::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #a8d5ba, #2d5a3d);
+    transition: width 0.3s ease;
+}
+
+.nav:hover .logo h1::after {
+    width: 100%;
+}
+
+/* Artistic highlight box */
+.highlight-box {
+    position: relative;
+    overflow: hidden;
+}
+
+.highlight-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(168, 213, 186, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.highlight-box:hover::before {
+    left: 100%;
+}
+
+/* Breathing animation for key elements */
+@keyframes breathe {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.hero-stats .stat {
+    animation: breathe 4s ease-in-out infinite;
+}
+
+.hero-stats .stat:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.hero-stats .stat:nth-child(3) {
+    animation-delay: 1s;
+}
+
+/* Artistic mobile menu animation */
+.hamburger span {
+    transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Enhanced loading animation */
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.nav-menu.active li {
+    animation: slideInLeft 0.3s ease forwards;
+}
+
+.nav-menu.active li:nth-child(1) { animation-delay: 0.1s; }
+.nav-menu.active li:nth-child(2) { animation-delay: 0.2s; }
+.nav-menu.active li:nth-child(3) { animation-delay: 0.3s; }
+.nav-menu.active li:nth-child(4) { animation-delay: 0.4s; }
+.nav-menu.active li:nth-child(5) { animation-delay: 0.5s; }
+
+/* Artistic Cannabis SVG Styling */
+.cannabis-svg {
+    width: 100%;
+    height: 300px;
+    filter: drop-shadow(0 5px 15px rgba(45, 90, 61, 0.2));
+    animation: gentleSway 6s ease-in-out infinite;
+}
+
+@keyframes gentleSway {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(2deg); }
+    75% { transform: rotate(-2deg); }
+}
+
+/* Enhanced section backgrounds with artistic patterns */
+.about {
+    background:
+        radial-gradient(circle at 20% 30%, rgba(168, 213, 186, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(45, 90, 61, 0.08) 0%, transparent 50%),
+        linear-gradient(135deg, #fafafa 0%, #f0f8f0 100%);
+}
+
+.benefits {
+    background:
+        linear-gradient(45deg, #f8fdf9 0%, #e8f5ea 50%, #f0f8f0 100%),
+        radial-gradient(circle at 30% 20%, rgba(168, 213, 186, 0.05) 0%, transparent 50%);
+}
+
+.how-it-works {
+    background:
+        linear-gradient(135deg, #e8f5ea 0%, #f0f8f0 50%, #fafafa 100%),
+        radial-gradient(circle at 70% 80%, rgba(45, 90, 61, 0.04) 0%, transparent 50%);
+}
+
+.safety {
+    background:
+        linear-gradient(45deg, #fafafa 0%, #f8fdf9 50%, #e8f5ea 100%),
+        radial-gradient(circle at 50% 50%, rgba(168, 213, 186, 0.03) 0%, transparent 50%);
+}
+
+/* Artistic decorative elements */
+.section h2 {
+    position: relative;
+}
+
+.section h2::before {
+    content: '🌿';
+    position: absolute;
+    left: -40px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    opacity: 0.6;
+    animation: float 3s ease-in-out infinite;
+}
+
+.section h2::after {
+    content: '🌿';
+    position: absolute;
+    right: -40px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    opacity: 0.6;
+    animation: float 3s ease-in-out infinite;
+    animation-delay: 1.5s;
+}
+
+/* Enhanced benefit icons with artistic effects */
+.benefit-icon {
+    filter: drop-shadow(0 2px 8px rgba(45, 90, 61, 0.2));
+    transition: all 0.3s ease;
+}
+
+.benefit-card:hover .benefit-icon {
+    transform: scale(1.1) rotate(5deg);
+    filter: drop-shadow(0 4px 12px rgba(45, 90, 61, 0.3));
+}
+
+/* Artistic testimonial styling */
+.testimonial {
+    position: relative;
+    overflow: hidden;
+}
+
+.testimonial::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #a8d5ba, #2d5a3d);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.testimonial:hover::before {
+    transform: scaleX(1);
+}
+
+/* Artistic tip cards */
+.tip-card {
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    background: linear-gradient(white, white) padding-box,
+                linear-gradient(45deg, #a8d5ba, #2d5a3d) border-box;
+}
+
+.tip-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(45, 90, 61, 0.15);
+}
+
+/* Enhanced process step numbers */
+.step-number {
+    position: relative;
+    overflow: hidden;
+}
+
+.step-number::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+}
+
+.step:hover .step-number::before {
+    width: 100px;
+    height: 100px;
+}
+
+/* Artistic footer enhancements */
+.footer-section h3 {
+    position: relative;
+}
+
+.footer-section h3::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: linear-gradient(90deg, #a8d5ba, #2d5a3d);
+    border-radius: 1px;
+}
+
+/* Enhanced mobile responsiveness with artistic touches */
+@media (max-width: 768px) {
+    .section h2::before,
+    .section h2::after {
+        display: none;
+    }
+
+    .cannabis-svg {
+        height: 200px;
+    }
+
+    .oil-drop {
+        width: 150px;
+        height: 210px;
+    }
+
+    .hero-stats {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .hero-stats .stat {
+        animation: none; /* Disable breathing on mobile for better performance */
+    }
+}
+
+/* Additional artistic flourishes */
+.highlight-box {
+    position: relative;
+}
+
+.highlight-box::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(45deg, #a8d5ba, #2d5a3d);
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* Subtle text shadow for better readability */
+.section h2 {
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.section-intro {
+    text-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+/* Artistic loading state */
+body:not(.loaded) {
+    background: linear-gradient(135deg, #2d5a3d 0%, #1a3d2a 100%);
+}
+
+.loaded .section {
+    animation: fadeInUp 0.8s ease-out;
+}
