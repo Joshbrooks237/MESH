@@ -1087,16 +1087,44 @@ ol li {
 
 /* Footer */
 footer {
-    background: #002868;
-    color: white;
-    padding: 2rem 0;
+    background: rgba(10, 10, 15, 0.95);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid var(--glass-border);
+    color: #ffffff;
+    padding: 3rem 0;
     text-align: center;
     margin-top: 4rem;
+    box-shadow: 0 -10px 30px rgba(0, 255, 255, 0.1);
 }
 
 footer p {
     margin-bottom: 0.5rem;
     opacity: 0.9;
+}
+
+.legal-disclaimer {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+}
+
+.legal-disclaimer h4 {
+    color: var(--neon-blue);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.legal-disclaimer p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    opacity: 0.9;
+    text-align: left;
+    margin: 0;
 }
 
 /* Responsive Design */
