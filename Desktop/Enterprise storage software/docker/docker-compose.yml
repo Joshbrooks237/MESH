@@ -83,7 +83,7 @@ services:
       JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET:-enterprise-storage-refresh-secret-key-2024}
       FRONTEND_URL: ${FRONTEND_URL:-http://localhost:3000}
     ports:
-      - "5000:5000"
+      - "5001:5000"
     volumes:
       - ../backend:/app
       - /app/node_modules

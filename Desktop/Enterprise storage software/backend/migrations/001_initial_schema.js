@@ -1,5 +1,25 @@
 exports.up = function(knex) {
   return knex.schema
+    // Warehouses table (must be created first)
+    .createTable('warehouses', function(table) {
+      table.increments('id').primary();
+      table.string('code', 20).unique().notNullable();
+      table.string('name', 100).notNullable();
+      table.text('description');
+      table.string('address', 255);
+      table.string('city', 100);
+      table.string('state', 50);
+      table.string('country', 50).defaultTo('USA');
+      table.string('postal_code', 20);
+      table.decimal('latitude', 10, 8);
+      table.decimal('longitude', 11, 8);
+      table.integer('total_capacity').defaultTo(0);
+      table.integer('used_capacity').defaultTo(0);
+      table.boolean('is_active').defaultTo(true);
+      table.timestamp('created_at').defaultTo(knex.fn.now());
+      table.timestamp('updated_at').defaultTo(knex.fn.now());
+    })
+
     // Users table
     .createTable('users', function(table) {
       table.increments('id').primary();
@@ -26,26 +46,6 @@ exports.up = function(knex) {
       table.timestamp('expires_at').notNullable();
       table.timestamp('created_at').defaultTo(knex.fn.now());
       table.unique(['user_id', 'token']);
-    })
-
-    // Warehouses table
-    .createTable('warehouses', function(table) {
-      table.increments('id').primary();
-      table.string('code', 20).unique().notNullable();
-      table.string('name', 100).notNullable();
-      table.text('description');
-      table.string('address', 255);
-      table.string('city', 100);
-      table.string('state', 50);
-      table.string('country', 50).defaultTo('USA');
-      table.string('postal_code', 20);
-      table.decimal('latitude', 10, 8);
-      table.decimal('longitude', 11, 8);
-      table.integer('total_capacity').defaultTo(0);
-      table.integer('used_capacity').defaultTo(0);
-      table.boolean('is_active').defaultTo(true);
-      table.timestamp('created_at').defaultTo(knex.fn.now());
-      table.timestamp('updated_at').defaultTo(knex.fn.now());
     })
 
     // Warehouse zones (areas within warehouse)
@@ -220,7 +220,7 @@ exports.down = function(knex) {
     .dropTableIfExists('product_categories')
     .dropTableIfExists('warehouse_locations')
     .dropTableIfExists('warehouse_zones')
-    .dropTableIfExists('warehouses')
     .dropTableIfExists('refresh_tokens')
-    .dropTableIfExists('users');
+    .dropTableIfExists('users')
+    .dropTableIfExists('warehouses');
 };

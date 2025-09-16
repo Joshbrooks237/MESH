@@ -7,8 +7,7 @@ const http = require('http');
 const socketIo = require('socket.io');
 const winston = require('winston');
 
-// Import configurations
-const config = require('./config/database');
+// Import routes
 const authRoutes = require('./routes/auth');
 const inventoryRoutes = require('./routes/inventory');
 const warehouseRoutes = require('./routes/warehouse');

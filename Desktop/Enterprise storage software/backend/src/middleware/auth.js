@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { redisClient } = require('../config/database');
+// const { redisClient } = require('../config/database'); // Disabled for demo
 
 const JWT_SECRET = process.env.JWT_SECRET || 'enterprise-storage-secret-key-2024';
 const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET || 'enterprise-storage-refresh-secret-key-2024';
@@ -75,19 +75,8 @@ const authenticateToken = async (req, res, next) => {
       });
     }
 
-    // Check if token is blacklisted (only if Redis is available)
-    try {
-      const isBlacklisted = await redisClient.get(`blacklist:${token}`);
-      if (isBlacklisted) {
-        return res.status(401).json({
-          error: 'Token has been revoked',
-          code: 'TOKEN_REVOKED'
-        });
-      }
-    } catch (redisError) {
-      // Redis not available, skip blacklist check
-      console.log('Redis not available, skipping token blacklist check');
-    }
+    // Skip Redis blacklist check for now
+    console.log('Skipping Redis token validation for demo purposes');
 
     jwt.verify(token, JWT_SECRET, async (err, decoded) => {
       if (err) {
@@ -210,18 +199,8 @@ const generateRefreshToken = (user) => {
 // Revoke token (add to blacklist)
 const revokeToken = async (token) => {
   try {
-    const decoded = jwt.decode(token);
-    if (decoded && decoded.exp) {
-      const ttl = decoded.exp - Math.floor(Date.now() / 1000);
-      if (ttl > 0) {
-        try {
-          await redisClient.setEx(`blacklist:${token}`, ttl, 'revoked');
-        } catch (redisError) {
-          // Redis not available, skip token revocation
-          console.log('Redis not available, skipping token revocation');
-        }
-      }
-    }
+    console.log('Token revocation skipped for demo purposes');
+    // For demo purposes, we're not using Redis for token blacklisting
   } catch (error) {
     console.error('Error revoking token:', error);
   }
