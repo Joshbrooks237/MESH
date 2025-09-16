@@ -4,10 +4,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Production builds
-build/
-dist/
-
 # Environment variables
 .env
 .env.local
@@ -15,21 +11,9 @@ dist/
 .env.test.local
 .env.production.local
 
-# IDE and editor files
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
-# OS generated files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
+# Build outputs
+build/
+dist/
 
 # Logs
 logs/
@@ -46,30 +30,34 @@ pids/
 
 # Coverage directory used by tools like istanbul
 coverage/
-*.lcov
+.nyc_output/
 
-# nyc test coverage
-.nyc_output
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
 
-# Dependency directories
-node_modules/
-
-# Optional npm cache directory
-.npm
-
-# Optional eslint cache
-.eslintcache
-
-# Docker
-.dockerignore
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 
 # Database files
 *.db
 *.sqlite
 *.sqlite3
 
-# Redis dump files
-dump.rdb
+# Docker volumes
+postgres_data/
+redis_data/
+mongodb_data/
+pgadmin_data/
 
 # Temporary files
 tmp/
@@ -79,109 +67,21 @@ temp/
 *.bak
 *.backup
 
-# Mobile
-android/app/build/
-ios/build/
+# Mobile specific
+mobile/ios/Pods/
+mobile/android/.gradle/
+mobile/android/app/build/
 
-# React Native
-.expo/
-.expo-shared/
+# Package manager lock files (optional - uncomment if you want to ignore)
+# package-lock.json
+# yarn.lock
 
-# Testing
+# Test coverage
 coverage/
+.jest/
 
-# Storybook
-storybook-static/
-
-# Temporary folders
-tmp/
-temp/
-
-# Cache directories
-.cache/
-.parcel-cache/
-
-# Optional REPL history
-.node_repl_history
-
-# Output of 'npm pack'
-*.tgz
-
-# Yarn Integrity file
-.yarn-integrity
-
-# dotenv environment variables file
-.env.test
-
-# parcel-bundler cache (https://parceljs.org/)
-.parcel-cache
-
-# Next.js build output
-.next
-
-# Nuxt.js build / generate output
-.nuxt
-dist
-
-# Gatsby files
-.cache/
-public
-
-# Vuepress build output
-.vuepress/dist
-
-# Serverless directories
-.serverless/
-
-# FuseBox cache
-.fusebox/
-
-# DynamoDB Local files
-.dynamodb/
-
-# TernJS port file
-.tern-port
-
-# Stores VSCode versions used for testing VSCode extensions
-.vscode-test
-
-# Local Netlify folder
-.netlify
-
-# AWS
-.aws/
-
-# Docker volumes
-data/
-
-# PostgreSQL data
-pgdata/
-
-# MongoDB data
-mongodb_data/
-
-# Redis data
-redis_data/
-
-# pgAdmin data
-pgadmin_data/
-
-# Backup files
-*.backup
-*.bak
-
-# Screenshots and recordings (common in development)
-*.png
-*.jpg
-*.jpeg
-*.gif
-*.mov
-*.mp4
-
-# Documentation generated files
-docs/build/
-docs/.vuepress/dist/
-
-# Local development files
-.local
-.dev
+# Local development
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
