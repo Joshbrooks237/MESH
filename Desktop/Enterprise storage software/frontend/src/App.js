@@ -12,6 +12,8 @@ import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Inventory from './pages/Inventory';
 import Warehouse from './pages/Warehouse';
+import Walkthrough from './pages/Walkthrough';
+import Tenants from './pages/Tenants';
 import Reports from './pages/Reports';
 import Users from './pages/Users';
 import Settings from './pages/Settings';
@@ -144,6 +146,26 @@ function App() {
                 <ProtectedRoute>
                   <AppLayout>
                     <Warehouse />
+                  </AppLayout>
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/walkthrough"
+              element={
+                <ProtectedRoute>
+                  <AppLayout>
+                    <Walkthrough />
+                  </AppLayout>
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/tenants"
+              element={
+                <ProtectedRoute>
+                  <AppLayout>
+                    <Tenants />
                   </AppLayout>
                 </ProtectedRoute>
               }

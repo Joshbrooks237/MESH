@@ -13,6 +13,8 @@ import {
   Dashboard,
   Inventory,
   Warehouse,
+  ViewList,
+  Group,
   Assessment,
   People,
   Settings,
@@ -30,6 +32,16 @@ const Sidebar = ({ open, onClose }) => {
       text: 'Dashboard',
       icon: <Dashboard />,
       path: '/dashboard',
+    },
+    {
+      text: 'Walkthrough',
+      icon: <ViewList />,
+      path: '/walkthrough',
+    },
+    {
+      text: 'Tenants',
+      icon: <Group />,
+      path: '/tenants',
     },
     {
       text: 'Inventory',

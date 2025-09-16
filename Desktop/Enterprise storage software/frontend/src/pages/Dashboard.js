@@ -8,6 +8,11 @@ import {
   Alert,
   Chip,
   LinearProgress,
+  TextField,
+  InputAdornment,
+  Button,
+  Paper,
+  Divider,
 } from '@mui/material';
 import {
   Inventory as InventoryIcon,
@@ -16,7 +21,14 @@ import {
   Warning as WarningIcon,
   CheckCircle as CheckCircleIcon,
   Error as ErrorIcon,
+  Search as SearchIcon,
+  ViewList as ViewListIcon,
+  Group as GroupIcon,
+  LocationOn as LocationIcon,
 } from '@mui/icons-material';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import { Line, Bar, Doughnut } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -46,6 +58,12 @@ ChartJS.register(
 const Dashboard = () => {
   const [metrics, setMetrics] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  const [searchLoading, setSearchLoading] = useState(false);
+
+  const { token } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Simulate fetching dashboard metrics
@@ -78,6 +96,75 @@ const Dashboard = () => {
     const interval = setInterval(fetchMetrics, 30000); // Update every 30 seconds
     return () => clearInterval(interval);
   }, []);
+
+  // Search functionality
+  const handleSearch = async (query) => {
+    if (!query.trim()) {
+      setSearchResults([]);
+      return;
+    }
+
+    setSearchLoading(true);
+    try {
+      // Search tenants
+      const tenantResponse = await axios.get(`http://localhost:5001/api/tenants?search=${encodeURIComponent(query)}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+
+      // Search units (by location code)
+      const unitResponse = await axios.get(`http://localhost:5001/api/warehouse/1/locations`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+
+      const matchingUnits = unitResponse.data.locations.filter(unit =>
+        unit.location_code.toLowerCase().includes(query.toLowerCase()) ||
+        (unit.is_occupied && unit.tenants?.some(tenant =>
+          tenant.first_name.toLowerCase().includes(query.toLowerCase()) ||
+          tenant.last_name.toLowerCase().includes(query.toLowerCase()) ||
+          tenant.email.toLowerCase().includes(query.toLowerCase())
+        ))
+      );
+
+      // Combine results
+      const results = [
+        ...tenantResponse.data.tenants.map(tenant => ({
+          type: 'tenant',
+          id: tenant.id,
+          title: `${tenant.first_name} ${tenant.last_name}`,
+          subtitle: tenant.email,
+          detail: tenant.phone || 'No phone',
+          icon: GroupIcon,
+          onClick: () => navigate(`/tenants/${tenant.id}`)
+        })),
+        ...matchingUnits.slice(0, 5).map(unit => ({
+          type: 'unit',
+          id: unit.id,
+          title: unit.location_code,
+          subtitle: unit.is_occupied ? 'Occupied' : 'Available',
+          detail: `Aisle ${unit.aisle}, Level ${unit.level}`,
+          icon: LocationIcon,
+          onClick: () => navigate('/walkthrough')
+        }))
+      ];
+
+      setSearchResults(results);
+    } catch (error) {
+      console.error('Search error:', error);
+      setSearchResults([]);
+    } finally {
+      setSearchLoading(false);
+    }
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    handleSearch(searchQuery);
+  };
+
+  const clearSearch = () => {
+    setSearchQuery('');
+    setSearchResults([]);
+  };
 
   if (loading) {
     return (
@@ -137,6 +224,162 @@ const Dashboard = () => {
       <Typography variant="h4" gutterBottom sx={{ mb: 3, fontWeight: 'bold' }}>
         Enterprise Storage Dashboard
       </Typography>
+
+      {/* Universal Search Bar */}
+      <Paper sx={{ p: 3, mb: 4, background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white' }}>
+        <Typography variant="h6" gutterBottom sx={{ color: 'white', fontWeight: 'bold' }}>
+          🔍 Quick Search - Find Anything
+        </Typography>
+        <Typography variant="body2" sx={{ mb: 2, opacity: 0.9 }}>
+          Search tenants by name, email, phone • Search units by location code • Search across your entire facility
+        </Typography>
+
+        <Box component="form" onSubmit={handleSearchSubmit} sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+          <TextField
+            fullWidth
+            variant="outlined"
+            placeholder="Search tenants, units, locations..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            disabled={searchLoading}
+            sx={{
+              '& .MuiOutlinedInput-root': {
+                backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                '& fieldset': {
+                  borderColor: 'rgba(255, 255, 255, 0.3)',
+                },
+                '&:hover fieldset': {
+                  borderColor: 'rgba(255, 255, 255, 0.5)',
+                },
+                '&.Mui-focused fieldset': {
+                  borderColor: 'white',
+                },
+              },
+              '& .MuiInputLabel-root': {
+                color: 'rgba(0, 0, 0, 0.6)',
+              },
+              '& .MuiInputBase-input': {
+                color: 'rgba(0, 0, 0, 0.87)',
+              },
+            }}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon sx={{ color: 'rgba(0, 0, 0, 0.6)' }} />
+                </InputAdornment>
+              ),
+            }}
+          />
+          <Button
+            type="submit"
+            variant="contained"
+            disabled={searchLoading || !searchQuery.trim()}
+            sx={{
+              backgroundColor: 'rgba(255, 255, 255, 0.2)',
+              color: 'white',
+              border: '1px solid rgba(255, 255, 255, 0.3)',
+              '&:hover': {
+                backgroundColor: 'rgba(255, 255, 255, 0.3)',
+              },
+              minWidth: '120px'
+            }}
+          >
+            {searchLoading ? 'Searching...' : 'Search'}
+          </Button>
+          <Button
+            variant="outlined"
+            onClick={clearSearch}
+            sx={{
+              color: 'white',
+              borderColor: 'rgba(255, 255, 255, 0.5)',
+              '&:hover': {
+                borderColor: 'white',
+                backgroundColor: 'rgba(255, 255, 255, 0.1)',
+              }
+            }}
+          >
+            Clear
+          </Button>
+        </Box>
+
+        {/* Quick Navigation */}
+        <Box sx={{ mt: 2, display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+          <Button
+            size="small"
+            variant="outlined"
+            startIcon={<ViewListIcon />}
+            onClick={() => navigate('/walkthrough')}
+            sx={{ color: 'white', borderColor: 'rgba(255, 255, 255, 0.3)' }}
+          >
+            Walkthrough
+          </Button>
+          <Button
+            size="small"
+            variant="outlined"
+            startIcon={<GroupIcon />}
+            onClick={() => navigate('/tenants')}
+            sx={{ color: 'white', borderColor: 'rgba(255, 255, 255, 0.3)' }}
+          >
+            Tenants
+          </Button>
+          <Button
+            size="small"
+            variant="outlined"
+            startIcon={<LocationIcon />}
+            onClick={() => navigate('/warehouse')}
+            sx={{ color: 'white', borderColor: 'rgba(255, 255, 255, 0.3)' }}
+          >
+            Units
+          </Button>
+        </Box>
+      </Paper>
+
+      {/* Search Results */}
+      {searchResults.length > 0 && (
+        <Paper sx={{ p: 3, mb: 4, backgroundColor: '#f8f9fa' }}>
+          <Typography variant="h6" gutterBottom>
+            Search Results ({searchResults.length})
+          </Typography>
+          <Grid container spacing={2}>
+            {searchResults.map((result, index) => {
+              const IconComponent = result.icon;
+              return (
+                <Grid item xs={12} md={6} key={index}>
+                  <Card
+                    sx={{
+                      cursor: 'pointer',
+                      transition: 'all 0.2s',
+                      '&:hover': {
+                        transform: 'translateY(-2px)',
+                        boxShadow: 3,
+                      }
+                    }}
+                    onClick={result.onClick}
+                  >
+                    <CardContent sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                      <IconComponent color="primary" />
+                      <Box sx={{ flex: 1 }}>
+                        <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
+                          {result.title}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                          {result.subtitle}
+                        </Typography>
+                        <Typography variant="caption" color="text.secondary">
+                          {result.detail}
+                        </Typography>
+                      </Box>
+                      <Typography variant="caption" color="primary">
+                        {result.type}
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              );
+            })}
+          </Grid>
+        </Paper>
+      )}
 
       {/* Key Metrics Cards */}
       <Grid container spacing={3} sx={{ mb: 4 }}>

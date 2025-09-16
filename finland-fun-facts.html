@@ -2708,11 +2708,13 @@
             });
         });
 
-        // Translation functionality
+        // 🌍 CREATIVE TRANSLATION SYSTEM - Let's make this work!
         let isFinnish = false;
+        let originalTexts = new Map(); // Store original English text
+        let translatedElements = new Map(); // Store translated elements
         const translateBtn = document.getElementById('translateBtn');
 
-        // Finnish translations dictionary
+        // 🎯 Comprehensive Finnish translations dictionary
         const translations = {
             // Header and navigation
             'Discover Finland': 'Tutustu Suomeen',
@@ -3560,122 +3562,421 @@
             'Lina Sandell\'s "Children of the Heavenly Father" is Finland\'s unofficial national anthem! It\'s sung at independence celebrations and embodies the Finnish spirit of faith and resilience.': 'Lina Sandellin "Taivaan Isän lapsia" on Suomen epävirallinen kansallislaulu! Sitä lauletaan itsenäisyyspäivän juhlissa ja se symboloi suomalaista uskon ja sitkeyden henkeä.',
             'Easter Egg Found!': 'Pääsiäinen löydetty!',
             'Try discovering more secrets around the site!': 'Kokeile löytää lisää salaisuuksia sivustolta!',
-            'Years Independent': 'Vuotta itsenäisenä'
+            'Years Independent': 'Vuotta itsenäisenä',
+            '© 2024 Discover Finland': '© 2024 Tutustu Suomeen',
+            'Made with ❤️ for Finnish culture enthusiasts': 'Tehty ❤️ suomalaiselle kulttuurille innostuneille',
+            'Suomi Finland Perkele!': 'Suomi Finland Perkele!',
+            'Finnish': 'Suomalainen',
+            'Finland': 'Suomi',
+            'Finnish people': 'Suomalaiset',
+            'Finnish culture': 'Suomalainen kulttuuri',
+            'Finnish language': 'Suomen kieli',
+            'Finnish history': 'Suomen historia',
+            'Finnish traditions': 'Suomalaiset perinteet',
+
+            // Basic page elements that should definitely be translated
+            'The Land of a Thousand Lakes, Northern Lights, and Incredible Resilience!': 'Tuhat järven maa, revontulet ja uskomaton sitkeys!',
+            'Home': 'Koti',
+            'Language': 'Kieli',
+            'Genealogy': 'Genealogia',
+            'History': 'Historia',
+            'World War II': 'Toinen maailmansota',
+            'Culture & Fun': 'Kulttuuri & Hauskaa',
+            'Welcome to Finland!': 'Tervetuloa Suomeen!',
+            'Finland is a Nordic country in Northern Europe known for its stunning natural beauty, rich history, and unique culture.': 'Suomi on Pohjoismaa Pohjois-Euroopassa, tunnettu upeasta luonnostaan, rikkaasta historiastaan ja ainutlaatuisesta kulttuuristaan.',
+            'Quick Facts About Finland:': 'Pikatietoja Suomesta:',
+            'Population:': 'Väestö:',
+            '~5.5 million people': '~5,5 miljoonaa ihmistä',
+            'Capital:': 'Pääkaupunki:',
+            'Helsinki': 'Helsinki',
+            'Official Languages:': 'Viralliset kielet:',
+            'Finnish and Swedish': 'Suomi ja ruotsi',
+            'The Finnish Language': 'Suomen kieli',
+
+            // Key visible text on the page
+            'Finland has over 188,000 lakes': 'Suomessa on yli 188 000 järveä',
+            'Finland has over 188,000 lakes and is home to Santa Claus in Rovaniemi!': 'Suomessa on yli 188 000 järveä ja Joulupukki asuu Rovaniemellä!',
+            'Quick Facts About Finland:': 'Pikatietoja Suomesta:',
+            'Population:': 'Väestö:',
+            '~5.5 million people': '~5,5 miljoonaa ihmistä',
+            'Capital:': 'Pääkaupunki:',
+            'Helsinki': 'Helsinki',
+            'Official Languages:': 'Viralliset kielet:',
+            'Finnish and Swedish': 'Suomi ja ruotsi',
+            'Currency:': 'Valuutta:',
+            'Euro (€)': 'Euro (€)',
+            'Time Zone:': 'Aikavyöhyke:',
+            'Eastern European Time (EET)': 'Itä-Euroopan aika (EET)',
+            'National Symbols:': 'Kansalliset symbolit:',
+            'Whooper Swan and Lily-of-the-valley': 'Kyhmyjoutsen ja kielo',
+
+            // Common words that should be translated
+            'and': 'ja',
+            'the': '',  // Articles often not needed in Finnish
+            'to': '',
+            'of': '',
+            'in': '',
+            'on': '',
+            'at': '',
+            'for': '',
+            'with': 'kanssa',
+            'from': 'sta',
+            'by': '',
+
+            // Section headers that are visible
+            'The Finnish Language': 'Suomen kieli',
+            'Ancient Origins': 'Muinaiset juuret',
+            'Why Finnish is Awesome': 'Miksi suomi on mahtavaa',
+            'Finnish Culture': 'Suomalainen kulttuuri',
+            'Traditional Food': 'Perinteinen ruoka',
+            'Fun Facts': 'Hauskoja faktoja'
         };
 
-        // Function to translate text
+        // 🎨 CREATIVE TRANSLATION ENGINE - Multiple strategies!
         function translateText(text, toFinnish = true) {
-            if (!text) return text;
+            if (!text || typeof text !== 'string') return text;
 
-            let translatedText = text;
+            let result = text.trim();
 
+            // Strategy 1: Direct dictionary lookup (exact match)
+            if (translations[result]) {
+                console.log('🎯 Direct match:', result, '->', translations[result]);
+                return translations[result];
+            }
+
+            // Strategy 2: Reverse lookup (for switching back to English)
+            if (!toFinnish) {
+                for (let [english, finnish] of Object.entries(translations)) {
+                    if (finnish === result) {
+                        console.log('🔄 Reverse match:', result, '->', english);
+                        return english;
+                    }
+                }
+            }
+
+            // Strategy 3: Smart partial matching with word boundaries
+            let modified = false;
             if (toFinnish) {
-                // Replace English text with Finnish
-                Object.keys(translations).forEach(english => {
-                    const regex = new RegExp(english.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
-                    translatedText = translatedText.replace(regex, translations[english]);
+                Object.keys(translations).forEach(key => {
+                    const finnish = translations[key];
+                    // Use word boundaries for more accurate matching
+                    const regex = new RegExp('\\b' + key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'gi');
+                    if (regex.test(result)) {
+                        result = result.replace(regex, finnish);
+                        modified = true;
+                        console.log('🎭 Smart match:', key, '->', finnish);
+                    }
                 });
             } else {
-                // Replace Finnish text with English
-                Object.values(translations).forEach(finnish => {
-                    const english = Object.keys(translations).find(key => translations[key] === finnish);
-                    if (english) {
-                        const regex = new RegExp(finnish.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
-                        translatedText = translatedText.replace(regex, english);
+                Object.keys(translations).forEach(key => {
+                    const finnish = translations[key];
+                    const regex = new RegExp('\\b' + finnish.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'gi');
+                    if (regex.test(result)) {
+                        result = result.replace(regex, key);
+                        modified = true;
+                        console.log('🔄 Smart reverse match:', finnish, '->', key);
                     }
                 });
             }
 
-            return translatedText;
+            // Strategy 4: Fuzzy matching for common variations
+            if (!modified && toFinnish) {
+                const fuzzyMatches = {
+                    'Finland': 'Suomi',
+                    'Finnish': 'Suomalainen',
+                    'Welcome': 'Tervetuloa',
+                    'Language': 'Kieli',
+                    'History': 'Historia',
+                    'Culture': 'Kulttuuri',
+                    'People': 'Ihmiset',
+                    'Country': 'Maa'
+                };
+
+                Object.keys(fuzzyMatches).forEach(key => {
+                    const regex = new RegExp('\\b' + key + '\\b', 'gi');
+                    if (regex.test(result)) {
+                        result = result.replace(regex, fuzzyMatches[key]);
+                        modified = true;
+                        console.log('🔍 Fuzzy match:', key, '->', fuzzyMatches[key]);
+                    }
+                });
+            }
+
+            return result;
         }
 
-        // Function to translate all text elements on the page
+        // 🎭 CREATIVE PAGE TRANSLATION - Smart element tracking!
         function translatePage() {
-            console.log('translatePage called, isFinnish:', isFinnish);
+            console.log('🚀 Starting creative translation process...');
+            console.log('Current state:', isFinnish ? '🇫🇮 Finnish' : '🇺🇸 English');
 
-            // Simple approach: translate all text content directly
-            const allElements = document.querySelectorAll('*');
             let translatedCount = 0;
+            let skippedCount = 0;
 
-            allElements.forEach(element => {
-                // Skip certain elements that shouldn't be translated
-                if (element.id === 'translateBtn' ||
-                    element.id === 'translateStatus' ||
-                    element.classList.contains('translate-tooltip') ||
-                    element.tagName === 'SCRIPT' ||
-                    element.tagName === 'STYLE' ||
-                    element.tagName === 'LINK' ||
-                    element.tagName === 'META') {
-                    return;
-                }
+            // 🎯 Smart element selection - focus on content that matters
+            const selectors = [
+                'h1', 'h2', 'h3', 'h4', 'h5', 'h6', // Headers
+                'p', 'li', 'span', 'div', 'a',     // Content elements
+                'strong', 'em', 'b', 'i'           // Formatting
+            ];
 
-                // Translate text content of elements with no children or simple text
-                if (element.children.length === 0 && element.textContent && element.textContent.trim()) {
-                    const originalText = element.textContent.trim();
-                    const translatedText = translateText(originalText, !isFinnish);
+            selectors.forEach(selector => {
+                const elements = document.querySelectorAll(selector);
 
-                    if (originalText !== translatedText && translatedText) {
-                        element.textContent = translatedText;
-                        translatedCount++;
-                        console.log('Translated:', originalText, '->', translatedText);
+                elements.forEach((element, index) => {
+                    // 🚫 Skip unwanted elements
+                    if (shouldSkipElement(element)) {
+                        skippedCount++;
+                        return;
                     }
-                }
-                // Also handle elements with text and child elements
-                else if (element.children.length > 0 && element.textContent && element.textContent.trim()) {
-                    // Get only the direct text content (not child elements)
-                    let directText = '';
-                    element.childNodes.forEach(node => {
-                        if (node.nodeType === Node.TEXT_NODE) {
-                            directText += node.textContent;
-                        }
-                    });
 
-                    if (directText.trim()) {
-                        const originalText = directText.trim();
+                    const elementId = `elem_${selector}_${index}`;
+
+                    // 📝 Handle different element types
+                    if (element.children.length === 0 && element.textContent && element.textContent.trim()) {
+                        // Simple text element
+                        const currentText = element.textContent.trim();
+
+                        if (!originalTexts.has(elementId)) {
+                            originalTexts.set(elementId, currentText);
+                            translatedElements.set(elementId, element);
+                        }
+
+                        const originalText = originalTexts.get(elementId);
                         const translatedText = translateText(originalText, !isFinnish);
 
-                        if (originalText !== translatedText && translatedText) {
-                            // Replace only the text nodes
-                            element.childNodes.forEach(node => {
-                                if (node.nodeType === Node.TEXT_NODE) {
-                                    node.textContent = node.textContent.replace(originalText, translatedText);
-                                }
-                            });
+                        if (translatedText !== currentText) {
+                            element.textContent = translatedText;
                             translatedCount++;
-                            console.log('Translated complex element:', originalText, '->', translatedText);
+                            console.log(`✅ Translated ${selector}: "${originalText}" → "${translatedText}"`);
                         }
+
+                    } else if (element.children.length > 0) {
+                        // Complex element with children - handle text nodes
+                        element.childNodes.forEach((node, nodeIndex) => {
+                            if (node.nodeType === Node.TEXT_NODE && node.textContent && node.textContent.trim()) {
+                                const nodeId = `${elementId}_node_${nodeIndex}`;
+                                const currentText = node.textContent.trim();
+
+                                if (!originalTexts.has(nodeId)) {
+                                    originalTexts.set(nodeId, currentText);
+                                }
+
+                                const originalText = originalTexts.get(nodeId);
+                                const translatedText = translateText(originalText, !isFinnish);
+
+                                if (translatedText !== currentText) {
+                                    node.textContent = translatedText;
+                                    translatedCount++;
+                                    console.log(`🔄 Translated text node: "${originalText}" → "${translatedText}"`);
+                                }
+                            }
+                        });
                     }
-                }
+                });
             });
 
-            console.log('Translation completed. Translated', translatedCount, 'elements.');
+            console.log(`📊 Translation Summary:`);
+            console.log(`  ✅ Translated: ${translatedCount} elements`);
+            console.log(`  🚫 Skipped: ${skippedCount} elements`);
+            console.log(`  🎯 Total processed: ${translatedCount + skippedCount}`);
+
+            // 🔄 Toggle language state with animation
             isFinnish = !isFinnish;
             translateBtn.classList.toggle('active');
 
-            // Update status indicator
+            // 🎨 Update visual indicators with flair
             const statusIndicator = document.getElementById('translateStatus');
             if (statusIndicator) {
-                statusIndicator.textContent = isFinnish ? 'FI' : 'EN';
+                const newText = isFinnish ? '🇫🇮 SUOMI' : '🇺🇸 ENGLISH';
+                const newColor = isFinnish ? '#003580' : '#28a745';
+
+                statusIndicator.textContent = newText;
+                statusIndicator.style.background = `rgba(${isFinnish ? '0, 53, 128' : '40, 167, 69'}, 0.8)`;
+                statusIndicator.style.transform = 'scale(1.3) rotate(5deg)';
+                statusIndicator.style.fontWeight = 'bold';
+
+                setTimeout(() => {
+                    statusIndicator.style.transform = 'scale(1) rotate(0deg)';
+                    statusIndicator.style.transition = 'all 0.3s ease';
+                }, 300);
             }
 
-            // Add visual feedback
-            translateBtn.style.transform = 'scale(1.1)';
+            // 🎆 Button animation
+            translateBtn.style.transform = 'scale(1.2) rotate(5deg)';
             setTimeout(() => {
-                translateBtn.style.transform = 'scale(1)';
-            }, 200);
+                translateBtn.style.transform = 'scale(1) rotate(0deg)';
+            }, 300);
+
+            return translatedCount;
         }
 
-        // Add click event to translation button
-        translateBtn.addEventListener('click', function() {
-            console.log('Translation button clicked!');
-            console.log('Current isFinnish state:', isFinnish);
-            console.log('Translations object length:', Object.keys(translations).length);
+        // 🛡️ Helper function to determine which elements to skip
+        function shouldSkipElement(element) {
+            return (
+                element.id === 'translateBtn' ||
+                element.id === 'translateStatus' ||
+                element.closest('#translateBtn') ||
+                element.classList.contains('translate-tooltip') ||
+                element.classList.contains('hymn-tooltip') ||
+                element.closest('.hymn-player') ||
+                element.tagName === 'SCRIPT' ||
+                element.tagName === 'STYLE' ||
+                element.tagName === 'LINK' ||
+                element.tagName === 'META' ||
+                element.contentEditable === 'true' ||
+                element.getAttribute('data-no-translate') === 'true'
+            );
+        }
 
-            // Call the translation function
-            translatePage();
+        // 🎮 CREATIVE EVENT HANDLING - Make it fun and interactive!
+        if (translateBtn) {
+            translateBtn.addEventListener('click', function() {
+                console.log('🎉 Translation button clicked!');
+                console.log('🌍 Language switch initiated...');
 
-            console.log('Translation completed. New isFinnish state:', isFinnish);
-        });
+                // Add loading state
+                translateBtn.textContent = isFinnish ? '🇺🇸' : '🇫🇮';
+                translateBtn.style.pointerEvents = 'none';
+
+                const result = translatePage();
+
+                // Reset button after animation with creative flair
+                setTimeout(() => {
+                    translateBtn.innerHTML = `
+                        <span class="translate-tooltip">${isFinnish ? 'Switch to English / Vaihda englantiin' : 'Translate to Finnish / Käännä suomeksi'}</span>
+                        <span id="translateStatus">${isFinnish ? '🇫🇮 SUOMI' : '🇺🇸 ENGLISH'}</span>
+                    `;
+                    translateBtn.style.pointerEvents = 'auto';
+
+                    // Update button color based on state
+                    if (isFinnish) {
+                        translateBtn.style.background = 'linear-gradient(135deg, #28a745 0%, #20c997 100%)';
+                    } else {
+                        translateBtn.style.background = 'linear-gradient(135deg, #003580 0%, #0052a5 100%)';
+                    }
+                }, 500);
+
+                if (result > 0) {
+                    console.log('🎊 SUCCESS! Translation completed!');
+                    console.log(`📈 Translated ${result} text elements`);
+                    console.log(`🌐 Now in: ${isFinnish ? 'Suomi (Finnish)' : 'English'}`);
+
+                    // Show success animation
+                    showTranslationSuccess();
+                } else {
+                    console.log('🤔 Hmm, no text was translated. Let me check...');
+                    console.log('Available translations:', Object.keys(translations).length);
+                    console.log('Try running: window.debugTranslation()');
+                }
+            });
+
+            // Add hover effects
+            translateBtn.addEventListener('mouseenter', function() {
+                this.style.boxShadow = '0 6px 20px rgba(0, 53, 128, 0.4)';
+            });
+
+            translateBtn.addEventListener('mouseleave', function() {
+                this.style.boxShadow = '0 4px 8px rgba(0,0,0,0.3)';
+            });
+
+            console.log('✅ Translation button event listener attached with flair!');
+        } else {
+            console.error('❌ Translation button not found! Something\'s wrong...');
+        }
+
+        // 🎨 Success animation function
+        function showTranslationSuccess() {
+            const successIndicator = document.createElement('div');
+            successIndicator.innerHTML = `
+                <div style="
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: linear-gradient(135deg, #4CAF50, #45a049);
+                    color: white;
+                    padding: 15px 25px;
+                    border-radius: 50px;
+                    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+                    font-weight: bold;
+                    font-size: 14px;
+                    z-index: 10000;
+                    animation: slideIn 0.5s ease-out;
+                ">
+                    <span style="font-size: 16px;">✅</span>
+                    <span style="margin-left: 8px;">Translation Complete!</span>
+                </div>
+            `;
+
+            document.body.appendChild(successIndicator);
+
+            // Remove after 3 seconds
+            setTimeout(() => {
+                if (successIndicator.parentElement) {
+                    successIndicator.style.animation = 'slideOut 0.5s ease-in';
+                    setTimeout(() => successIndicator.remove(), 500);
+                }
+            }, 3000);
+        }
+
+        // 🎭 Initialize creative translation system
+        console.log('🌟 CREATIVE TRANSLATION SYSTEM ACTIVATED!');
+        console.log('🎯 Available translations:', Object.keys(translations).length);
+        console.log('🎮 Current language: English (EN)');
+        console.log('');
+        console.log('🎪 How to use:');
+        console.log('  • Click the blue button in bottom-right corner');
+        console.log('  • Watch the magic happen!');
+        console.log('  • Use console commands for debugging:');
+        console.log('    - testTranslation("Hello World")');
+        console.log('    - manualTranslate()');
+        console.log('    - debugTranslation()');
+
+        // 🛠️ Enhanced debugging functions
+        window.testTranslation = function(text = 'Welcome to Finland!') {
+            console.log('🧪 Testing translation engine...');
+            console.log('Input:', text);
+            const result = translateText(text, true);
+            console.log('Output:', result);
+            console.log('Changed:', text !== result ? 'YES' : 'NO');
+            return result;
+        };
+
+        window.manualTranslate = function() {
+            console.log('🔧 Manual translation trigger...');
+            const result = translatePage();
+            console.log('Result:', result, 'elements translated');
+            return result;
+        };
+
+        window.debugTranslation = function() {
+            console.log('🐛 DEBUG MODE ACTIVATED!');
+            console.log('Language state:', isFinnish ? 'Finnish' : 'English');
+            console.log('Translations available:', Object.keys(translations).length);
+            console.log('Original texts stored:', originalTexts.size);
+            console.log('Translated elements tracked:', translatedElements.size);
+            console.log('');
+            console.log('Sample translations:');
+            const samples = ['Welcome to Finland', 'Finnish', 'Language', 'History'];
+            samples.forEach(sample => {
+                const translated = translateText(sample, true);
+                console.log(`  "${sample}" → "${translated}"`);
+            });
+        };
+
+        // 🎨 Add custom CSS animations for success messages
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
 
         // Add some interactive fun
         document.addEventListener('DOMContentLoaded', function() {

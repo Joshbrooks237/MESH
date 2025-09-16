@@ -11,6 +11,7 @@ const winston = require('winston');
 const authRoutes = require('./routes/auth');
 const inventoryRoutes = require('./routes/inventory');
 const warehouseRoutes = require('./routes/warehouse');
+const tenantRoutes = require('./routes/tenants');
 const trackingRoutes = require('./routes/tracking');
 const reportingRoutes = require('./routes/reporting');
 
@@ -105,6 +106,7 @@ app.get('/health', (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/inventory', authenticateToken, inventoryRoutes);
 app.use('/api/warehouse', authenticateToken, warehouseRoutes);
+app.use('/api/tenants', authenticateToken, tenantRoutes);
 app.use('/api/tracking', authenticateToken, trackingRoutes);
 app.use('/api/reporting', authenticateToken, reportingRoutes);
 
