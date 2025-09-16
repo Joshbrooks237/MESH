@@ -1141,29 +1141,57 @@ footer p {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    /* Mobile Header - Much Smaller */
+    header {
+        padding: 0.5rem 0; /* Even smaller than before */
+        position: relative; /* Remove fixed positioning on mobile */
+    }
+
     .header-content {
         flex-direction: column;
         text-align: center;
-        gap: 1rem;
+        gap: 0.5rem;
+        padding: 0 1rem;
     }
 
+    .logo h1 {
+        font-size: 1.8rem; /* Smaller logo on mobile */
+        margin-bottom: 0.3rem;
+    }
+
+    .logo p {
+        font-size: 0.8rem; /* Smaller tagline */
+    }
+
+    /* Mobile Navigation - Compact */
     nav ul {
         flex-wrap: wrap;
         justify-content: center;
-        gap: 1rem;
+        gap: 0.5rem;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 20px;
+        padding: 0.3rem;
+        margin-top: 0.5rem;
     }
 
     nav a {
-        padding: 0.3rem 0.8rem;
-        font-size: 0.9rem;
+        padding: 0.4rem 0.6rem;
+        font-size: 0.75rem; /* Smaller text */
+        letter-spacing: 0.3px;
+    }
+
+    /* Adjust main content padding for mobile */
+    main {
+        padding-top: 4rem; /* Less padding since header is smaller */
     }
 
     .section h2 {
-        font-size: 2rem;
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
     }
 
     .section h3 {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
 
     .key-rights-grid,
@@ -1180,33 +1208,42 @@ footer p {
     }
 }
 
+/* Extra Small Mobile Devices */
 @media (max-width: 480px) {
+    header {
+        padding: 0.3rem 0;
+    }
+
+    .header-content {
+        padding: 0 0.5rem;
+        gap: 0.3rem;
+    }
+
     .logo h1 {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
+        margin-bottom: 0.2rem;
     }
 
     .logo p {
-        font-size: 1rem;
+        font-size: 0.7rem;
     }
 
     nav ul {
-        gap: 0.5rem;
+        gap: 0.3rem;
+        padding: 0.2rem;
     }
 
     nav a {
-        padding: 0.2rem 0.5rem;
-        font-size: 0.8rem;
+        padding: 0.3rem 0.5rem;
+        font-size: 0.7rem;
     }
 
-    .section h2 {
-        font-size: 1.8rem;
-    }
-
-    .right-card,
-    .resource-card {
-        padding: 1.5rem;
+    main {
+        padding-top: 3rem;
     }
 }
+
+/* Mobile optimizations complete */
 
 /* Print Styles */
 @media print {
