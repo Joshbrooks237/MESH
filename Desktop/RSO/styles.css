@@ -931,6 +931,323 @@ body {
         radial-gradient(circle at 50% 50%, rgba(168, 213, 186, 0.03) 0%, transparent 50%);
 }
 
+/* Cancer Treatment Section */
+.cancer-treatment {
+    background:
+        linear-gradient(135deg, #f0f8f0 0%, #e8f5ea 50%, #f8fdf9 100%),
+        radial-gradient(circle at 25% 25%, rgba(168, 213, 186, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(45, 90, 61, 0.04) 0%, transparent 50%);
+}
+
+.cancer-treatment-content {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+
+.treatment-overview h3,
+.treatment-protocol h3,
+.cancer-types h3,
+.treatment-testimonials h3,
+.research-section h3 {
+    color: #2d5a3d;
+    font-size: 28px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.treatment-overview h3::after,
+.treatment-protocol h3::after,
+.cancer-types h3::after,
+.treatment-testimonials h3::after,
+.research-section h3::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #a8d5ba, #2d5a3d);
+    border-radius: 2px;
+}
+
+/* Treatment Benefits Cards */
+.treatment-benefits {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.treatment-card {
+    background: #fff;
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    border: 1px solid #f0f0f0;
+}
+
+.treatment-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(45, 90, 61, 0.15);
+}
+
+.treatment-icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.treatment-card h4 {
+    color: #2d5a3d;
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+.treatment-card p {
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Protocol Steps */
+.protocol-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.protocol-step {
+    background: #fff;
+    border-radius: 15px;
+    padding: 25px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    border-left: 4px solid #a8d5ba;
+    transition: all 0.3s ease;
+}
+
+.protocol-step:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(45, 90, 61, 0.12);
+}
+
+.protocol-step .step-number {
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, #2d5a3d 0%, #1a3d2a 100%);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 700;
+    box-shadow: 0 3px 10px rgba(45, 90, 61, 0.3);
+}
+
+.protocol-step h4 {
+    color: #2d5a3d;
+    font-size: 18px;
+    margin-bottom: 12px;
+    margin-top: 15px;
+}
+
+.protocol-step p {
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Protocol Warning */
+.protocol-warning {
+    background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+    border: 2px solid #f39c12;
+    border-radius: 12px;
+    padding: 25px;
+    margin-top: 30px;
+}
+
+.protocol-warning h4 {
+    color: #d68910;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.protocol-warning ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.protocol-warning li {
+    color: #6c5b2a;
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+/* Cancer Types Grid */
+.cancer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.cancer-type {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+    border: 1px solid #f0f0f0;
+    transition: all 0.3s ease;
+}
+
+.cancer-type:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(45, 90, 61, 0.1);
+}
+
+.cancer-type h4 {
+    color: #2d5a3d;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.cancer-type p {
+    color: #666;
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+/* Treatment Testimonials */
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 25px;
+}
+
+.patient-story {
+    background: #fff;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    border-left: 4px solid #a8d5ba;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.patient-story:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(45, 90, 61, 0.12);
+}
+
+.patient-story::before {
+    content: '"';
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 50px;
+    color: rgba(168, 213, 186, 0.2);
+    font-family: Georgia, serif;
+}
+
+.patient-story blockquote {
+    margin: 0 0 15px 0;
+    padding-left: 25px;
+    font-style: italic;
+    color: #555;
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+.patient-story cite {
+    color: #2d5a3d;
+    font-weight: 600;
+    font-size: 14px;
+    padding-left: 25px;
+    display: block;
+}
+
+/* Research Studies */
+.research-studies {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.study {
+    background: linear-gradient(135deg, #f8fdf9 0%, #e8f5ea 100%);
+    border-radius: 12px;
+    padding: 20px;
+    border: 2px solid #a8d5ba;
+    transition: all 0.3s ease;
+}
+
+.study:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(45, 90, 61, 0.1);
+}
+
+.study h4 {
+    color: #2d5a3d;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.study p {
+    color: #555;
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+.study sup {
+    color: #a8d5ba;
+    font-weight: bold;
+}
+
+/* Responsive adjustments for cancer treatment section */
+@media (max-width: 768px) {
+    .cancer-treatment-content {
+        gap: 40px;
+    }
+
+    .treatment-benefits,
+    .protocol-steps,
+    .cancer-grid,
+    .testimonials-grid,
+    .research-studies {
+        grid-template-columns: 1fr;
+    }
+
+    .treatment-card,
+    .protocol-step,
+    .cancer-type,
+    .patient-story,
+    .study {
+        padding: 20px;
+    }
+
+    .treatment-overview h3,
+    .treatment-protocol h3,
+    .cancer-types h3,
+    .treatment-testimonials h3,
+    .research-section h3 {
+        font-size: 24px;
+    }
+
+    .treatment-card h4,
+    .cancer-type h4,
+    .study h4 {
+        font-size: 16px;
+    }
+}
+
 /* Artistic decorative elements */
 .section h2 {
     position: relative;
