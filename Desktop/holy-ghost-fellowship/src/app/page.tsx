@@ -161,18 +161,24 @@ export default function Home() {
             <Card className="spiritual-card mystical-hover group">
               <CardHeader className="relative">
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-16 h-16 bg-gradient-to-br from-indigo-500 to-indigo-700 rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300">
-                  <Wifi className="w-8 h-8 text-white animate-pulse" />
+                  <Church className="w-8 h-8 text-white animate-pulse" />
                   <div className="absolute inset-0 rounded-full bg-indigo-400/30 animate-ping" style={{animationDelay: '1s'}}></div>
                 </div>
                 <div className="mt-8">
-                  <CardTitle className="text-center text-indigo-600">Global Worship Community</CardTitle>
+                  <CardTitle className="text-center text-indigo-600">Find Your Church</CardTitle>
                   <CardDescription className="text-center mt-2">
-                    Join believers worldwide in worship, fellowship, and spiritual growth through our sacred community network
+                    Discover Holy Spirit-led churches near you with our advanced church finder featuring denomination filtering and location services
                   </CardDescription>
                 </div>
               </CardHeader>
               <CardContent className="text-center">
-                <div className="text-sm text-indigo-600 font-semibold">Worldwide Fellowship</div>
+                <Link href="/church-finder">
+                  <Button className="bg-indigo-600 hover:bg-indigo-700">
+                    <Church className="w-4 h-4 mr-2" />
+                    Find Churches Near Me
+                  </Button>
+                </Link>
+                <div className="text-sm text-indigo-600 font-semibold mt-3">Church Discovery</div>
                 <div className="w-full bg-indigo-200 rounded-full h-2 mt-2">
                   <div className="bg-indigo-600 h-2 rounded-full animate-fill-width-delayed-2"></div>
                 </div>
