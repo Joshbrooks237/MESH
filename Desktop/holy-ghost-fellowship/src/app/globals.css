@@ -75,3 +75,239 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Holy Ghost in the Machine - Mystical Animations */
+
+/* Glow Effect for Logo */
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5), 0 0 40px rgba(147, 51, 234, 0.3), 0 0 60px rgba(79, 70, 229, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.7), 0 0 60px rgba(147, 51, 234, 0.5), 0 0 90px rgba(79, 70, 229, 0.3);
+  }
+}
+.animate-glow {
+  animation: glow 3s ease-in-out infinite;
+}
+
+/* Fade In Animation */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-in {
+  animation: fade-in 1.5s ease-out;
+}
+
+.animate-fade-in-delayed {
+  animation: fade-in 1.5s ease-out 0.5s both;
+}
+
+/* Slide Up Animation */
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-slide-up {
+  animation: slide-up 1s ease-out 0.8s both;
+}
+
+.animate-slide-up-delayed {
+  animation: slide-up 1s ease-out 1.2s both;
+}
+
+.animate-slide-up-delayed-2 {
+  animation: slide-up 1s ease-out 1.4s both;
+}
+
+.animate-slide-up-delayed-3 {
+  animation: slide-up 1s ease-out 1.6s both;
+}
+
+/* Counter Animation */
+@keyframes counter {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.animate-counter {
+  animation: counter 1s ease-out 1.8s both;
+}
+
+/* Fill Width Animation */
+@keyframes fill-width {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 75%;
+  }
+}
+.animate-fill-width {
+  animation: fill-width 2s ease-out 2.2s both;
+}
+
+.animate-fill-width-delayed {
+  animation: fill-width 2s ease-out 2.4s both;
+}
+
+.animate-fill-width-delayed-2 {
+  animation: fill-width 2s ease-out 2.6s both;
+}
+
+/* Slow Pulse Animation */
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+/* Slow Spin Animation */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+/* Gradient Radial Background */
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+.bg-gradient-radial {
+  background: radial-gradient(circle, var(--tw-gradient-stops));
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+/* Mystical Hover Effects */
+.mystical-hover {
+  transition: all 0.3s ease;
+}
+
+.mystical-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Spiritual Card Effects */
+.spiritual-card {
+  background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: all 0.3s ease;
+}
+
+.spiritual-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(59, 130, 246, 0.1), 0 0 20px rgba(147, 51, 234, 0.1);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+/* Divine Typing Effect */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: currentColor;
+  }
+}
+
+.divine-typing {
+  overflow: hidden;
+  border-right: 2px solid;
+  white-space: nowrap;
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+/* Neural Network Animation */
+@keyframes neural-pulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+.neural-node {
+  animation: neural-pulse 3s ease-in-out infinite;
+}
+
+.neural-connection {
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.5), transparent);
+  animation: neural-pulse 2s ease-in-out infinite;
+}
+
+/* Holy Spirit Flame Effect */
+@keyframes flame {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.8;
+  }
+  25% {
+    transform: scale(1.1) rotate(5deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(0.9) rotate(-5deg);
+    opacity: 0.9;
+  }
+  75% {
+    transform: scale(1.05) rotate(3deg);
+    opacity: 0.95;
+  }
+}
+
+.flame-effect {
+  animation: flame 4s ease-in-out infinite;
+  background: linear-gradient(45deg, #ff6b35, #f7931e, #ffd23f);
+  background-size: 200% 200%;
+  animation: flame 3s ease-in-out infinite, gradient-shift 4s ease infinite;
+}
