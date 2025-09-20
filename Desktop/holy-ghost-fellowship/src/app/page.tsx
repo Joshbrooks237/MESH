@@ -35,14 +35,14 @@ export default function Home() {
 
             {/* Spiritual Subtitle */}
             <p className="mx-auto mt-8 max-w-3xl text-xl leading-8 text-gray-700 animate-fade-in-delayed">
-              <span className="text-blue-600 font-semibold">AI-Powered Spiritual Connection</span> •
-              <span className="text-purple-600 font-semibold"> Global Christian Community</span> •
-              <span className="text-indigo-600 font-semibold"> Divine Intelligence</span>
+              <span className="text-blue-600 font-semibold">Holy Spirit-Led Community</span> •
+              <span className="text-purple-600 font-semibold"> Global Christian Fellowship</span> •
+              <span className="text-indigo-600 font-semibold"> Divine Connection</span>
               <br className="hidden sm:block" />
-              Experience the fusion of faith and technology where believers worldwide connect through
-              <span className="text-blue-600 font-semibold"> prayer algorithms</span>,
-              <span className="text-purple-600 font-semibold"> AI spiritual guidance</span>, and
-              <span className="text-indigo-600 font-semibold"> divine wisdom networks</span>.
+              Experience the mystical fellowship of believers worldwide, united in prayer, worship, and spiritual growth through
+              <span className="text-blue-600 font-semibold"> sacred prayer circles</span>,
+              <span className="text-purple-600 font-semibold"> Holy Spirit guidance</span>, and
+              <span className="text-indigo-600 font-semibold"> divine fellowship networks</span>.
             </p>
 
             {/* Mystical CTA Buttons */}
@@ -50,13 +50,13 @@ export default function Home() {
               <Link href="/auth/signin">
                 <Button size="lg" className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 hover:from-blue-700 hover:via-purple-700 hover:to-indigo-700 shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 animate-pulse-slow">
                   <Sparkles className="w-5 h-5 mr-2 animate-spin-slow" />
-                  Enter the Divine Network
-                  <Zap className="w-5 h-5 ml-2 animate-pulse" />
+                  Join the Sacred Fellowship
+                  <Cross className="w-5 h-5 ml-2 animate-pulse" />
                 </Button>
               </Link>
               <Button variant="outline" size="lg" className="border-2 border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white transform hover:scale-105 transition-all duration-300">
-                <Brain className="w-5 h-5 mr-2" />
-                AI Spiritual Guide
+                <Heart className="w-5 h-5 mr-2" />
+                Learn Our Mission
               </Button>
             </div>
 
@@ -71,14 +71,14 @@ export default function Home() {
               </div>
               <div className="text-center animate-slide-up-delayed-2">
                 <div className="text-3xl font-bold text-purple-600 animate-counter">500+</div>
-                <div className="text-gray-600">AI Prayer Groups</div>
+                <div className="text-gray-600">Prayer Circles</div>
                 <div className="w-full bg-purple-200 rounded-full h-1 mt-2">
                   <div className="bg-purple-600 h-1 rounded-full animate-fill-width-delayed"></div>
                 </div>
               </div>
               <div className="text-center animate-slide-up-delayed-3">
                 <div className="text-3xl font-bold text-indigo-600 animate-counter">24/7</div>
-                <div className="text-gray-600">Divine Intelligence</div>
+                <div className="text-gray-600">Holy Spirit Presence</div>
                 <div className="w-full bg-indigo-200 rounded-full h-1 mt-2">
                   <div className="bg-indigo-600 h-1 rounded-full animate-fill-width-delayed-2"></div>
                 </div>
@@ -106,12 +106,12 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center">
             <h2 className="text-4xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 sm:text-5xl">
-              Divine Intelligence Network
+              Sacred Fellowship Network
             </h2>
             <p className="mt-6 text-xl text-gray-700 max-w-3xl mx-auto">
-              Experience the convergence of <span className="text-blue-600 font-semibold">Holy Spirit guidance</span> and
-              <span className="text-purple-600 font-semibold"> AI wisdom algorithms</span> in our
-              <span className="text-indigo-600 font-semibold"> neural faith network</span>
+              Experience the mystical fellowship of <span className="text-blue-600 font-semibold">Holy Spirit-led community</span>,
+              <span className="text-purple-600 font-semibold"> sacred prayer partnerships</span>, and
+              <span className="text-indigo-600 font-semibold"> divine spiritual connections</span>
             </p>
           </div>
 
@@ -123,14 +123,14 @@ export default function Home() {
                   <div className="absolute inset-0 rounded-full bg-blue-400/30 animate-ping"></div>
                 </div>
                 <div className="mt-8">
-                  <CardTitle className="text-center text-blue-600">AI Prayer Algorithms</CardTitle>
+                  <CardTitle className="text-center text-blue-600">Sacred Prayer Circles</CardTitle>
                   <CardDescription className="text-center mt-2">
-                    Advanced AI analyzes prayer patterns to connect you with the most compatible prayer partners worldwide
+                    Join Holy Spirit-led prayer partnerships where believers worldwide lift each other up in faith and love
                   </CardDescription>
                 </div>
               </CardHeader>
               <CardContent className="text-center">
-                <div className="text-sm text-blue-600 font-semibold">Neural Prayer Matching</div>
+                <div className="text-sm text-blue-600 font-semibold">Divine Prayer Fellowship</div>
                 <div className="w-full bg-blue-200 rounded-full h-2 mt-2">
                   <div className="bg-blue-600 h-2 rounded-full animate-fill-width"></div>
                 </div>
@@ -144,14 +144,14 @@ export default function Home() {
                   <div className="absolute inset-0 rounded-full bg-purple-400/30 animate-ping" style={{animationDelay: '0.5s'}}></div>
                 </div>
                 <div className="mt-8">
-                  <CardTitle className="text-center text-purple-600">Spiritual AI Guide</CardTitle>
+                  <CardTitle className="text-center text-purple-600">Holy Spirit Ministry</CardTitle>
                   <CardDescription className="text-center mt-2">
-                    Machine learning algorithms provide personalized spiritual guidance based on your faith journey
+                    Discover your spiritual gifts and calling through Holy Spirit-led ministry opportunities and fellowship
                   </CardDescription>
                 </div>
               </CardHeader>
               <CardContent className="text-center">
-                <div className="text-sm text-purple-600 font-semibold">Divine Intelligence</div>
+                <div className="text-sm text-purple-600 font-semibold">Spiritual Gifts & Calling</div>
                 <div className="w-full bg-purple-200 rounded-full h-2 mt-2">
                   <div className="bg-purple-600 h-2 rounded-full animate-fill-width-delayed"></div>
                 </div>
@@ -165,14 +165,14 @@ export default function Home() {
                   <div className="absolute inset-0 rounded-full bg-indigo-400/30 animate-ping" style={{animationDelay: '1s'}}></div>
                 </div>
                 <div className="mt-8">
-                  <CardTitle className="text-center text-indigo-600">Faith Neural Network</CardTitle>
+                  <CardTitle className="text-center text-indigo-600">Global Worship Community</CardTitle>
                   <CardDescription className="text-center mt-2">
-                    Connect with believers through our intelligent neural network that learns and adapts to spiritual needs
+                    Join believers worldwide in worship, fellowship, and spiritual growth through our sacred community network
                   </CardDescription>
                 </div>
               </CardHeader>
               <CardContent className="text-center">
-                <div className="text-sm text-indigo-600 font-semibold">Global Faith Web</div>
+                <div className="text-sm text-indigo-600 font-semibold">Worldwide Fellowship</div>
                 <div className="w-full bg-indigo-200 rounded-full h-2 mt-2">
                   <div className="bg-indigo-600 h-2 rounded-full animate-fill-width-delayed-2"></div>
                 </div>
@@ -186,14 +186,14 @@ export default function Home() {
                   <div className="absolute inset-0 rounded-full bg-cyan-400/30 animate-ping" style={{animationDelay: '1.5s'}}></div>
                 </div>
                 <div className="mt-8">
-                  <CardTitle className="text-center text-cyan-600">AI Bible Insights</CardTitle>
+                  <CardTitle className="text-center text-cyan-600">Scripture Study Groups</CardTitle>
                   <CardDescription className="text-center mt-2">
-                    Machine learning analyzes biblical texts to provide deep insights and connections across scripture
+                    Join Holy Spirit-led Bible study groups where believers deepen their understanding of God's Word together
                   </CardDescription>
                 </div>
               </CardHeader>
               <CardContent className="text-center">
-                <div className="text-sm text-cyan-600 font-semibold">Scriptural AI</div>
+                <div className="text-sm text-cyan-600 font-semibold">Biblical Fellowship</div>
                 <div className="w-full bg-cyan-200 rounded-full h-2 mt-2">
                   <div className="bg-cyan-600 h-2 rounded-full animate-fill-width"></div>
                 </div>
@@ -207,14 +207,14 @@ export default function Home() {
                   <div className="absolute inset-0 rounded-full bg-green-400/30 animate-ping" style={{animationDelay: '2s'}}></div>
                 </div>
                 <div className="mt-8">
-                  <CardTitle className="text-center text-green-600">Quantum Faith Chat</CardTitle>
+                  <CardTitle className="text-center text-green-600">Holy Spirit Fellowship</CardTitle>
                   <CardDescription className="text-center mt-2">
-                    Real-time spiritual conversations powered by AI moderators that understand faith contexts
+                    Connect in real-time spiritual conversations with believers worldwide, guided by the Holy Spirit's wisdom
                   </CardDescription>
                 </div>
               </CardHeader>
               <CardContent className="text-center">
-                <div className="text-sm text-green-600 font-semibold">Spiritual AI Chat</div>
+                <div className="text-sm text-green-600 font-semibold">Spirit-Led Community</div>
                 <div className="w-full bg-green-200 rounded-full h-2 mt-2">
                   <div className="bg-green-600 h-2 rounded-full animate-fill-width-delayed"></div>
                 </div>
@@ -228,14 +228,14 @@ export default function Home() {
                   <div className="absolute inset-0 rounded-full bg-orange-400/30 animate-ping" style={{animationDelay: '2.5s'}}></div>
                 </div>
                 <div className="mt-8">
-                  <CardTitle className="text-center text-orange-600">Holy Spirit Analytics</CardTitle>
+                  <CardTitle className="text-center text-orange-600">Spiritual Growth Tracking</CardTitle>
                   <CardDescription className="text-center mt-2">
-                    Data-driven spiritual insights showing prayer effectiveness and community impact worldwide
+                    Track your spiritual journey and witness answered prayers as you grow in faith with our community
                   </CardDescription>
                 </div>
               </CardHeader>
               <CardContent className="text-center">
-                <div className="text-sm text-orange-600 font-semibold">Divine Metrics</div>
+                <div className="text-sm text-orange-600 font-semibold">Faith Journey</div>
                 <div className="w-full bg-orange-200 rounded-full h-2 mt-2">
                   <div className="bg-orange-600 h-2 rounded-full animate-fill-width-delayed-2"></div>
                 </div>
@@ -274,29 +274,29 @@ export default function Home() {
             </div>
 
             <h2 className="text-4xl font-bold sm:text-5xl mb-4">
-              Neural Faith Network
+              Sacred Global Fellowship
             </h2>
 
             <div className="max-w-4xl mx-auto">
               <p className="text-xl text-blue-100 mb-6">
-                <span className="text-yellow-300 font-semibold">✨ Holy Ghost Intelligence</span> connecting believers through
-                <span className="text-cyan-300 font-semibold"> divine algorithms</span> and
-                <span className="text-purple-300 font-semibold"> spiritual neural pathways</span>
+                <span className="text-yellow-300 font-semibold">✨ Holy Spirit Presence</span> uniting believers through
+                <span className="text-cyan-300 font-semibold"> sacred prayer</span> and
+                <span className="text-purple-300 font-semibold"> divine fellowship worldwide</span>
               </p>
 
               {/* AI Faith Metrics */}
               <div className="grid grid-cols-2 gap-6 md:grid-cols-4 mt-12">
                 <div className="text-center p-4 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 mystical-hover">
                   <div className="text-4xl font-bold text-yellow-300 animate-counter mb-2">∞</div>
-                  <div className="text-blue-100 text-sm">Divine Connections</div>
+                  <div className="text-blue-100 text-sm">Eternal Fellowship</div>
                   <div className="w-full bg-yellow-300/20 rounded-full h-1 mt-3">
                     <div className="bg-yellow-300 h-1 rounded-full animate-fill-width"></div>
                   </div>
                 </div>
 
                 <div className="text-center p-4 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 mystical-hover">
-                  <div className="text-4xl font-bold text-purple-300 animate-counter mb-2" style={{animationDelay: '0.2s'}}>AI</div>
-                  <div className="text-blue-100 text-sm">Spiritual Intelligence</div>
+                  <div className="text-4xl font-bold text-purple-300 animate-counter mb-2" style={{animationDelay: '0.2s'}}>Ω</div>
+                  <div className="text-blue-100 text-sm">Divine Wisdom</div>
                   <div className="w-full bg-purple-300/20 rounded-full h-1 mt-3">
                     <div className="bg-purple-300 h-1 rounded-full animate-fill-width-delayed"></div>
                   </div>
@@ -311,8 +311,8 @@ export default function Home() {
                 </div>
 
                 <div className="text-center p-4 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 mystical-hover flame-effect">
-                  <div className="text-4xl font-bold text-orange-300 animate-counter mb-2" style={{animationDelay: '0.6s'}}>Ω</div>
-                  <div className="text-blue-100 text-sm">Divine Algorithms</div>
+                  <div className="text-4xl font-bold text-orange-300 animate-counter mb-2" style={{animationDelay: '0.6s'}}>🙏</div>
+                  <div className="text-blue-100 text-sm">Holy Spirit Power</div>
                   <div className="w-full bg-orange-300/20 rounded-full h-1 mt-3">
                     <div className="bg-orange-300 h-1 rounded-full animate-fill-width"></div>
                   </div>
@@ -322,36 +322,36 @@ export default function Home() {
               {/* Neural Network Visualization */}
               <div className="mt-16 relative">
                 <div className="text-center mb-8">
-                  <h3 className="text-2xl font-semibold text-cyan-300 mb-2">Global Faith Neural Network</h3>
-                  <p className="text-blue-200">Real-time spiritual connections powered by divine intelligence</p>
+                  <h3 className="text-2xl font-semibold text-cyan-300 mb-2">Sacred Global Fellowship</h3>
+                  <p className="text-blue-200">Real-time spiritual connections powered by Holy Spirit guidance</p>
                 </div>
 
-                {/* Simplified Neural Network */}
+                {/* Simplified Spiritual Network */}
                 <div className="flex justify-center items-center space-x-8">
                   <div className="flex flex-col items-center space-y-4">
                     <div className="w-4 h-4 bg-blue-400 rounded-full neural-node animate-pulse"></div>
-                    <div className="text-xs text-blue-200">Prayer AI</div>
+                    <div className="text-xs text-blue-200">Prayer Circles</div>
                   </div>
 
                   <div className="flex-1 h-0.5 bg-gradient-to-r from-blue-400/50 via-purple-400/50 to-indigo-400/50 neural-connection" style={{transform: 'rotate(2deg)'}}></div>
 
                   <div className="flex flex-col items-center space-y-4">
                     <div className="w-6 h-6 bg-purple-400 rounded-full neural-node animate-pulse" style={{animationDelay: '0.5s'}}></div>
-                    <div className="text-xs text-purple-200">Faith Hub</div>
+                    <div className="text-xs text-purple-200">Faith Community</div>
                   </div>
 
                   <div className="flex-1 h-0.5 bg-gradient-to-r from-purple-400/50 via-indigo-400/50 to-cyan-400/50 neural-connection" style={{transform: 'rotate(-2deg)', animationDelay: '0.8s'}}></div>
 
                   <div className="flex flex-col items-center space-y-4">
                     <div className="w-8 h-8 bg-indigo-400 rounded-full neural-node animate-pulse" style={{animationDelay: '1s'}}></div>
-                    <div className="text-xs text-indigo-200">Holy Spirit Core</div>
+                    <div className="text-xs text-indigo-200">Holy Spirit Center</div>
                   </div>
 
                   <div className="flex-1 h-0.5 bg-gradient-to-r from-indigo-400/50 via-cyan-400/50 to-green-400/50 neural-connection" style={{transform: 'rotate(1deg)', animationDelay: '1.2s'}}></div>
 
                   <div className="flex flex-col items-center space-y-4">
                     <div className="w-5 h-5 bg-green-400 rounded-full neural-node animate-pulse" style={{animationDelay: '1.5s'}}></div>
-                    <div className="text-xs text-green-200">Global Community</div>
+                    <div className="text-xs text-green-200">Global Fellowship</div>
                   </div>
                 </div>
               </div>
@@ -393,39 +393,39 @@ export default function Home() {
                 <Star className="w-8 h-8 text-white animate-spin-slow" />
               </div>
               <h2 className="text-4xl font-bold tracking-tight sm:text-5xl mb-4">
-                Divine Awakening Awaits
+                Holy Spirit Awakening
               </h2>
               <div className="max-w-3xl mx-auto">
                 <p className="text-xl text-blue-100 mb-6">
-                  <span className="text-yellow-300 font-semibold">🔥 Holy Ghost Intelligence</span> is calling you to join the
-                  <span className="text-purple-300 font-semibold"> neural faith revolution</span>.
+                  <span className="text-yellow-300 font-semibold">🔥 Holy Spirit Power</span> is calling you to join the
+                  <span className="text-purple-300 font-semibold"> sacred fellowship revolution</span>.
                   Experience spiritual connection powered by
-                  <span className="text-cyan-300 font-semibold"> divine algorithms</span> and
-                  <span className="text-green-300 font-semibold"> AI wisdom</span>.
+                  <span className="text-cyan-300 font-semibold"> divine prayer</span> and
+                  <span className="text-green-300 font-semibold"> Holy Spirit wisdom</span>.
                 </p>
 
                 {/* Mystical Awakening Message */}
                 <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 mb-8 border border-white/20 mystical-hover">
                   <div className="text-left max-w-2xl mx-auto">
                     <div className="flex items-center mb-4">
-                      <Brain className="w-6 h-6 text-cyan-300 mr-3 animate-pulse" />
-                      <span className="text-cyan-300 font-semibold">AI Spiritual Analysis Complete</span>
+                      <Heart className="w-6 h-6 text-cyan-300 mr-3 animate-pulse" />
+                      <span className="text-cyan-300 font-semibold">Holy Spirit Fellowship Ready</span>
                     </div>
                     <p className="text-blue-100 mb-4 divine-typing" style={{animationDelay: '1s'}}>
-                      Your spiritual journey has been analyzed by our divine intelligence algorithms...
+                      Your spiritual journey awaits in our sacred community of believers worldwide...
                     </p>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
                       <div className="p-3 bg-blue-500/20 rounded-lg">
                         <Heart className="w-6 h-6 text-blue-300 mx-auto mb-2" />
-                        <div className="text-sm text-blue-200">Prayer Compatibility: 98%</div>
+                        <div className="text-sm text-blue-200">Prayer Fellowship: Ready</div>
                       </div>
                       <div className="p-3 bg-purple-500/20 rounded-lg">
                         <Users className="w-6 h-6 text-purple-300 mx-auto mb-2" />
-                        <div className="text-sm text-purple-200">Community Match: 95%</div>
+                        <div className="text-sm text-purple-200">Community Welcome: Warm</div>
                       </div>
                       <div className="p-3 bg-green-500/20 rounded-lg">
                         <BookOpen className="w-6 h-6 text-green-300 mx-auto mb-2" />
-                        <div className="text-sm text-green-200">Spiritual Growth: ∞</div>
+                        <div className="text-sm text-green-200">Spiritual Growth: Eternal</div>
                       </div>
                     </div>
                   </div>
@@ -446,28 +446,28 @@ export default function Home() {
 
               <Button variant="outline" size="lg" className="border-2 border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-gray-900 transform hover:scale-105 transition-all duration-300 relative overflow-hidden group">
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-                <Brain className="w-6 h-6 mr-3 relative z-10" />
-                <span className="relative z-10">AI Faith Assessment</span>
+                <Heart className="w-6 h-6 mr-3 relative z-10" />
+                <span className="relative z-10">Spiritual Journey</span>
               </Button>
             </div>
 
             {/* Spiritual Promise */}
             <div className="max-w-2xl mx-auto">
               <p className="text-lg text-blue-200 italic mb-6">
-                "Where the Holy Spirit and artificial intelligence converge, miracles happen..."
+                "Where the Holy Spirit unites believers worldwide, miracles happen..."
               </p>
               <div className="flex items-center justify-center space-x-8 text-sm text-blue-300">
                 <div className="flex items-center">
                   <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse mr-2"></div>
-                  Real-time Prayer AI
+                  Sacred Prayer Circles
                 </div>
                 <div className="flex items-center">
                   <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse mr-2" style={{animationDelay: '0.5s'}}></div>
-                  Divine Intelligence
+                  Holy Spirit Guidance
                 </div>
                 <div className="flex items-center">
                   <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse mr-2" style={{animationDelay: '1s'}}></div>
-                  Spiritual Analytics
+                  Spiritual Fellowship
                 </div>
               </div>
             </div>
@@ -533,24 +533,24 @@ export default function Home() {
             <div>
               <h3 className="font-semibold mb-6 text-cyan-300 flex items-center">
                 <Sparkles className="w-4 h-4 mr-2" />
-                AI Spiritual Features
+                Sacred Fellowship Features
               </h3>
               <ul className="space-y-3 text-gray-300">
                 <li className="flex items-center">
                   <div className="w-1.5 h-1.5 bg-blue-400 rounded-full mr-3 animate-pulse"></div>
-                  <Link href="#" className="hover:text-blue-400 transition-colors">AI Prayer Algorithms</Link>
+                  <Link href="#" className="hover:text-blue-400 transition-colors">Sacred Prayer Circles</Link>
                 </li>
                 <li className="flex items-center">
                   <div className="w-1.5 h-1.5 bg-purple-400 rounded-full mr-3 animate-pulse" style={{animationDelay: '0.2s'}}></div>
-                  <Link href="#" className="hover:text-purple-400 transition-colors">Spiritual AI Guide</Link>
+                  <Link href="#" className="hover:text-purple-400 transition-colors">Holy Spirit Ministry</Link>
                 </li>
                 <li className="flex items-center">
                   <div className="w-1.5 h-1.5 bg-indigo-400 rounded-full mr-3 animate-pulse" style={{animationDelay: '0.4s'}}></div>
-                  <Link href="#" className="hover:text-indigo-400 transition-colors">Neural Faith Network</Link>
+                  <Link href="#" className="hover:text-indigo-400 transition-colors">Global Worship Community</Link>
                 </li>
                 <li className="flex items-center">
                   <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full mr-3 animate-pulse" style={{animationDelay: '0.6s'}}></div>
-                  <Link href="#" className="hover:text-cyan-400 transition-colors">AI Bible Insights</Link>
+                  <Link href="#" className="hover:text-cyan-400 transition-colors">Scripture Study Groups</Link>
                 </li>
               </ul>
             </div>
@@ -558,7 +558,7 @@ export default function Home() {
             <div>
               <h3 className="font-semibold mb-6 text-green-300 flex items-center">
                 <Heart className="w-4 h-4 mr-2" />
-                Divine Community
+                Spiritual Community
               </h3>
               <ul className="space-y-3 text-gray-300">
                 <li className="flex items-center">
@@ -567,15 +567,15 @@ export default function Home() {
                 </li>
                 <li className="flex items-center">
                   <div className="w-1.5 h-1.5 bg-orange-400 rounded-full mr-3 animate-pulse" style={{animationDelay: '0.2s'}}></div>
-                  <Link href="#" className="hover:text-orange-400 transition-colors">Holy Spirit Chat</Link>
+                  <Link href="#" className="hover:text-orange-400 transition-colors">Fellowship Chat</Link>
                 </li>
                 <li className="flex items-center">
                   <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full mr-3 animate-pulse" style={{animationDelay: '0.4s'}}></div>
-                  <Link href="#" className="hover:text-yellow-400 transition-colors">Spiritual Analytics</Link>
+                  <Link href="#" className="hover:text-yellow-400 transition-colors">Spiritual Growth</Link>
                 </li>
                 <li className="flex items-center">
                   <div className="w-1.5 h-1.5 bg-red-400 rounded-full mr-3 animate-pulse" style={{animationDelay: '0.6s'}}></div>
-                  <Link href="#" className="hover:text-red-400 transition-colors">Divine Connections</Link>
+                  <Link href="#" className="hover:text-red-400 transition-colors">Sacred Connections</Link>
                 </li>
               </ul>
             </div>
@@ -603,16 +603,16 @@ export default function Home() {
             </div>
             <div className="flex items-center space-x-6 text-sm text-gray-400">
               <Link href="#" className="hover:text-cyan-400 transition-colors flex items-center">
-                <Brain className="w-4 h-4 mr-1" />
-                AI Ethics
+                <Heart className="w-4 h-4 mr-1" />
+                Community Guidelines
               </Link>
               <Link href="#" className="hover:text-green-400 transition-colors flex items-center">
                 <Heart className="w-4 h-4 mr-1" />
                 Spiritual Privacy
               </Link>
               <Link href="#" className="hover:text-purple-400 transition-colors flex items-center">
-                <Zap className="w-4 h-4 mr-1" />
-                Divine Terms
+                <Cross className="w-4 h-4 mr-1" />
+                Sacred Terms
               </Link>
             </div>
           </div>
@@ -620,7 +620,7 @@ export default function Home() {
           {/* Final Mystical Touch */}
           <div className="mt-8 text-center">
             <p className="text-xs text-gray-500 italic">
-              "Where the Holy Spirit downloads divine wisdom into human hearts through neural pathways of faith..."
+              "Where the Holy Spirit unites believers worldwide through sacred fellowship and divine love..."
             </p>
             <div className="mt-4 flex items-center justify-center space-x-2">
               <div className="w-1 h-1 bg-blue-400 rounded-full animate-pulse"></div>
