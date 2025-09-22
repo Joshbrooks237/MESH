@@ -65,8 +65,7 @@ router.get('/', authenticateToken, async (req, res) => {
           .orWhere('tenants.address', 'ilike', `%${search}%`)
           .orWhere('tenants.city', 'ilike', `%${search}%`)
           .orWhere('tenants.state', 'ilike', `%${search}%`)
-          .orWhere('tenants.zip_code', 'ilike', `%${search}%`)
-          .orWhere('warehouse_locations.location_code', 'ilike', `%${search}%`);
+          .orWhere('tenants.zip_code', 'ilike', `%${search}%`);
       });
     }
 
@@ -74,8 +73,6 @@ router.get('/', authenticateToken, async (req, res) => {
 
     // Get total count for pagination
     let countQuery = pgConnection('tenants')
-      .leftJoin('tenant_units', 'tenants.id', 'tenant_units.tenant_id')
-      .leftJoin('warehouse_locations', 'tenant_units.location_id', 'warehouse_locations.id')
       .where('tenants.is_active', active === 'true');
 
     if (search) {
@@ -87,12 +84,11 @@ router.get('/', authenticateToken, async (req, res) => {
           .orWhere('tenants.address', 'ilike', `%${search}%`)
           .orWhere('tenants.city', 'ilike', `%${search}%`)
           .orWhere('tenants.state', 'ilike', `%${search}%`)
-          .orWhere('tenants.zip_code', 'ilike', `%${search}%`)
-          .orWhere('warehouse_locations.location_code', 'ilike', `%${search}%`);
+          .orWhere('tenants.zip_code', 'ilike', `%${search}%`);
       });
     }
 
-    const [{ count }] = await countQuery.countDistinct('tenants.id as count');
+    const [{ count }] = await countQuery.count('* as count');
     const totalPages = Math.ceil(count / limit);
 
     res.json({

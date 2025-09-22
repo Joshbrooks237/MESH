@@ -272,7 +272,7 @@ const Tenants = () => {
         <TextField
           fullWidth
           variant="outlined"
-          placeholder="Search tenants by name, email, phone, address, city, state, unit..."
+          placeholder="Search tenants by name, email, phone, address, city, state..."
           value={searchTerm}
           onChange={handleSearchChange}
           onKeyDown={handleKeyDown}
