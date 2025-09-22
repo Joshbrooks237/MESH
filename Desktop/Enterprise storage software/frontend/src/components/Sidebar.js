@@ -18,6 +18,7 @@ import {
   Assessment,
   People,
   Settings,
+  CheckCircle,
 } from '@mui/icons-material';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -37,6 +38,11 @@ const Sidebar = ({ open, onClose }) => {
       text: 'Walkthrough',
       icon: <ViewList />,
       path: '/walkthrough',
+    },
+    {
+      text: 'Tasks',
+      icon: <CheckCircle />,
+      path: '/tasks',
     },
     {
       text: 'Tenants',

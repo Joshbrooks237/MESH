@@ -13,6 +13,7 @@ import Dashboard from './pages/Dashboard';
 import Inventory from './pages/Inventory';
 import Warehouse from './pages/Warehouse';
 import Walkthrough from './pages/Walkthrough';
+import Tasks from './pages/Tasks';
 import Tenants from './pages/Tenants';
 import Reports from './pages/Reports';
 import Users from './pages/Users';
@@ -156,6 +157,16 @@ function App() {
                 <ProtectedRoute>
                   <AppLayout>
                     <Walkthrough />
+                  </AppLayout>
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/tasks"
+              element={
+                <ProtectedRoute>
+                  <AppLayout>
+                    <Tasks />
                   </AppLayout>
                 </ProtectedRoute>
               }

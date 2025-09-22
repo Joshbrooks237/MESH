@@ -14,6 +14,7 @@ const warehouseRoutes = require('./routes/warehouse');
 const tenantRoutes = require('./routes/tenants');
 const trackingRoutes = require('./routes/tracking');
 const reportingRoutes = require('./routes/reporting');
+const taskRoutes = require('./routes/tasks');
 
 // Import middleware
 const { authenticateToken, authorizeRoles } = require('./middleware/auth');
@@ -109,6 +110,7 @@ app.use('/api/warehouse', authenticateToken, warehouseRoutes);
 app.use('/api/tenants', authenticateToken, tenantRoutes);
 app.use('/api/tracking', authenticateToken, trackingRoutes);
 app.use('/api/reporting', authenticateToken, reportingRoutes);
+app.use('/api/tasks', authenticateToken, taskRoutes);
 
 // Socket.IO connection handling
 io.on('connection', (socket) => {
