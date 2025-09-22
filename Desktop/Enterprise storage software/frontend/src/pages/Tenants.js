@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import {
   Container,
   Typography,
@@ -24,6 +24,14 @@ import {
   IconButton,
   Alert,
   CircularProgress,
+  Autocomplete,
+  Popper,
+  ClickAwayListener,
+  List,
+  ListItem,
+  ListItemText,
+  Divider,
+  Fade,
 } from '@mui/material';
 import {
   Search as SearchIcon,
@@ -49,12 +57,54 @@ const Tenants = () => {
   const [loading, setLoading] = useState(true);
   const [searchLoading, setSearchLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [searchSuggestions, setSearchSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [searchHistory, setSearchHistory] = useState([]);
 
+  const searchInputRef = useRef(null);
   const { token } = useSelector((state) => state.auth);
 
   useEffect(() => {
     fetchTenants();
+    // Load search history from localStorage
+    const savedHistory = localStorage.getItem('tenantSearchHistory');
+    if (savedHistory) {
+      setSearchHistory(JSON.parse(savedHistory));
+    }
   }, []);
+
+  // Generate search suggestions based on tenant data
+  useEffect(() => {
+    if (tenants.length > 0) {
+      const suggestions = new Set();
+
+      tenants.forEach(tenant => {
+        // Add name combinations
+        if (tenant.first_name) suggestions.add(tenant.first_name);
+        if (tenant.last_name) suggestions.add(tenant.last_name);
+        if (tenant.first_name && tenant.last_name) {
+          suggestions.add(`${tenant.first_name} ${tenant.last_name}`);
+        }
+
+        // Add email parts
+        if (tenant.email) {
+          const emailParts = tenant.email.split('@');
+          if (emailParts[0]) suggestions.add(emailParts[0]);
+        }
+
+        // Add phone
+        if (tenant.phone) suggestions.add(tenant.phone);
+
+        // Add city
+        if (tenant.city) suggestions.add(tenant.city);
+
+        // Add location codes (if available)
+        if (tenant.location_code) suggestions.add(tenant.location_code);
+      });
+
+      setSearchSuggestions(Array.from(suggestions).slice(0, 10)); // Limit to 10 suggestions
+    }
+  }, [tenants]);
 
   const fetchTenants = async (search = '') => {
     try {
@@ -99,11 +149,13 @@ const Tenants = () => {
   const handleSearchChange = (event) => {
     const value = event.target.value;
     setSearchTerm(value);
+    setShowSuggestions(value.length > 0);
 
     // Clear search immediately if empty to show all tenants
     if (!value.trim()) {
       debouncedSearch.cancel(); // Cancel any pending debounced call
       fetchTenants(); // Immediately fetch all tenants
+      setShowSuggestions(false);
     } else {
       debouncedSearch(value);
     }
@@ -114,6 +166,33 @@ const Tenants = () => {
     setSearchTerm('');
     debouncedSearch.cancel(); // Cancel any pending search
     fetchTenants(); // Immediately fetch all tenants
+    setShowSuggestions(false);
+  };
+
+  // Handle search suggestion selection
+  const handleSuggestionSelect = (suggestion) => {
+    setSearchTerm(suggestion);
+    setShowSuggestions(false);
+    // Save to history
+    const newHistory = [suggestion, ...searchHistory.filter(h => h !== suggestion)].slice(0, 5);
+    setSearchHistory(newHistory);
+    localStorage.setItem('tenantSearchHistory', JSON.stringify(newHistory));
+
+    debouncedSearch(suggestion);
+    searchInputRef.current?.focus();
+  };
+
+  // Handle keyboard shortcuts
+  const handleKeyDown = (event) => {
+    if (event.key === 'Escape') {
+      handleClearSearch();
+    } else if (event.key === 'Enter' && searchTerm.trim()) {
+      // Save to history on enter
+      const newHistory = [searchTerm.trim(), ...searchHistory.filter(h => h !== searchTerm.trim())].slice(0, 5);
+      setSearchHistory(newHistory);
+      localStorage.setItem('tenantSearchHistory', JSON.stringify(newHistory));
+      setShowSuggestions(false);
+    }
   };
 
   const handleTenantClick = (tenant) => {
@@ -189,17 +268,31 @@ const Tenants = () => {
       </Box>
 
       {/* Search Bar */}
-      <Box sx={{ mb: 3 }}>
+      <Box sx={{ mb: 3, position: 'relative' }}>
         <TextField
           fullWidth
           variant="outlined"
-          placeholder="Search tenants by name, email, phone, address, unit number..."
+          placeholder="Search tenants by name, email, phone, address, city, state, unit..."
           value={searchTerm}
           onChange={handleSearchChange}
+          onKeyDown={handleKeyDown}
+          inputRef={searchInputRef}
+          sx={{
+            '& .MuiOutlinedInput-root': {
+              backgroundColor: 'background.paper',
+              '&:hover': {
+                backgroundColor: 'action.hover',
+              },
+              '&.Mui-focused': {
+                backgroundColor: 'background.paper',
+                boxShadow: (theme) => `0 0 0 2px ${theme.palette.primary.main}25`,
+              },
+            },
+          }}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
-                <SearchIcon />
+                <SearchIcon color="action" />
               </InputAdornment>
             ),
             endAdornment: (
@@ -209,15 +302,120 @@ const Tenants = () => {
                   <IconButton
                     size="small"
                     onClick={handleClearSearch}
-                    sx={{ ml: 1 }}
+                    sx={{
+                      ml: 1,
+                      color: 'text.secondary',
+                      '&:hover': {
+                        color: 'text.primary',
+                        backgroundColor: 'action.hover',
+                      },
+                    }}
                   >
-                    <ClearIcon />
+                    <ClearIcon fontSize="small" />
                   </IconButton>
                 )}
               </InputAdornment>
             ),
           }}
         />
+
+        {/* Search Suggestions Dropdown */}
+        <Fade in={showSuggestions && (searchSuggestions.length > 0 || searchHistory.length > 0)}>
+          <Paper
+            sx={{
+              position: 'absolute',
+              top: '100%',
+              left: 0,
+              right: 0,
+              zIndex: 1000,
+              mt: 1,
+              maxHeight: 300,
+              overflow: 'auto',
+              boxShadow: (theme) => theme.shadows[8],
+            }}
+          >
+            <List dense>
+              {/* Search History */}
+              {searchHistory.length > 0 && (
+                <>
+                  <ListItem sx={{ py: 1, px: 2 }}>
+                    <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 'bold' }}>
+                      Recent Searches
+                    </Typography>
+                  </ListItem>
+                  {searchHistory.slice(0, 3).map((history, index) => (
+                    <ListItem
+                      key={`history-${index}`}
+                      button
+                      onClick={() => handleSuggestionSelect(history)}
+                      sx={{
+                        '&:hover': {
+                          backgroundColor: 'action.hover',
+                        },
+                      }}
+                    >
+                      <SearchIcon sx={{ mr: 1, fontSize: 16, color: 'text.secondary' }} />
+                      <ListItemText
+                        primary={history}
+                        primaryTypographyProps={{
+                          variant: 'body2',
+                          sx: {
+                            fontStyle: 'italic',
+                            color: 'text.secondary',
+                          },
+                        }}
+                      />
+                    </ListItem>
+                  ))}
+                  <Divider />
+                </>
+              )}
+
+              {/* Suggestions */}
+              {searchSuggestions.length > 0 && (
+                <>
+                  <ListItem sx={{ py: 1, px: 2 }}>
+                    <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 'bold' }}>
+                      Suggestions
+                    </Typography>
+                  </ListItem>
+                  {searchSuggestions
+                    .filter(suggestion =>
+                      suggestion.toLowerCase().includes(searchTerm.toLowerCase()) &&
+                      !searchHistory.includes(suggestion)
+                    )
+                    .slice(0, 5)
+                    .map((suggestion, index) => (
+                      <ListItem
+                        key={`suggestion-${index}`}
+                        button
+                        onClick={() => handleSuggestionSelect(suggestion)}
+                        sx={{
+                          '&:hover': {
+                            backgroundColor: 'action.hover',
+                          },
+                        }}
+                      >
+                        <ListItemText
+                          primary={suggestion}
+                          primaryTypographyProps={{
+                            variant: 'body2',
+                          }}
+                        />
+                      </ListItem>
+                    ))}
+                </>
+              )}
+            </List>
+          </Paper>
+        </Fade>
+
+        {/* Click away listener to close suggestions */}
+        {showSuggestions && (
+          <ClickAwayListener onClickAway={() => setShowSuggestions(false)}>
+            <Box sx={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, zIndex: -1 }} />
+          </ClickAwayListener>
+        )}
       </Box>
 
       {/* Statistics */}
