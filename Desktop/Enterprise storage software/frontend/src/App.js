@@ -15,6 +15,7 @@ import Warehouse from './pages/Warehouse';
 import Walkthrough from './pages/Walkthrough';
 import Tasks from './pages/Tasks';
 import Tenants from './pages/Tenants';
+import TenantProfile from './pages/TenantProfile';
 import Reports from './pages/Reports';
 import Users from './pages/Users';
 import Settings from './pages/Settings';
@@ -177,6 +178,16 @@ function App() {
                 <ProtectedRoute>
                   <AppLayout>
                     <Tenants />
+                  </AppLayout>
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/tenants/:id"
+              element={
+                <ProtectedRoute>
+                  <AppLayout>
+                    <TenantProfile />
                   </AppLayout>
                 </ProtectedRoute>
               }

@@ -496,4 +496,87 @@ router.get('/:tenantId/payments', authenticateToken, async (req, res) => {
   }
 });
 
+// Get detailed tenant profile
+router.get('/:id/profile', authenticateToken, async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Get tenant basic info
+    const tenant = await pgConnection('tenants')
+      .select('*')
+      .where('id', id)
+      .first();
+
+    if (!tenant) {
+      return res.status(404).json({
+        error: 'Tenant not found',
+        code: 'TENANT_NOT_FOUND'
+      });
+    }
+
+    // Get tenant units with location details
+    const tenantUnits = await pgConnection('tenant_units')
+      .select(
+        'tenant_units.*',
+        'warehouse_locations.location_code',
+        'warehouse_locations.aisle',
+        'warehouse_locations.level',
+        'warehouse_locations.position',
+        'warehouses.name as warehouse_name'
+      )
+      .leftJoin('warehouse_locations', 'tenant_units.location_id', 'warehouse_locations.id')
+      .leftJoin('warehouses', 'warehouse_locations.warehouse_id', 'warehouses.id')
+      .where('tenant_units.tenant_id', id)
+      .orderBy('tenant_units.start_date', 'desc');
+
+    // Get billing cycles and payment history
+    const billingCycles = await pgConnection('billing_cycles')
+      .select('*')
+      .where('tenant_unit_id', 'in', tenantUnits.map(unit => unit.id))
+      .orderBy('billing_date', 'desc')
+      .limit(50); // Limit to recent history
+
+    // Get tasks related to this tenant
+    const tenantTasks = await pgConnection('tasks')
+      .select(
+        'tasks.*',
+        'users.first_name as creator_first_name',
+        'users.last_name as creator_last_name'
+      )
+      .leftJoin('users', 'tasks.created_by', 'users.id')
+      .where(function() {
+        this.where('tasks.title', 'ilike', `%${tenant.first_name} ${tenant.last_name}%`)
+          .orWhere('tasks.description', 'ilike', `%${tenant.first_name}%`)
+          .orWhere('tasks.description', 'ilike', `%${tenant.last_name}%`);
+      })
+      .orderBy('tasks.created_at', 'desc')
+      .limit(20);
+
+    // Calculate summary statistics
+    const stats = {
+      totalUnits: tenantUnits.length,
+      activeUnits: tenantUnits.filter(unit => unit.end_date === null || new Date(unit.end_date) > new Date()).length,
+      totalPaid: billingCycles.filter(cycle => cycle.status === 'paid').reduce((sum, cycle) => sum + parseFloat(cycle.amount_paid), 0),
+      totalOwed: billingCycles.filter(cycle => cycle.status === 'pending' || cycle.status === 'overdue').reduce((sum, cycle) => sum + parseFloat(cycle.amount_due), 0),
+      overdueCycles: billingCycles.filter(cycle => cycle.status === 'overdue' || cycle.status === 'overlocked').length,
+      activeTasks: tenantTasks.filter(task => task.status === 'pending' || task.status === 'in_progress').length
+    };
+
+    res.json({
+      tenant,
+      units: tenantUnits,
+      billingCycles,
+      tasks: tenantTasks,
+      stats
+    });
+
+  } catch (error) {
+    console.error('Get tenant profile error:', error);
+    res.status(500).json({
+      error: 'Failed to fetch tenant profile',
+      code: 'FETCH_TENANT_PROFILE_ERROR'
+    });
+  }
+});
+
 module.exports = router;

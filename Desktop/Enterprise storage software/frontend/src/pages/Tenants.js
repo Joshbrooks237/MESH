@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Container,
   Typography,
@@ -62,6 +63,7 @@ const Tenants = () => {
   const [searchHistory, setSearchHistory] = useState([]);
 
   const searchInputRef = useRef(null);
+  const navigate = useNavigate();
   const { token } = useSelector((state) => state.auth);
 
   useEffect(() => {
@@ -196,8 +198,7 @@ const Tenants = () => {
   };
 
   const handleTenantClick = (tenant) => {
-    setSelectedTenant(tenant);
-    setTenantDialogOpen(true);
+    navigate(`/tenants/${tenant.id}`);
   };
 
   const handleCreateTenant = async (tenantData) => {
@@ -543,6 +544,17 @@ const Tenants = () => {
                       e.stopPropagation();
                       handleTenantClick(tenant);
                     }}
+                    title="View Profile"
+                  >
+                    <PersonIcon />
+                  </IconButton>
+                  <IconButton
+                    size="small"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      // TODO: Implement edit functionality
+                    }}
+                    title="Edit Tenant"
                   >
                     <EditIcon />
                   </IconButton>
@@ -552,6 +564,7 @@ const Tenants = () => {
                       e.stopPropagation();
                       handleDeleteTenant(tenant.id);
                     }}
+                    title="Delete Tenant"
                   >
                     <DeleteIcon />
                   </IconButton>
