@@ -18,7 +18,32 @@ const taskSchema = Joi.object({
 // Get all tasks for the authenticated user
 router.get('/', authenticateToken, async (req, res) => {
   try {
-    const userId = req.user.userId;
+    const userId = req.user.id;
+
+    // Simple approach: get all tasks for the user, then filter in JavaScript
+    const rawTasks = await pgConnection('tasks')
+      .select('*')
+      .orderBy('created_at', 'desc');
+
+    // Get user info for joins
+    const users = await pgConnection('users').select('id', 'first_name', 'last_name');
+
+    // Filter tasks and add user info in JavaScript
+    const allTasks = rawTasks
+      .filter(task => task.assigned_to === userId || task.created_by === userId)
+      .map(task => {
+        const creator = users.find(u => u.id === task.created_by);
+        const assignee = users.find(u => u.id === task.assigned_to);
+
+        return {
+          ...task,
+          creator_first_name: creator?.first_name || null,
+          creator_last_name: creator?.last_name || null,
+          assignee_first_name: assignee?.first_name || null,
+          assignee_last_name: assignee?.last_name || null,
+        };
+      });
+
     const {
       page = 1,
       limit = 20,
@@ -30,75 +55,42 @@ router.get('/', authenticateToken, async (req, res) => {
       created_by_me
     } = req.query;
 
-    const offset = (page - 1) * limit;
-    let query = pgConnection('tasks')
-      .select(
-        'tasks.*',
-        'creator.first_name as creator_first_name',
-        'creator.last_name as creator_last_name',
-        'assignee.first_name as assignee_first_name',
-        'assignee.last_name as assignee_last_name'
-      )
-      .leftJoin('users as creator', 'tasks.created_by', 'creator.id')
-      .leftJoin('users as assignee', 'tasks.assigned_to', 'assignee.id');
+    // Filter in JavaScript
+    let filteredTasks = allTasks;
 
-    // Filter tasks based on user permissions and query parameters
     if (assigned_to_me === 'true') {
-      query = query.where('tasks.assigned_to', userId);
+      filteredTasks = filteredTasks.filter(task => task.assigned_to === userId);
     } else if (created_by_me === 'true') {
-      query = query.where('tasks.created_by', userId);
-    } else {
-      // Show tasks assigned to user or created by user
-      query = query.where(function() {
-        this.where('tasks.assigned_to', userId).orWhere('tasks.created_by', userId);
-      });
+      filteredTasks = filteredTasks.filter(task => task.created_by === userId);
     }
 
-    // Apply filters
     if (status) {
-      query = query.where('tasks.status', status);
+      filteredTasks = filteredTasks.filter(task => task.status === status);
     }
     if (priority) {
-      query = query.where('tasks.priority', priority);
+      filteredTasks = filteredTasks.filter(task => task.priority === priority);
     }
     if (due_before) {
-      query = query.where('tasks.due_date', '<=', due_before);
+      filteredTasks = filteredTasks.filter(task => task.due_date && task.due_date <= due_before);
     }
     if (due_after) {
-      query = query.where('tasks.due_date', '>=', due_after);
+      filteredTasks = filteredTasks.filter(task => task.due_date && task.due_date >= due_after);
     }
 
-    const tasks = await query
-      .orderBy('tasks.created_at', 'desc')
-      .limit(limit)
-      .offset(offset);
+    // Apply pagination
+    const offset = (page - 1) * limit;
+    const tasks = filteredTasks.slice(offset, offset + limit);
 
-    // Get total count for pagination
-    let countQuery = pgConnection('tasks');
-    if (assigned_to_me === 'true') {
-      countQuery = countQuery.where('assigned_to', userId);
-    } else if (created_by_me === 'true') {
-      countQuery = countQuery.where('created_by', userId);
-    } else {
-      countQuery = countQuery.where(function() {
-        this.where('assigned_to', userId).orWhere('created_by', userId);
-      });
-    }
-
-    if (status) countQuery = countQuery.where('status', status);
-    if (priority) countQuery = countQuery.where('priority', priority);
-    if (due_before) countQuery = countQuery.where('due_date', '<=', due_before);
-    if (due_after) countQuery = countQuery.where('due_date', '>=', due_after);
-
-    const [{ count }] = await countQuery.count('id as count');
-    const totalPages = Math.ceil(count / limit);
+    // Calculate total count from filtered results
+    const totalItems = filteredTasks.length;
+    const totalPages = Math.ceil(totalItems / limit);
 
     res.json({
       tasks,
       pagination: {
         currentPage: parseInt(page),
         totalPages,
-        totalItems: parseInt(count),
+        totalItems: totalItems,
         itemsPerPage: parseInt(limit)
       }
     });
@@ -116,7 +108,7 @@ router.get('/', authenticateToken, async (req, res) => {
 router.get('/:id', authenticateToken, async (req, res) => {
   try {
     const { id } = req.params;
-    const userId = req.user.userId;
+    const userId = req.user.id;
 
     const task = await pgConnection('tasks')
       .select(
@@ -155,7 +147,7 @@ router.get('/:id', authenticateToken, async (req, res) => {
 // Create new task
 router.post('/', authenticateToken, async (req, res) => {
   try {
-    const userId = req.user.userId;
+    const userId = req.user.id;
     const { error, value } = taskSchema.validate(req.body);
     if (error) {
       return res.status(400).json({
@@ -211,7 +203,7 @@ router.post('/', authenticateToken, async (req, res) => {
 router.put('/:id', authenticateToken, async (req, res) => {
   try {
     const { id } = req.params;
-    const userId = req.user.userId;
+    const userId = req.user.id;
 
     // Check if task exists and user has access
     const existingTask = await pgConnection('tasks')
@@ -291,7 +283,7 @@ router.put('/:id', authenticateToken, async (req, res) => {
 router.delete('/:id', authenticateToken, async (req, res) => {
   try {
     const { id } = req.params;
-    const userId = req.user.userId;
+    const userId = req.user.id;
 
     // Check if task exists and user has access
     const existingTask = await pgConnection('tasks')
@@ -329,7 +321,7 @@ router.delete('/:id', authenticateToken, async (req, res) => {
 router.patch('/:id/toggle', authenticateToken, async (req, res) => {
   try {
     const { id } = req.params;
-    const userId = req.user.userId;
+    const userId = req.user.id;
 
     // Check if task exists and user has access
     const existingTask = await pgConnection('tasks')

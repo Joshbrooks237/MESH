@@ -3,12 +3,12 @@
  * @param {Function} func - The function to debounce
  * @param {number} wait - The number of milliseconds to wait
  * @param {boolean} immediate - Whether to execute the function on the leading edge
- * @returns {Function} - The debounced function
+ * @returns {Function} - The debounced function with cancel method
  */
 export const debounce = (func, wait, immediate = false) => {
   let timeout;
 
-  return function executedFunction(...args) {
+  const debounced = function executedFunction(...args) {
     const later = () => {
       timeout = null;
       if (!immediate) func(...args);
@@ -21,4 +21,12 @@ export const debounce = (func, wait, immediate = false) => {
 
     if (callNow) func(...args);
   };
+
+  // Add cancel method to the debounced function
+  debounced.cancel = () => {
+    clearTimeout(timeout);
+    timeout = null;
+  };
+
+  return debounced;
 };

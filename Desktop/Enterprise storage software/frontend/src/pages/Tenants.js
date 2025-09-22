@@ -34,6 +34,7 @@ import {
   Edit as EditIcon,
   Delete as DeleteIcon,
   Add as AddIcon,
+  Clear as ClearIcon,
 } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
@@ -57,24 +58,29 @@ const Tenants = () => {
 
   const fetchTenants = async (search = '') => {
     try {
+      // Always show loading state during fetch
       if (!search) {
         setLoading(true);
+        setSearchLoading(false);
       } else {
+        setLoading(false);
         setSearchLoading(true);
       }
 
       const params = new URLSearchParams();
-      if (search) {
-        params.append('search', search);
+      if (search && search.trim()) {
+        params.append('search', search.trim());
       }
 
       const response = await axios.get(`http://localhost:5001/api/tenants?${params.toString()}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setTenants(response.data.tenants || []);
+      setError(null); // Clear any previous errors
     } catch (error) {
       console.error('Error fetching tenants:', error);
       setError('Failed to load tenants');
+      setTenants([]); // Clear tenants on error
     } finally {
       setLoading(false);
       setSearchLoading(false);
@@ -93,7 +99,21 @@ const Tenants = () => {
   const handleSearchChange = (event) => {
     const value = event.target.value;
     setSearchTerm(value);
-    debouncedSearch(value);
+
+    // Clear search immediately if empty to show all tenants
+    if (!value.trim()) {
+      debouncedSearch.cancel(); // Cancel any pending debounced call
+      fetchTenants(); // Immediately fetch all tenants
+    } else {
+      debouncedSearch(value);
+    }
+  };
+
+  // Handle clear search
+  const handleClearSearch = () => {
+    setSearchTerm('');
+    debouncedSearch.cancel(); // Cancel any pending search
+    fetchTenants(); // Immediately fetch all tenants
   };
 
   const handleTenantClick = (tenant) => {
@@ -182,9 +202,18 @@ const Tenants = () => {
                 <SearchIcon />
               </InputAdornment>
             ),
-            endAdornment: searchLoading && (
+            endAdornment: (
               <InputAdornment position="end">
-                <CircularProgress size={20} />
+                {searchLoading && <CircularProgress size={20} />}
+                {searchTerm && !searchLoading && (
+                  <IconButton
+                    size="small"
+                    onClick={handleClearSearch}
+                    sx={{ ml: 1 }}
+                  >
+                    <ClearIcon />
+                  </IconButton>
+                )}
               </InputAdornment>
             ),
           }}
