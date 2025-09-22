@@ -19,6 +19,7 @@
     "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.5.0",
     "chart.js": "^4.4.0",
+    "d3": "^7.9.0",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
@@ -61,7 +62,14 @@
     ]
   },
   "proxy": "http://localhost:5000",
-  "keywords": ["enterprise", "storage", "warehouse", "inventory", "management", "react"],
+  "keywords": [
+    "enterprise",
+    "storage",
+    "warehouse",
+    "inventory",
+    "management",
+    "react"
+  ],
   "author": "Enterprise Storage Team",
   "license": "MIT"
 }

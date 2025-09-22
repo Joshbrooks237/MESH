@@ -12,6 +12,12 @@ The most advanced enterprise storage facility management system in the world. Bu
 - **Automated Storage/Retrieval**: Integration with AS/RS systems
 - **Enterprise Integration**: Seamless connection with ERP, WMS, and other enterprise systems
 
+### Advanced Visualizations ✨
+- **D3.js Integration**: Interactive SVG charts with smooth animations and custom visualizations
+- **Chart.js**: Traditional canvas-based charts for standard reporting
+- **Real-time Data**: Dynamic chart updates with live data feeds
+- **Custom Dashboards**: Build personalized analytics views
+
 ### Security & Compliance
 - **Role-Based Access Control**: Granular permissions for different user types
 - **Audit Trails**: Complete tracking of all system activities
@@ -98,7 +104,7 @@ enterprise-storage-software/
 - **Framework**: React 18+
 - **State Management**: Redux Toolkit
 - **UI Library**: Material-UI
-- **Charts**: Chart.js, D3.js
+- **Charts**: Chart.js, **D3.js** ✨ (Interactive SVG visualizations)
 - **HTTP Client**: Axios
 - **Forms**: React Hook Form
 - **Routing**: React Router
