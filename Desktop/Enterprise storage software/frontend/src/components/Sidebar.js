@@ -19,6 +19,7 @@ import {
   People,
   Settings,
   CheckCircle,
+  Map,
 } from '@mui/icons-material';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -58,6 +59,11 @@ const Sidebar = ({ open, onClose }) => {
       text: 'Warehouse',
       icon: <Warehouse />,
       path: '/warehouse',
+    },
+    {
+      text: 'Map',
+      icon: <Map />,
+      path: '/map',
     },
     {
       text: 'Reports',

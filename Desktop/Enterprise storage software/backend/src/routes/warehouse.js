@@ -550,4 +550,112 @@ router.get('/:warehouseId/utilization', authenticateToken, async (req, res) => {
   }
 });
 
+// Get warehouse locations for map display
+router.get('/map-data', authenticateToken, async (req, res) => {
+  try {
+    // Get all warehouses with location data
+    const warehouses = await pgConnection('warehouses')
+      .select(
+        'id',
+        'code',
+        'name',
+        'address',
+        'city',
+        'state',
+        'postal_code',
+        'latitude',
+        'longitude',
+        'total_capacity',
+        'used_capacity',
+        'is_active'
+      )
+      .whereNotNull('latitude')
+      .whereNotNull('longitude')
+      .where('is_active', true);
+
+    // Get location statistics for each warehouse
+    const mapData = await Promise.all(
+      warehouses.map(async (warehouse) => {
+        try {
+          const stats = await pgConnection('warehouse_locations')
+            .select(
+              pgConnection.raw('COUNT(*) as total_locations'),
+              pgConnection.raw('COUNT(CASE WHEN is_occupied = true THEN 1 END) as occupied_locations'),
+              pgConnection.raw('COUNT(CASE WHEN is_blocked = true THEN 1 END) as blocked_locations')
+            )
+            .where('warehouse_id', warehouse.id)
+            .where('is_active', true)
+            .first();
+
+          // Get tenant count for this warehouse (simplified)
+          let tenantCount = { count: 0 };
+          try {
+            tenantCount = await pgConnection('tenant_units')
+              .countDistinct('tenant_id as count')
+              .leftJoin('warehouse_locations', 'tenant_units.location_id', 'warehouse_locations.id')
+              .where('warehouse_locations.warehouse_id', warehouse.id)
+              .whereNull('tenant_units.end_date')
+              .first();
+          } catch (tenantError) {
+            console.log(`Could not get tenant count for warehouse ${warehouse.id}:`, tenantError.message);
+          }
+
+          return {
+            ...warehouse,
+            latitude: parseFloat(warehouse.latitude),
+            longitude: parseFloat(warehouse.longitude),
+            utilization_rate: warehouse.total_capacity > 0 ?
+              Math.round((warehouse.used_capacity / warehouse.total_capacity) * 100) : 0,
+            location_stats: {
+              total_locations: parseInt(stats.total_locations || 0),
+              occupied_locations: parseInt(stats.occupied_locations || 0),
+              blocked_locations: parseInt(stats.blocked_locations || 0),
+              available_locations: parseInt(stats.total_locations || 0) - parseInt(stats.occupied_locations || 0) - parseInt(stats.blocked_locations || 0)
+            },
+            tenant_count: parseInt(tenantCount.count || 0)
+          };
+        } catch (warehouseError) {
+          console.log(`Error processing warehouse ${warehouse.id}:`, warehouseError.message);
+          return {
+            ...warehouse,
+            latitude: parseFloat(warehouse.latitude),
+            longitude: parseFloat(warehouse.longitude),
+            utilization_rate: 0,
+            location_stats: {
+              total_locations: 0,
+              occupied_locations: 0,
+              blocked_locations: 0,
+              available_locations: 0
+            },
+            tenant_count: 0
+          };
+        }
+      })
+    );
+
+    // Get overall statistics
+    const overallStats = {
+      total_warehouses: mapData.length,
+      total_capacity: mapData.reduce((sum, w) => sum + (w.total_capacity || 0), 0),
+      total_used: mapData.reduce((sum, w) => sum + (w.used_capacity || 0), 0),
+      total_tenants: mapData.reduce((sum, w) => sum + w.tenant_count, 0)
+    };
+
+    overallStats.overall_utilization = overallStats.total_capacity > 0 ?
+      Math.round((overallStats.total_used / overallStats.total_capacity) * 100) : 0;
+
+    res.json({
+      warehouses: mapData,
+      statistics: overallStats
+    });
+
+  } catch (error) {
+    console.error('Get map data error:', error);
+    res.status(500).json({
+      error: 'Failed to fetch map data',
+      code: 'FETCH_MAP_DATA_ERROR'
+    });
+  }
+});
+
 module.exports = router;

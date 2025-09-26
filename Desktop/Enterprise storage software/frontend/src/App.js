@@ -16,6 +16,7 @@ import Walkthrough from './pages/Walkthrough';
 import Tasks from './pages/Tasks';
 import Tenants from './pages/Tenants';
 import TenantProfile from './pages/TenantProfile';
+import Map from './pages/Map';
 import Reports from './pages/Reports';
 import Users from './pages/Users';
 import Settings from './pages/Settings';
@@ -188,6 +189,16 @@ function App() {
                 <ProtectedRoute>
                   <AppLayout>
                     <TenantProfile />
+                  </AppLayout>
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/map"
+              element={
+                <ProtectedRoute>
+                  <AppLayout>
+                    <Map />
                   </AppLayout>
                 </ProtectedRoute>
               }
