@@ -1,2 +1,2 @@
-# HOLY-GHOST-IN-THE-MACHINE
-you wouldnt getit
+# Forgiveness
+fuck you
